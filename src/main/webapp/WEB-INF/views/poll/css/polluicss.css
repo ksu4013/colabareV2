@@ -1,0 +1,48 @@
+.pollform {
+	float: left;
+	background-color: #ffffff;
+}
+
+.pollform .pollinfo {
+	background-color: #ffffff;
+	margin: 10px;
+}
+.pollform .form {
+	background-color: #ffffff;
+	margin: 10px;
+}
+
+.itemList {
+  float: left;
+  background-color: #ffffff;
+  border: 1px; 
+  /* solid #000; */
+  margin: 10px;
+  padding: 10px;
+  font-size: .9em; 
+}
+.itemList h3 {
+  margin: 0;
+}
+.itemList .itemButton {
+	cursor: pointer;
+  width: 80%;
+  float: left;
+  text-align: center;
+  margin: 5px;
+  padding: 5px;
+  background-color: #fff;
+  border-top: 3px solid #888;
+  border-left: 3px solid #888;
+  border-bottom: 3px solid #888;
+  border-right: 3px solid #888;
+}
+
+.itemList .itemclick {
+	color : white;	
+	background-color: #005e2f;
+}
+
+.commit {
+	float: left;
+}

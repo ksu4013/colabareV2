@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="cot.colabare.poll.mapper.PollMapper">
+	<cache />
+		<insert id="insertPoll" parameterType="Poll" >
+		insert into poll values(
+			poll_seq.nextval, #{poll_writer}, #{poll_type}, #{poll_title},
+			#{poll_contents}, sysdate, sysdate)
+		</insert>
+		
+		<insert id="insertQuestion" parameterType="PollQuestion">
+		insert into poll_question values(
+			poll_question_seq.nextval, #{poll_num},#{poll_question_text},
+			#{poll_multiple},#{poll_num_question_num})
+		</insert>
+		
+		<insert id="insertItem" parameterType="PollItem">
+		insert into poll_item(poll_item_num,poll_question_num,poll_item_text) 
+			values(poll_item_seq.nextval, #{poll_question_num},#{poll_item_text})
+		</insert>
+		
+		<select id="listPoll" resultType="PollList">
+		select 
+			p.*,e.name,d.department_name
+		 
+			from poll p inner join employee e
+			on p.poll_writer = e.employee_no
+			join department d
+			on e.department_id = d.department_id
+		</select>
+		
+		<select id="poll" parameterType="int" resultType="PollList">
+		select 
+			p.*,e.name,d.department_name
+		 
+			from poll p inner join employee e
+			on p.poll_writer = e.employee_no
+			join department d
+			on e.department_id = d.department_id
+			where p.poll_num = #{poll_num}
+			Order by poll_num
+		</select>
+		<select id="pollquestion" parameterType="int" resultType="PollQuestion">
+		select * from poll_question 
+			where poll_num = #{poll_num}
+			Order by poll_question_num
+		</select>
+		<select id="pollitem" parameterType="int" resultType="PollItem">
+		select i.*
+			from poll_item i INNER JOIN poll_question q
+			ON i.poll_question_num = q.poll_question_num
+			where q.poll_num = #{poll_num}
+			Order by poll_item_num
+		</select>
+		
+		<insert id="insertJoiner" parameterType="PollJoiner">
+		insert into poll_joiner values(poll_joiner_seq.nextval,#{poll_num},
+			#{employee_no},#{poll_item_num})
+		</insert>
+		
+		
+		<insert id="insertAnswer" parameterType="java.util.List">
+		insert into poll_answer(poll_answer_num, poll_item_num,poll_joiner_num,
+		poll_question_num,poll_select_num)
+		values
+			<foreach collection="list" item="item" separator=",">
+				(poll_answer_seq.nextval,#{item.poll_item_num},#{item.poll_joiner_num},
+					#{item.poll_question_num},#{item.poll_select_num})
+			</foreach>
+		</insert>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
