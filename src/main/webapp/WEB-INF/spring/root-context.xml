@@ -34,11 +34,11 @@
    </bean>
    
    <tx:annotation-driven/>
-   
-   <mybatis-spring:scan base-package="cot.colabare.mapper"/>   
-   
-   <context:component-scan base-package="cot.colabare.*.service"/>
-   <context:component-scan base-package="cot.colabare.*.aop"/>
+
+	<!-- <mybatis-spring:scan base-package="cot.colabare.*.mapper" /> -->
+	<mybatis-spring:scan base-package="cot.colabare.*.mapper" />
+	<context:component-scan base-package="cot.colabare.*.service" />
+	<context:component-scan base-package="cot.colabare.*.aop" />
    
    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>   
 </beans>
