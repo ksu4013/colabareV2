@@ -1,11 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%
-if(session.getAttribute("employee")==null){
-	response.sendRedirect("/colabare/index.html");
-}
-%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -23,35 +19,35 @@ if(session.getAttribute("employee")==null){
 
         <!-- Icons -->
         <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
-        <link rel="shortcut icon" href="/colabare/resources/img/favicon.png">
-        <link rel="apple-touch-icon" href="/colabare/resources/img/icon57.png" sizes="57x57">
-        <link rel="apple-touch-icon" href="/colabare/resources/img/icon72.png" sizes="72x72">
-        <link rel="apple-touch-icon" href="/colabare/resources/img/icon76.png" sizes="76x76">
-        <link rel="apple-touch-icon" href="/colabare/resources/img/icon114.png" sizes="114x114">
-        <link rel="apple-touch-icon" href="/colabare/resources/img/icon120.png" sizes="120x120">
-        <link rel="apple-touch-icon" href="/colabare/resources/img/icon144.png" sizes="144x144">
-        <link rel="apple-touch-icon" href="/colabare/resources/img/icon152.png" sizes="152x152">
-        <link rel="apple-touch-icon" href="/colabare/resources/img/icon180.png" sizes="180x180">
+        <link rel="shortcut icon" href="../resources/img/favicon.png">
+        <link rel="apple-touch-icon" href="../resources/img/icon57.png" sizes="57x57">
+        <link rel="apple-touch-icon" href="../resources/img/icon72.png" sizes="72x72">
+        <link rel="apple-touch-icon" href="../resources/img/icon76.png" sizes="76x76">
+        <link rel="apple-touch-icon" href="../resources/img/icon114.png" sizes="114x114">
+        <link rel="apple-touch-icon" href="../resources/img/icon120.png" sizes="120x120">
+        <link rel="apple-touch-icon" href="../resources/img/icon144.png" sizes="144x144">
+        <link rel="apple-touch-icon" href="../resources/img/icon152.png" sizes="152x152">
+        <link rel="apple-touch-icon" href="../resources/img/icon180.png" sizes="180x180">
         <!-- END Icons -->
 
         <!-- Stylesheets -->
         <!-- Bootstrap is included in its original form, unaltered -->
-        <link rel="stylesheet" href="/colabare/resources/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 
         <!-- Related styles of various icon packs and plugins -->
-        <link rel="stylesheet" href="/colabare/resources/css/plugins.css">
+        <link rel="stylesheet" href="/resources/css/plugins.css">
 
         <!-- The main stylesheet of this template. All Bootstrap overwrites are defined in here -->
-        <link rel="stylesheet" href="/colabare/resources/css/main.css">
+        <link rel="stylesheet" href="/resources/css/main.css">
 
         <!-- Include a specific file here from css/themes/ folder to alter the default theme of the template -->
 
         <!-- The themes stylesheet of this template (for using specific theme color in individual elements - must included last) -->
-        <link rel="stylesheet" href="/colabare/resources/css/themes.css">
+        <link rel="stylesheet" href="/resources/css/themes.css">
         <!-- END Stylesheets -->
 
         <!-- Modernizr (browser feature detection library) -->
-        <script src="/colabare/resources/js/vendor/modernizr-3.3.1.min.js"></script>
+        <script src="/resources/js/vendor/modernizr-3.3.1.min.js"></script>
 </head>
 
 
@@ -198,7 +194,7 @@ if(session.getAttribute("employee")==null){
                                             <a href="notice/notice_list.do">공지사항</a>
                                         </li>
                                         <li>
-                                            <a href="meetingboard/list.do">회의록</a>
+                                            <a href="/meetingboard/meetingBoardList">회의록</a>
                                             
                                         </li>
                                         <li>
@@ -622,7 +618,7 @@ if(session.getAttribute("employee")==null){
                             <!-- User Dropdown -->
                             <li class="dropdown">
                                 <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="/colabare/resources/img/placeholders/avatars/avatar9.jpg" alt="avatar">
+                                    <img src="../resources/img/placeholders/avatars/avatar9.jpg" alt="avatar">
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     <li class="dropdown-header">
@@ -676,16 +672,15 @@ if(session.getAttribute("employee")==null){
                    
 
         <!-- jQuery, Bootstrap, jQuery plugins and Custom JS code -->
-        <script src="/colabare/resources/js/vendor/jquery-3.3.1.min.js"></script>
-        <script src="/colabare/resources/js/vendor/bootstrap.min.js"></script>
-        <script src="/colabare/resources/js/plugins.js"></script>
-        <script src="/colabare/resources/js/app.js"></script>
+        <script src="/resources/js/vendor/jquery-3.3.1.min.js"></script>
+        <script src="/resources/js/vendor/bootstrap.min.js"></script>
+        <script src="/resources/js/plugins.js"></script>
+        <script src="/resources/js/app.js"></script>
 
         <!-- Load and execute javascript code used only in this page -->
-        <script src="/colabare/resources/js/pages/readyDashboard.js"></script>
+        <script src="/resources/js/pages/readyDashboard.js"></script>
         <script>$(function(){ ReadyDashboard.init(); });</script>
   
 </body>
 </html>
-
 
