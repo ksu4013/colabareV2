@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="cot.colabare.meetingboard.mapper.MeetingBoardReplyMapper">
+	
+	<select id="mbReplyList" resultType="cot.colabare.meetingboard.domain.MeetingBoardReplyDto">
+		
+		  <![CDATA[
+		 select  b.reply_no, b.board_no, b.write_date, b.content, b.name, b.employee_no
+		 from 
+		   (
+		    select /*+INDEX(meetingboard_reply pk_reply) */ 
+		      rownum rn,  r.reply_no, r.board_no, r.write_date, r.content, r.employee_no, e.name
+		    from meetingboard_reply r, employee e 
+		    where r.employee_no = e.employee_no and r.board_no = #{board_no}
+		    								    and r.reply_no > 0
+		    									and rownum <= #{cri.pageNum} * #{cri.amount}
+		   ) b where rn > (#{cri.pageNum} -1) * #{cri.amount}
+		]]>
+
+	</select>
+	
+	<select id="detailMBReply" resultType="cot.colabare.meetingboard.domain.MeetingBoardReplyDto">
+		
+		select r.reply_no, r.board_no, r.write_date, r.content, e.employee_no, e.name 
+			from meetingboard_reply r, employee e 
+				where r.employee_no = e.employee_no and r.reply_no = #{r.reply_no}
+
+	</select>
+	
+	<select id="countMBReply" resultType="int">
+		<![CDATA[
+			select count(reply_no) from meetingboard_reply where board_no = #{board_no}
+		]]>
+	</select>
+ 
+ 	<insert id="insertMBReply" >
+	  		insert into meetingboard_reply values ( meetingboard_reply_seq.nextval , #{board_no} , sysdate, #{content}, #{employee_no} )
+	</insert>
+ 
+ 	<!--  회의록 댓글   --> 
+ 	
+	 <!--  <select id="listMeetingBoardReply" parameterType="int" resultType="MeetingBoardReply">
+	  		select r.reply_no, r.board_no, r.write_date, r.content, e.name, r.employee_no from meetingboard_reply r, employee e where r.employee_no = e.employee_no and r.board_no = #{r.board_no} order by 1 desc
+	  </select> 
+	  
+	  <select id="detailMeetingBoardReply" parameterType="int" resultType="MeetingBoardReply">
+	  		select r.reply_no, r.board_no, r.write_date, r.content, e.employee_no, e.name from meetingboard_reply r, employee e where r.employee_no = e.employee_no and r.reply_no = #{r.reply_no}
+	  </select>
+	  
+	  <insert id="insertMeetingBoardReply" parameterType="MeetingBoardReply">
+	  		insert into meetingboard_reply values ( meetingboard_reply_seq.nextval , #{board_no} , sysdate, #{content}, #{employee_no} )
+	  </insert> 
+	  
+	  <update id="updateMeetingBoardReply" parameterType="MeetingBoardReply">
+	 		update meetingboard_reply set write_date = sysdate, content = #{content} where reply_no = #{reply_no} 
+	  </update>
+	  
+	  <delete id="deleteMeetingBoardReply" parameterType="int">
+	  		delete from meetingboard_reply where reply_no = #{reply_no}
+	  </delete> -->
+	  
+</mapper>

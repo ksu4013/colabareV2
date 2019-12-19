@@ -1,11 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<<<<<<< HEAD
 <%
 if(session.getAttribute("employee")==null){
 	response.sendRedirect("/login/login.do");
 }
 %>
+=======
+
+>>>>>>> colabareV2/Ang
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -23,6 +27,7 @@ if(session.getAttribute("employee")==null){
 
         <!-- Icons -->
         <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
+<<<<<<< HEAD
         <link rel="shortcut icon" href="/resources/img/favicon.png">
         <link rel="apple-touch-icon" href="/resources/img/icon57.png" sizes="57x57">
         <link rel="apple-touch-icon" href="/resources/img/icon72.png" sizes="72x72">
@@ -32,6 +37,17 @@ if(session.getAttribute("employee")==null){
         <link rel="apple-touch-icon" href="/resources/img/icon144.png" sizes="144x144">
         <link rel="apple-touch-icon" href="/resources/img/icon152.png" sizes="152x152">
         <link rel="apple-touch-icon" href="/resources/img/icon180.png" sizes="180x180">
+=======
+        <link rel="shortcut icon" href="../resources/img/favicon.png">
+        <link rel="apple-touch-icon" href="../resources/img/icon57.png" sizes="57x57">
+        <link rel="apple-touch-icon" href="../resources/img/icon72.png" sizes="72x72">
+        <link rel="apple-touch-icon" href="../resources/img/icon76.png" sizes="76x76">
+        <link rel="apple-touch-icon" href="../resources/img/icon114.png" sizes="114x114">
+        <link rel="apple-touch-icon" href="../resources/img/icon120.png" sizes="120x120">
+        <link rel="apple-touch-icon" href="../resources/img/icon144.png" sizes="144x144">
+        <link rel="apple-touch-icon" href="../resources/img/icon152.png" sizes="152x152">
+        <link rel="apple-touch-icon" href="../resources/img/icon180.png" sizes="180x180">
+>>>>>>> colabareV2/Ang
         <!-- END Icons -->
 
         <!-- Stylesheets -->
@@ -198,7 +214,7 @@ if(session.getAttribute("employee")==null){
                                             <a href="notice/notice_list.do">공지사항</a>
                                         </li>
                                         <li>
-                                            <a href="meetingboard/list.do">회의록</a>
+                                            <a href="/meetingboard/meetingBoardList">회의록</a>
                                             
                                         </li>
                                         <li>
@@ -619,7 +635,11 @@ if(session.getAttribute("employee")==null){
                             <!-- User Dropdown -->
                             <li class="dropdown">
                                 <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+<<<<<<< HEAD
                                     <img src="/resources/img/placeholders/avatars/avatar9.jpg" alt="avatar">
+=======
+                                    <img src="../resources/img/placeholders/avatars/avatar9.jpg" alt="avatar">
+>>>>>>> colabareV2/Ang
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     <li class="dropdown-header">
@@ -678,8 +698,13 @@ if(session.getAttribute("employee")==null){
         <script src="/resources/js/plugins.js"></script>
         <script src="/resources/js/app.js"></script>
 
+<<<<<<< HEAD
+=======
+        <!-- Load and execute javascript code used only in this page -->
+        <script src="/resources/js/pages/readyDashboard.js"></script>
+        <script>$(function(){ ReadyDashboard.init(); });</script>
+>>>>>>> colabareV2/Ang
   
 </body>
 </html>
-
 
