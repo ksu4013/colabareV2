@@ -8,6 +8,6 @@ import lombok.Data;
 public class PollUserInputForm {
 
 	private PollListVO polllist;
-	private List<PollQuestion> questions;
-	private List<PollItem> items;
+	private List<PollQuestionDTO> questions;
+	private List<PollItemDTO> items;
 }

@@ -5,16 +5,17 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import cot.colabare.poll.domain.PollDTO;
-import cot.colabare.poll.domain.PollItem;
-import cot.colabare.poll.domain.PollQuestion;
+import cot.colabare.poll.domain.PollItemDTO;
+import cot.colabare.poll.domain.PollListVO;
+import cot.colabare.poll.domain.PollQuestionDTO;
 
 public interface PollService {
 
-	public void insertPoll(PollDTO poll);
-	public int insertQuestion(PollQuestion question);
-	public int insertItem(PollItem item);
+	public void insertPollService(PollDTO poll);
+	public void insertQuestionService(PollQuestionDTO question);
+	public void insertItemService(List<PollItemDTO> item);
 	
-	public List<PollDTO> listPoll();
+	public List<PollListVO> listPollService();
 	
 //	public PollDTO detailPoll(int pnum);
 //	public PollQuestion detailQuestion(int pnum);

@@ -4,17 +4,19 @@ import java.util.List;
 
 import cot.colabare.poll.domain.PollAnswer;
 import cot.colabare.poll.domain.PollDTO;
-import cot.colabare.poll.domain.PollItem;
+import cot.colabare.poll.domain.PollItemDTO;
 import cot.colabare.poll.domain.PollJoiner;
-import cot.colabare.poll.domain.PollQuestion;
+import cot.colabare.poll.domain.PollListVO;
+import cot.colabare.poll.domain.PollQuestionDTO;
 
 public interface PollMapper {
-//작성자 
-	public void insertPoll(PollDTO poll);
-	public int insertQuestion(PollQuestion question);
-	public int insertItem(PollItem item);
+//작성자
+	public void insertPoll(PollDTO polldto);
+	public void insertPollKey(PollDTO polldto);
+	public void insertQuestion(PollQuestionDTO questiondto);
+	public void insertItem(List<PollItemDTO> itemdto);
 	
-	public List<PollDTO> listPoll();
+	public List<PollListVO> listPoll();
 	
 //	public PollDTO detailPoll(int pnum);
 //	public PollQuestion detailQuestion(int pnum);
