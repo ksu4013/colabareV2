@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
 if(session.getAttribute("employee")==null){
-	response.sendRedirect("/colabare/index.html");
+	response.sendRedirect("/login/login.do");
 }
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -23,35 +23,35 @@ if(session.getAttribute("employee")==null){
 
         <!-- Icons -->
         <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
-        <link rel="shortcut icon" href="/colabare/resources/img/favicon.png">
-        <link rel="apple-touch-icon" href="/colabare/resources/img/icon57.png" sizes="57x57">
-        <link rel="apple-touch-icon" href="/colabare/resources/img/icon72.png" sizes="72x72">
-        <link rel="apple-touch-icon" href="/colabare/resources/img/icon76.png" sizes="76x76">
-        <link rel="apple-touch-icon" href="/colabare/resources/img/icon114.png" sizes="114x114">
-        <link rel="apple-touch-icon" href="/colabare/resources/img/icon120.png" sizes="120x120">
-        <link rel="apple-touch-icon" href="/colabare/resources/img/icon144.png" sizes="144x144">
-        <link rel="apple-touch-icon" href="/colabare/resources/img/icon152.png" sizes="152x152">
-        <link rel="apple-touch-icon" href="/colabare/resources/img/icon180.png" sizes="180x180">
+        <link rel="shortcut icon" href="/resources/img/favicon.png">
+        <link rel="apple-touch-icon" href="/resources/img/icon57.png" sizes="57x57">
+        <link rel="apple-touch-icon" href="/resources/img/icon72.png" sizes="72x72">
+        <link rel="apple-touch-icon" href="/resources/img/icon76.png" sizes="76x76">
+        <link rel="apple-touch-icon" href="/resources/img/icon114.png" sizes="114x114">
+        <link rel="apple-touch-icon" href="/resources/img/icon120.png" sizes="120x120">
+        <link rel="apple-touch-icon" href="/resources/img/icon144.png" sizes="144x144">
+        <link rel="apple-touch-icon" href="/resources/img/icon152.png" sizes="152x152">
+        <link rel="apple-touch-icon" href="/resources/img/icon180.png" sizes="180x180">
         <!-- END Icons -->
 
         <!-- Stylesheets -->
         <!-- Bootstrap is included in its original form, unaltered -->
-        <link rel="stylesheet" href="/colabare/resources/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 
         <!-- Related styles of various icon packs and plugins -->
-        <link rel="stylesheet" href="/colabare/resources/css/plugins.css">
+        <link rel="stylesheet" href="/resources/css/plugins.css">
 
         <!-- The main stylesheet of this template. All Bootstrap overwrites are defined in here -->
-        <link rel="stylesheet" href="/colabare/resources/css/main.css">
+        <link rel="stylesheet" href="/resources/css/main.css">
 
         <!-- Include a specific file here from css/themes/ folder to alter the default theme of the template -->
 
         <!-- The themes stylesheet of this template (for using specific theme color in individual elements - must included last) -->
-        <link rel="stylesheet" href="/colabare/resources/css/themes.css">
+        <link rel="stylesheet" href="/resources/css/themes.css">
         <!-- END Stylesheets -->
 
         <!-- Modernizr (browser feature detection library) -->
-        <script src="/colabare/resources/js/vendor/modernizr-3.3.1.min.js"></script>
+        <script src="/resources/js/vendor/modernizr-3.3.1.min.js"></script>
 </head>
 
 
@@ -173,7 +173,7 @@ if(session.getAttribute("employee")==null){
                 <div id="sidebar">
                     <!-- Sidebar Brand -->
                     <div id="sidebar-brand" class="themed-background">
-                        <a href="index.html" class="sidebar-title">
+                        <a href="/login/main.do" class="sidebar-title">
                             <i class="fa fa-cube"></i> <span class="sidebar-nav-mini-hide">App<strong>UI</strong></span>
                         </a>
                     </div>
@@ -186,7 +186,7 @@ if(session.getAttribute("employee")==null){
                             <!-- Sidebar Navigation -->
                             <ul class="sidebar-nav">
                                 <li>
-                                    <a href="/colabare/main.jsp" class=" active"><i class="gi gi-compass sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">HOME</span></a>
+                                    <a href="/login/main.do" class=" active"><i class="gi gi-compass sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">HOME</span></a>
                                 </li>
                                 <li class="sidebar-separator">
                                     <i class="fa fa-ellipsis-h"></i>
@@ -235,7 +235,7 @@ if(session.getAttribute("employee")==null){
                                             <a href="todolist/todotypelist.do">To-do Type</a>
                                         </li>
                                         <li>
-                                            <a href="/colabare/profile/profile.do">프로필 수정</a>
+                                            <a href="/profile/profile.do">프로필보기</a>
                                         </li>
                                         <li>
                                             <a href="http://192.168.0.57:3000/">Project & Chat</a>
@@ -267,10 +267,10 @@ if(session.getAttribute("employee")==null){
                                             <a href="poll/poll_insert_form.do">설문조사</a>
                                         </li>
                                         <li>
-                                            <a href="mail/mailcheck.do">E-mail</a>
+                                            <a href="/mail/maillist.do">E-mail 확인</a>
                                         </li>
                                         <li>
-                                            <a href="page_layout_fixed_bottom.html">Bottom Header (Fixed)</a>
+                                            <a href="/mail/mailform.do">E-mail 보내기</a>
                                         </li>
                                         <li>
                                             <a href="page_layout_static_sidebar_mini.html">Sidebar Mini (Static)</a>
@@ -362,13 +362,10 @@ if(session.getAttribute("employee")==null){
                                 <a href="#" class="sidebar-nav-menu"><i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-more_items sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">업무</span></a>
                                     <ul>
                                         <li>
-                                            <a href="/colabare/master/insertform.do">회원 추가</a>
+                                            <a href="/master/insertmemform.do">회원 추가</a>
                                         </li>
                                         <li>
-                                            <a href="/colabare/master/listpage.do">회원 수정/삭제</a>
-                                        </li>
-                                        <li>
-                                            <a href="mail/mailcheck.do">E-mail</a>
+                                            <a href="/master/listmember.do">회원 수정/삭제</a>
                                         </li>
                                         <li>
                                             <a href="page_layout_fixed_bottom.html">Bottom Header (Fixed)</a>
@@ -411,37 +408,37 @@ if(session.getAttribute("employee")==null){
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0)" class="themed-background-classy" data-toggle="tooltip" title="Classy" data-theme="css/themes/classy.css" data-theme-navbar="navbar-inverse" data-theme-sidebar="">
+                                        <a href="javascript:void(0)" class="themed-background-classy" data-toggle="tooltip" title="Classy" data-theme="/resources/css/themes/classy.css" data-theme-navbar="navbar-inverse" data-theme-sidebar="">
                                             <span class="section-side themed-background-dark-classy"></span>
                                             <span class="section-content"></span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0)" class="themed-background-social" data-toggle="tooltip" title="Social" data-theme="css/themes/social.css" data-theme-navbar="navbar-inverse" data-theme-sidebar="">
+                                        <a href="javascript:void(0)" class="themed-background-social" data-toggle="tooltip" title="Social" data-theme="/resources/css/themes/social.css" data-theme-navbar="navbar-inverse" data-theme-sidebar="">
                                             <span class="section-side themed-background-dark-social"></span>
                                             <span class="section-content"></span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0)" class="themed-background-flat" data-toggle="tooltip" title="Flat" data-theme="css/themes/flat.css" data-theme-navbar="navbar-inverse" data-theme-sidebar="">
+                                        <a href="javascript:void(0)" class="themed-background-flat" data-toggle="tooltip" title="Flat" data-theme="/resources/css/themes/flat.css" data-theme-navbar="navbar-inverse" data-theme-sidebar="">
                                             <span class="section-side themed-background-dark-flat"></span>
                                             <span class="section-content"></span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0)" class="themed-background-amethyst" data-toggle="tooltip" title="Amethyst" data-theme="css/themes/amethyst.css" data-theme-navbar="navbar-inverse" data-theme-sidebar="">
+                                        <a href="javascript:void(0)" class="themed-background-amethyst" data-toggle="tooltip" title="Amethyst" data-theme="/resources/css/themes/amethyst.css" data-theme-navbar="navbar-inverse" data-theme-sidebar="">
                                             <span class="section-side themed-background-dark-amethyst"></span>
                                             <span class="section-content"></span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0)" class="themed-background-creme" data-toggle="tooltip" title="Creme" data-theme="css/themes/creme.css" data-theme-navbar="navbar-inverse" data-theme-sidebar="">
+                                        <a href="javascript:void(0)" class="themed-background-creme" data-toggle="tooltip" title="Creme" data-theme="/resources/css/themes/creme.css" data-theme-navbar="navbar-inverse" data-theme-sidebar="">
                                             <span class="section-side themed-background-dark-creme"></span>
                                             <span class="section-content"></span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0)" class="themed-background-passion" data-toggle="tooltip" title="Passion" data-theme="css/themes/passion.css" data-theme-navbar="navbar-inverse" data-theme-sidebar="">
+                                        <a href="javascript:void(0)" class="themed-background-passion" data-toggle="tooltip" title="Passion" data-theme="/resources/css/themes/passion.css" data-theme-navbar="navbar-inverse" data-theme-sidebar="">
                                             <span class="section-side themed-background-dark-passion"></span>
                                             <span class="section-content"></span>
                                         </a>
@@ -453,37 +450,37 @@ if(session.getAttribute("employee")==null){
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0)" class="themed-background-classy" data-toggle="tooltip" title="Classy + Light Sidebar" data-theme="css/themes/classy.css" data-theme-navbar="navbar-inverse" data-theme-sidebar="sidebar-light">
+                                        <a href="javascript:void(0)" class="themed-background-classy" data-toggle="tooltip" title="Classy + Light Sidebar" data-theme="/resources/css/themes/classy.css" data-theme-navbar="navbar-inverse" data-theme-sidebar="sidebar-light">
                                             <span class="section-side"></span>
                                             <span class="section-content"></span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0)" class="themed-background-social" data-toggle="tooltip" title="Social + Light Sidebar" data-theme="css/themes/social.css" data-theme-navbar="navbar-inverse" data-theme-sidebar="sidebar-light">
+                                        <a href="javascript:void(0)" class="themed-background-social" data-toggle="tooltip" title="Social + Light Sidebar" data-theme="/resources/css/themes/social.css" data-theme-navbar="navbar-inverse" data-theme-sidebar="sidebar-light">
                                             <span class="section-side"></span>
                                             <span class="section-content"></span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0)" class="themed-background-flat" data-toggle="tooltip" title="Flat + Light Sidebar" data-theme="css/themes/flat.css" data-theme-navbar="navbar-inverse" data-theme-sidebar="sidebar-light">
+                                        <a href="javascript:void(0)" class="themed-background-flat" data-toggle="tooltip" title="Flat + Light Sidebar" data-theme="/resources/css/themes/flat.css" data-theme-navbar="navbar-inverse" data-theme-sidebar="sidebar-light">
                                             <span class="section-side"></span>
                                             <span class="section-content"></span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0)" class="themed-background-amethyst" data-toggle="tooltip" title="Amethyst + Light Sidebar" data-theme="css/themes/amethyst.css" data-theme-navbar="navbar-inverse" data-theme-sidebar="sidebar-light">
+                                        <a href="javascript:void(0)" class="themed-background-amethyst" data-toggle="tooltip" title="Amethyst + Light Sidebar" data-theme="/resources/css/themes/amethyst.css" data-theme-navbar="navbar-inverse" data-theme-sidebar="sidebar-light">
                                             <span class="section-side"></span>
                                             <span class="section-content"></span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0)" class="themed-background-creme" data-toggle="tooltip" title="Creme + Light Sidebar" data-theme="css/themes/creme.css" data-theme-navbar="navbar-inverse" data-theme-sidebar="sidebar-light">
+                                        <a href="javascript:void(0)" class="themed-background-creme" data-toggle="tooltip" title="Creme + Light Sidebar" data-theme="/resources/css/themes/creme.css" data-theme-navbar="navbar-inverse" data-theme-sidebar="sidebar-light">
                                             <span class="section-side"></span>
                                             <span class="section-content"></span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0)" class="themed-background-passion" data-toggle="tooltip" title="Passion + Light Sidebar" data-theme="css/themes/passion.css" data-theme-navbar="navbar-inverse" data-theme-sidebar="sidebar-light">
+                                        <a href="javascript:void(0)" class="themed-background-passion" data-toggle="tooltip" title="Passion + Light Sidebar" data-theme="/resources/css/themes/passion.css" data-theme-navbar="navbar-inverse" data-theme-sidebar="sidebar-light">
                                             <span class="section-side"></span>
                                             <span class="section-content"></span>
                                         </a>
@@ -496,42 +493,42 @@ if(session.getAttribute("employee")==null){
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0)" class="themed-background-classy" data-toggle="tooltip" title="Classy + Light Header" data-theme="css/themes/classy.css" data-theme-navbar="navbar-default" data-theme-sidebar="">
+                                        <a href="javascript:void(0)" class="themed-background-classy" data-toggle="tooltip" title="Classy + Light Header" data-theme="/resources/css/themes/classy.css" data-theme-navbar="navbar-default" data-theme-sidebar="">
                                             <span class="section-header"></span>
                                             <span class="section-side themed-background-dark-classy"></span>
                                             <span class="section-content"></span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0)" class="themed-background-social" data-toggle="tooltip" title="Social + Light Header" data-theme="css/themes/social.css" data-theme-navbar="navbar-default" data-theme-sidebar="">
+                                        <a href="javascript:void(0)" class="themed-background-social" data-toggle="tooltip" title="Social + Light Header" data-theme="/resources/css/themes/social.css" data-theme-navbar="navbar-default" data-theme-sidebar="">
                                             <span class="section-header"></span>
                                             <span class="section-side themed-background-dark-social"></span>
                                             <span class="section-content"></span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0)" class="themed-background-flat" data-toggle="tooltip" title="Flat + Light Header" data-theme="css/themes/flat.css" data-theme-navbar="navbar-default" data-theme-sidebar="">
+                                        <a href="javascript:void(0)" class="themed-background-flat" data-toggle="tooltip" title="Flat + Light Header" data-theme="/resources/css/themes/flat.css" data-theme-navbar="navbar-default" data-theme-sidebar="">
                                             <span class="section-header"></span>
                                             <span class="section-side themed-background-dark-flat"></span>
                                             <span class="section-content"></span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0)" class="themed-background-amethyst" data-toggle="tooltip" title="Amethyst + Light Header" data-theme="css/themes/amethyst.css" data-theme-navbar="navbar-default" data-theme-sidebar="">
+                                        <a href="javascript:void(0)" class="themed-background-amethyst" data-toggle="tooltip" title="Amethyst + Light Header" data-theme="/resources/css/themes/amethyst.css" data-theme-navbar="navbar-default" data-theme-sidebar="">
                                             <span class="section-header"></span>
                                             <span class="section-side themed-background-dark-amethyst"></span>
                                             <span class="section-content"></span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0)" class="themed-background-creme" data-toggle="tooltip" title="Creme + Light Header" data-theme="css/themes/creme.css" data-theme-navbar="navbar-default" data-theme-sidebar="">
+                                        <a href="javascript:void(0)" class="themed-background-creme" data-toggle="tooltip" title="Creme + Light Header" data-theme="/resources/css/themes/creme.css" data-theme-navbar="navbar-default" data-theme-sidebar="">
                                             <span class="section-header"></span>
                                             <span class="section-side themed-background-dark-creme"></span>
                                             <span class="section-content"></span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0)" class="themed-background-passion" data-toggle="tooltip" title="Passion + Light Header" data-theme="css/themes/passion.css" data-theme-navbar="navbar-default" data-theme-sidebar="">
+                                        <a href="javascript:void(0)" class="themed-background-passion" data-toggle="tooltip" title="Passion + Light Header" data-theme="/resources/css/themes/passion.css" data-theme-navbar="navbar-default" data-theme-sidebar="">
                                             <span class="section-header"></span>
                                             <span class="section-side themed-background-dark-passion"></span>
                                             <span class="section-content"></span>
@@ -622,7 +619,7 @@ if(session.getAttribute("employee")==null){
                             <!-- User Dropdown -->
                             <li class="dropdown">
                                 <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="/colabare/resources/img/placeholders/avatars/avatar9.jpg" alt="avatar">
+                                    <img src="/resources/img/placeholders/avatars/avatar9.jpg" alt="avatar">
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     <li class="dropdown-header">
@@ -660,7 +657,7 @@ if(session.getAttribute("employee")==null){
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="page_ready_login.html">
+                                        <a href="/login/logout.do">
                                             <i class="fa fa-power-off fa-fw pull-right"></i>
                                             Log out
                                         </a>
@@ -676,14 +673,11 @@ if(session.getAttribute("employee")==null){
                    
 
         <!-- jQuery, Bootstrap, jQuery plugins and Custom JS code -->
-        <script src="/colabare/resources/js/vendor/jquery-3.3.1.min.js"></script>
-        <script src="/colabare/resources/js/vendor/bootstrap.min.js"></script>
-        <script src="/colabare/resources/js/plugins.js"></script>
-        <script src="/colabare/resources/js/app.js"></script>
+        <script src="/resources/js/vendor/jquery-3.3.1.min.js"></script>
+        <script src="/resources/js/vendor/bootstrap.min.js"></script>
+        <script src="/resources/js/plugins.js"></script>
+        <script src="/resources/js/app.js"></script>
 
-        <!-- Load and execute javascript code used only in this page -->
-        <script src="/colabare/resources/js/pages/readyDashboard.js"></script>
-        <script>$(function(){ ReadyDashboard.init(); });</script>
   
 </body>
 </html>
