@@ -24,7 +24,6 @@
 	<context:component-scan base-package="cot.colabare.*.controller" /> 
 	<context:component-scan base-package="cot.colabare.controller" />
 	
-
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />
 	
 </beans:beans>

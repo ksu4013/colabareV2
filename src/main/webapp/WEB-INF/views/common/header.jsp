@@ -7,6 +7,7 @@ if(session.getAttribute("employee")==null){
 }
 %>
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -21,6 +22,7 @@ if(session.getAttribute("employee")==null){
         <meta name="author" content="pixelcave">
         <meta name="robots" content="noindex, nofollow">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
+
 
         <link rel="shortcut icon" href="/resources/img/favicon.png">
         <link rel="apple-touch-icon" href="/resources/img/icon57.png" sizes="57x57">
