@@ -1,6 +1,4 @@
-package cot.colabare.domain;
-
-import java.util.Date;
+package cot.colabare.todolist.domain;
 
 import lombok.Data;
 

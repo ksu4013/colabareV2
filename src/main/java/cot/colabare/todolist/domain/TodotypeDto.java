@@ -1,11 +1,9 @@
-package cot.colabare.domain;
-
-import org.springframework.stereotype.Component;
+package cot.colabare.todolist.domain;
 
 import lombok.Data;
 
 @Data
-@Component
+
 public class TodotypeDto {
 
 	private int todo_type_no;

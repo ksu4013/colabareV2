@@ -9,7 +9,7 @@
 <body>
 <h3>todo 리스트</h3>
 <hr>
-	<a href="todolistinsertform.do?todo_type_no=${todo_type_no}">새로운 todo</a>
+	<a href="todoinsertform?todo_type_no=${todo_type_no}">새로운 todo</a>
 	<br><br>
 	<table border="1">
 		<tr>
@@ -23,28 +23,28 @@
 			
 		</tr>
 		
-		<c:forEach var="todolist" items="${listTodo }" >
+		<c:forEach var="todolist" items="${todoList }">
 		<tr>
 			
 <%-- 			<td><input type="hidden" name="todo_type_title" value="${todo_type_title}"></td>
 			<td><input type="hidden" name="todo_type_contents" value="${todo_type_contents}"></td> --%>
 			<%-- <td>${todolist.todo_no}</td> --%>
 			<%-- <td><a href="/colabare/todolist.detail.do?todo_no=${todolist.todo_no }">${todolist.todo_title }</a></td> --%>
-			<td>${todolist.todo_title }</td>
-			<td>${todolist.todo_contents }</td>
-			<td>${todolist.todo_priority}</td>
+			<td>${todo.todo_title }</td>
+			<td>${todo.todo_contents }</td>
+			<td>${todo.todo_priority}</td>
 			<%-- <td>${todolist.upload_on_cal}</td>
 			<td>${todolist.startdate }</td>
 			<td>${todolist.enddate }</td> --%>
 			<%-- <td><a href="todolistupdateform.do?todo_no=${todolist.todo_no}">수정하기</a><td> --%>
-			<td><a href="todolistupdateform.do?todo_no=${todolist.todo_no}&todo_type_no=${todo_type_no}">수정하기</a></td>
-			<td><a href="todolistDeleteAction.do?todo_no=${todolist.todo_no}&todo_type_no=${todo_type_no}">삭제하기</a></td>
+			<td><a href="todoupdateform?todo_no=${todo.todo_no}&todo_type_no=${todo_type_no}">수정하기</a></td>
+			<td><a href="deleteTodo?todo_no=${todo.todo_no}&todo_type_no=${todo_type_no}">삭제하기</a></td>
 		</tr>				
 		<input type="hidden" name="todo_type_no" value="${todo_type_no}">
 		</c:forEach>
 	</table>
 	<br><br>
 	<hr>
-	<a href="todotypelist.do">TODO TYPE</a>
+	<a href="typelist">TODO TYPE</a>
 </body>
 </html>

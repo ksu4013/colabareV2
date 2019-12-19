@@ -1,4 +1,4 @@
-package cot.colabare.service;
+package cot.colabare.todolist.service;
 
 import java.util.List;
 
@@ -6,61 +6,62 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
-import cot.colabare.domain.TodoDto;
-import cot.colabare.domain.TodotypeDto;
-import cot.colabare.mapper.TodoMapper;
+import cot.colabare.todolist.domain.TodoDto;
+import cot.colabare.todolist.domain.TodotypeDto;
+import cot.colabare.todolist.mapper.TodoMapper;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
 @Service
-@AllArgsConstructor
-@Repository
 public class TodoServiceImpl implements TodoService {
 
 	@Setter(onMethod_ = @Autowired)
 	private TodoMapper mapper;
-
-	@Override
-	public void register(TodoDto todo) {
-		log.info("register..." + todo);
-
+	
+	public void registerTodo(TodoDto todo) {
+		log.info("register..."+todo);
 		mapper.insertTodo(todo);
 
 	}
 
 	@Override
-	public TodoDto get(int todo_no) {
+	public TodoDto getTodo(int todo_no) {
 		log.info("get...." + todo_no);
 
 		return mapper.detail(todo_no);
 	}
 
 	@Override
-	public boolean modify(TodoDto todo) {
+	public boolean modifyTodo(TodoDto todo) {
 		log.info("modify..." + todo);
 
 		return mapper.updateTodo(todo) == 1;
 	}
 
 	@Override
-	public boolean remove(int todo_no) {
+	public boolean removeTodo(int todo_no) {
 		log.info("delete...." + todo_no);
 		return mapper.deleteTodo(todo_no) == 1;
 	}
 
 	@Override
-	public List<TodoDto> getList() {
+	public List<TodoDto> getTodoList() {
 		log.info("getList....");
 
 		return mapper.getTodoList();
 	}
 
+	
+	
+	
+	
 	@Override
 	public void registerType(TodotypeDto type) {
-		log.info("typeregister..." + type);
+		log.info("registerType..." + type);
 		mapper.insertType(type);
+
 	}
 
 	@Override
@@ -72,7 +73,7 @@ public class TodoServiceImpl implements TodoService {
 	@Override
 	public boolean modifyType(TodotypeDto type) {
 		log.info("modifyType..." + type);
-		return mapper.updateType(type) == 1;
+		return mapper.updateType(type)==1;
 	}
 
 	@Override

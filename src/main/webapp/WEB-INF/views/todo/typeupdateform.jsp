@@ -7,6 +7,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<h3>유형 수정</h3>
+<hr><form action="typeupdateform" method="get">
+	<input type="hidden" name="todo_type_no" value="${todo_type_no }">
+	제목:<input type="text" name="todo_type_title"><br>
+	내용:<input type="text" name="todo_type_contents"><br>
+	
+	<br>	
+	<input type="submit" value="수정">
+</form>
+<hr>
+<a href="typelist">목록보기</a>
 </body>
 </html>

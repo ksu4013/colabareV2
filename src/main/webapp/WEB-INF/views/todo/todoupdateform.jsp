@@ -7,30 +7,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h3>todo 수정</h3>
-<hr>
-<form action="todolistUpdateAction.do" method="get">
-<input type="hidden" name="todo_no" value="${todo_no}">
-	제목:<input type="text"  name="todo_title"><br>
-	내용:<input type="text" name="todo_contents"><br>
-	우선순위:<input type="text" name="todo_priority"><br>
-	<%-- 투두 타입 노 : ${todo_type_no} --%>
-	<%-- 우선순위:<select>
-				<option value="${h }">상</option>
-				<option value="${m }">중</option>
-				<option value="${l }">하</option>
+<h3>유형 수정</h3>
+	<hr>
+	<form action="modifyType?todo_type_no=${todotype.todo_type_no }" method="POST">
+	<input type="hidden" name="todo_type_no" value="${todo_type_no }">
+	제목:<input type="text" name="todo_type_title"><br>
+	내용:<input type="text" name="todo_type_contents"><br>
 	
-			</select><br> --%>
-	
-	<!-- 캘린더연동여부<input type="checkbox"><br>
-	시작일<input type="date"><br>
-	마감일<input type="date"><br> -->
-	
-	<input type="hidden" name="todo_type_no" value="${todo_type_no}">
+	<br>	
 	<input type="submit" value="수정">
 </form>
-<hr>
-<a href="todolistlist.do?todo_type_no=${todo_type_no }">목록보기</a>
 
+<hr>
+<a href="todo/typelist">목록보기</a>
 </body>
 </html>

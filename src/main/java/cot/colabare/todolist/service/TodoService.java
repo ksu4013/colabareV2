@@ -1,28 +1,28 @@
-package cot.colabare.service;
+package cot.colabare.todolist.service;
 
 import java.util.List;
 
-import cot.colabare.domain.TodoDto;
-import cot.colabare.domain.TodotypeDto;
+import cot.colabare.todolist.domain.TodoDto;
+import cot.colabare.todolist.domain.TodotypeDto;
 
 public interface TodoService {
 
 	// 할일 
 	
 	//할일 등록
-	public void register(TodoDto todo);
+	public void registerTodo(TodoDto todo);
 	
 	//할일 상세보기
-	public TodoDto get(int todo_no);
+	public TodoDto getTodo(int todo_no);
 	
 	//할일 수정
-	public boolean modify(TodoDto todo);
+	public boolean modifyTodo(TodoDto todo);
 	
 	//할일 삭제
-	public boolean remove(int todo_no);
+	public boolean removeTodo(int todo_no);
 	
 	//할일 목록 조회
-	public List<TodoDto> getList();
+	public List<TodoDto> getTodoList();
 	
 	
 	

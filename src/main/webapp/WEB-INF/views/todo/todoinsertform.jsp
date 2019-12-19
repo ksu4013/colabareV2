@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@include file="../common/header.jsp" %>
+
 
 <html>
 <head>
@@ -12,7 +12,7 @@
 <body>
 <h3>todo 작성</h3>
 <hr>
-<form action="/colabare/todolist/todolistInsertAction.do" method="post">
+<form action="registerTodo?todo_type_no=${todo_type_no }" method="post">
   
 	제목: <input type="text" name="todo_title"><br>
 	내용:<textarea name="todo_contents"></textarea><br>
