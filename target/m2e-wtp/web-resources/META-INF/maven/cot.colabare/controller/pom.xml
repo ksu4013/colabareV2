@@ -4,7 +4,7 @@
    <modelVersion>4.0.0</modelVersion>
    <groupId>cot.colabare</groupId>
    <artifactId>controller</artifactId>
-   <name>colabareV2</name>
+   <name>colabare</name>
    <packaging>war</packaging>
    <version>1.0.0-BUILD-SNAPSHOT</version>
    <properties>
