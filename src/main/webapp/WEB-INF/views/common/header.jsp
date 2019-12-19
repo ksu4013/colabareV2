@@ -1,15 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<<<<<<< HEAD
 <%
 if(session.getAttribute("employee")==null){
 	response.sendRedirect("/login/login.do");
 }
 %>
-=======
 
->>>>>>> colabareV2/Ang
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -25,9 +22,6 @@ if(session.getAttribute("employee")==null){
         <meta name="robots" content="noindex, nofollow">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
 
-        <!-- Icons -->
-        <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
-<<<<<<< HEAD
         <link rel="shortcut icon" href="/resources/img/favicon.png">
         <link rel="apple-touch-icon" href="/resources/img/icon57.png" sizes="57x57">
         <link rel="apple-touch-icon" href="/resources/img/icon72.png" sizes="72x72">
@@ -37,17 +31,7 @@ if(session.getAttribute("employee")==null){
         <link rel="apple-touch-icon" href="/resources/img/icon144.png" sizes="144x144">
         <link rel="apple-touch-icon" href="/resources/img/icon152.png" sizes="152x152">
         <link rel="apple-touch-icon" href="/resources/img/icon180.png" sizes="180x180">
-=======
-        <link rel="shortcut icon" href="../resources/img/favicon.png">
-        <link rel="apple-touch-icon" href="../resources/img/icon57.png" sizes="57x57">
-        <link rel="apple-touch-icon" href="../resources/img/icon72.png" sizes="72x72">
-        <link rel="apple-touch-icon" href="../resources/img/icon76.png" sizes="76x76">
-        <link rel="apple-touch-icon" href="../resources/img/icon114.png" sizes="114x114">
-        <link rel="apple-touch-icon" href="../resources/img/icon120.png" sizes="120x120">
-        <link rel="apple-touch-icon" href="../resources/img/icon144.png" sizes="144x144">
-        <link rel="apple-touch-icon" href="../resources/img/icon152.png" sizes="152x152">
-        <link rel="apple-touch-icon" href="../resources/img/icon180.png" sizes="180x180">
->>>>>>> colabareV2/Ang
+
         <!-- END Icons -->
 
         <!-- Stylesheets -->
