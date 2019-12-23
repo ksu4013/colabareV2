@@ -45,6 +45,7 @@ public class MeetingBoardReplyServiceImpl implements MeetingBoardReplyService {
 		return new ReplyPageDTO(mapper.countMBReply(board_no), mapper.mbReplyList(cri, board_no));
 	}
 
+	// 댓글 삽입
 	@Override
 	public int insertMBReply(MeetingBoardReplyDto mbReply) {
 
@@ -53,6 +54,28 @@ public class MeetingBoardReplyServiceImpl implements MeetingBoardReplyService {
 		mbMapper.updateReplyCnt(mbReply.getBoard_no(), 1);
 		
 		return mapper.insertMBReply(mbReply);
+	}
+
+	// 댓글 삭제
+	@Override
+	public int deleteMBReply(Long reply_no) {
+		
+		log.info("remove...." + reply_no);
+		
+		// 전달 되는 파라미터가 댓글의 번호인 reply_no만을 받기때문에 해당 댓글의 게시물을 알아내는 과정
+		MeetingBoardReplyDto mbReply = mapper.detailMBReply(reply_no);	
+		
+		mbMapper.updateReplyCnt(mbReply.getBoard_no(), -1);
+		
+		return mapper.deleteMBReply(reply_no);
+	}
+
+	@Override
+	public int updateMBReply(MeetingBoardReplyDto mbReply) {
+		
+		log.info("modify......" + mbReply);
+		
+		return mapper.updateMBReply(mbReply);
 	}
 
 }

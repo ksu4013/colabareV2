@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ include file = "../common/header.jsp" %>
 
 <style type="text/css">
@@ -126,11 +127,11 @@
                      <ul class="media-list" id="replyList">
                      
                      </ul><!-- END Comments Content -->
-                     
-                     </div>
-                     
                      <div class="panel-footer"> <!-- 댓글 페이징 버튼  -->
-                 </div>
+                 	 </div>
+                  </div>
+                     
+                     
                  <!-- END Comments Block -->
 					
 				
@@ -160,13 +161,14 @@
                          
                          <div class="form-group">
                              <div class="col-xs-12">
-                                 <textarea name="content" class="form-control" rows="5" value ="${meetingBoard.content }" placeholder="Comment.."></textarea>
+                                 <textarea id="content" name="content" class="form-control" rows="5" placeholder="Comment.."></textarea>
+                                 <!-- <input id="content" class="form-control" rows="5" placeholder="Comment.." name='content'> -->
                              </div>
                          </div>
                          
                          <div class="form-group">
                              <div class="col-xs-12">
-                                 <button type="submit" data-oper='insert' class="btn btn-effect-ripple btn-primary"><i class="fa fa-pencil"></i>&nbsp; 댓글 작성</button>
+                                 <button type="button" data-oper='insert' class="btn btn-effect-ripple btn-primary"><i class="fa fa-pencil"></i>&nbsp; 댓글 작성</button>
                              </div>
                          </div>
                          
@@ -292,6 +294,7 @@
 		
 		function showList(page){
 			
+			$('#replyList').empty();
 			console.log("show list " + page);
 			
 			MBReplyService.getList({board_no : board_no, page: page || 1}, function(replyCnt, list){
@@ -312,7 +315,7 @@
 		        }
 		        
 		        for(var i = 0 , len = list.length || 0 ; i < len; i++){
-		        	str += "<li class='media'>";
+		        	str += "<li class='media' id=rp" + list[i].reply_no + ">";
 		        	str += "    <a href='javascript:void(0)' class='pull-left'>";
 		        	str += "        <img src='../resources/img/placeholders/avatars/avatar12.jpg' alt='Avatar' class='img-circle'>";
 		        	str += "    </a>";
@@ -320,11 +323,13 @@
 		        	str += "         <a href='javascript:void(0)'><strong>" + list[i].name + "</strong></a>";
 		        	str += "         <span class='text-muted'><small><em>" + list[i].write_date + "</em></small></span>";
 		        	str += "         <p>" + list[i].content + "</p>";
+		        	str += '		 <button type="button" class="btn btn-rounded btn-primary" id = "updateFormReply" value = "' + list[i].reply_no + '">수정</button>';
+		        	str += '		 <button type="button" class="btn btn-rounded btn-info"    id = "deleteReply"     value = "' + list[i].reply_no + '">삭제</button>';
+		        	str += '		 <button type="button" class="btn btn-rounded btn-default" id = "commentReply"    value = "' + list[i].reply_no + '">대댓</button>';
 		        	str += "     </div>";
 		        	str += "</li>";
 		        	
 		        }
-		        
 		        replyUL.html(str);
 		        
 		        showReplyPage(replyCnt);
@@ -394,10 +399,12 @@
 	      }); 
 	    
 	    var employee_no = '<c:out value="${meetingBoard.employee_no}"/>';
-	    var content = $("input[name='content']");
+	    
 	    
 	    // 댓글 삽입
 	    $("button[data-oper='insert']").on("click", function(e){
+	    	var content = $('#content').val();
+
 	    	
 	    	var reply = {
 	    					board_no : board_no,
@@ -406,16 +413,131 @@
 	    	
 	    	MBReplyService.add(reply, function(result){
 	    		alert(result);
-	    		
+	    		$('#content').val('');
 	    		showList(-1);
 	    	});
 	    					
-	    			
-	    	
-	    	
-	    	
 	    	
 	    });
+	    
+	    
+	   // 댓글 삭제 deleteReply
+	   $(".block").on("click", "#deleteReply", function(){
+		   
+		   var reply_no = $(this).val();
+		   
+		   MBReplyService.remove(reply_no, function(result){
+			   
+			   alert(result);
+			   //showList(-1);
+			   showList(pageNum);
+		   });
+		   
+	   });
+	   
+	   
+		// 댓글 수정 폼 이동
+		$(".block").on("click", "#updateFormReply", function(){
+			
+			var reply_no = $(this).val();
+			
+			 MBReplyService.get(reply_no, function(list){
+				
+				var str = "";
+				
+				str += "<li class='media' id=rp" + list.reply_no + ">";
+	        	str += "    <a href='javascript:void(0)' class='pull-left'>";
+	        	str += "        <img src='../resources/img/placeholders/avatars/avatar12.jpg' alt='Avatar' class='img-circle'>";
+	        	str += "    </a>";
+	        	str += "     <div class='media-body'>";
+	        	str += "         <a href='javascript:void(0)'><strong>" + list.name + "</strong></a>";
+	        	str += "         <span class='text-muted'><small><em>" + list.write_date + "</em></small></span>";
+	        	str += "         <p><textarea class='form-control' rows='5' name='editContent' id='editContent' >" + list.content + "</textarea></p>";
+	        	str += '		 <button type="button" class="btn btn-rounded btn-primary" id = "updateReply"  value = "' + list.reply_no + '">완료</button>';
+	        	str += '		 <button type="button" class="btn btn-rounded btn-info"    id = "cancelReply"  value = "' + list.reply_no + '">취소</button>';
+	        	str += "     </div>";
+	        	str += "</li>";
+				
+				$('#rp' + list.reply_no).replaceWith(str);
+				$('#rp' + list.reply_no + '#editContent').focus();
+			});
+			
+		});
+		
+		// 댓글 수정폼 함수
+		/* function editReply(data){
+			
+			var str = "";
+			
+			$.each(JSON.parse(data), function(index, list){
+				
+				str += "<li class='media' id=rp" + list.reply_no + ">";
+	        	str += "    <a href='javascript:void(0)' class='pull-left'>";
+	        	str += "        <img src='../resources/img/placeholders/avatars/avatar12.jpg' alt='Avatar' class='img-circle'>";
+	        	str += "    </a>";
+	        	str += "     <div class='media-body'>";
+	        	str += "         <a href='javascript:void(0)'><strong>" + list.name + "</strong></a>";
+	        	str += "         <span class='text-muted'><small><em>" + list.write_date + "</em></small></span>";
+	        	str += "         <p><textarea name='editContent' id='editContent' >" + list.content + "</textarea></p>";
+	        	str += '		 <button type="button" class="btn btn-rounded btn-primary" id = "updateFormReply" value = "' + list.reply_no + '">수정</button>';
+	        	str += '		 <button type="button" class="btn btn-rounded btn-info"    id = "deleteReply"     value = "' + list.reply_no + '">삭제</button>';
+	        	str += '		 <button type="button" class="btn btn-rounded btn-default" id = "commentReply"    value = "' + list.reply_no + '">대댓</button>';
+	        	str += "     </div>";
+	        	str += "</li>";
+				
+				$('#rp' + list.reply_no).replaceWith(str);
+				$('#rp' + list.reply_no + '#editContent').focus();
+			
+			});
+			
+		} */
+		
+		
+	
+		// 댓글 수정 취소버튼 시 리스트 출력. 에이작스로 다시 처리
+		$('.block').on('click', '#cancelReply', function(){
+			
+			/* MBReplyService.getList({board_no : board_no, page: 1}, function(result){
+	    		showList(1);
+	    	}); */
+	    	
+	    	var Rpage = $(".panel-footer").find(".page-link").attr('href');
+			
+			 $.ajax({
+				url : '/mbreplies/pages/' + board_no + "/" + Rpage + ".json",
+				type : 'post',
+				datatype : 'json',
+				data : {"board_no" : board_no, "page" : Rpage},
+				success : showList(Rpage),
+				error : function(request, status, error){
+					alert("code = " + request.status + "message = " + request.responseText + "error = " + error);
+				}
+			}); 
+			
+		});
+		
+		
+		// 댓글 수정 완료
+		$('.block').on('click', '#updateReply', function(){
+			var reply_no = $(this).val();
+			var content = $('#editContent').val();
+			
+			alert(reply_no);
+			alert(content);
+			
+			var reply = {reply_no : reply_no, content : content};
+			
+			MBReplyService.update(reply, function(result){
+	   	        
+		   	    alert(result);
+		   	    showList(pageNum);
+		   	    
+		   	  });
+			
+		});
+		
+	    
+	
 	    
 	    
 		
