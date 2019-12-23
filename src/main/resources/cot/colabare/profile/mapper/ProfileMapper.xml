@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cot.colabare.profile.mapper.ProfileMapper">
+	<cache />
+	
+	<select id="selectProfile" parameterType="int" resultType="cot.colabare.profile.domain.ProfileDto">
+		select * from employee_profile where employee_no=#{employee_no}
+	</select>
+	
+	<insert id="insertProfile" parameterType="int">
+		insert into employee_profile values (#{employee_no},null,null)
+	</insert>
+	
+	<update id="updatePass" parameterType="cot.colabare.profile.domain.EmployeeDto">
+		update employee set password=#{password} where employee_no=#{employee_no}
+	</update>
+	
+	<update id="updateGreeting" parameterType="cot.colabare.profile.domain.ProfileDto">
+		update employee_profile set employee_greeting=#{employee_greeting} where employee_no=#{employee_no}
+	</update>
+	
+	<insert id="insertModify" parameterType="cot.colabare.profile.domain.ModifyRequestDto">
+		insert into modifyrequest values (modifyrequest_seq.nextval,#{employee_no},#{modify_info},sysdate) 
+	</insert>
+</mapper>
+
+
+

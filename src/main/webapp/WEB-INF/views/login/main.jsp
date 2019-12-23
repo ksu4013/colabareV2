@@ -11,7 +11,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<%@ include file = "header.jsp" %>
+<%@ include file = "../common/header.jsp" %>
         
 </head>
 <body>

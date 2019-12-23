@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cot.colabare.master.mapper.MasterMapper">
+	<cache />
+	
+	<select id="listDepartment" resultType="cot.colabare.master.domain.DepartmentDto">
+		select * from department
+	</select>
+	
+	<select id="listPosition" resultType="cot.colabare.master.domain.PositionDto">
+		select * from position
+	</select>
+	
+	 <insert id="insertMember" parameterType="cot.colabare.profile.domain.EmployeeDto">
+		insert into employee values (#{employee_no},#{department_id},#{name},#{e_mail},#{password},#{position_id},#{master},null,'y')
+	</insert>
+	
+	<select id="listEmployee" parameterType="cot.colabare.profile.domain.Criteria" resultType="cot.colabare.master.domain.EmplDepPosDto">
+		<![CDATA[
+ 		select el.employee_no, el.department_id, el.name, el.e_mail, el.position_id,el.master,el.department_name, el.position_name
+ 		from 
+   			(
+    		select e.employee_no, e.department_id, e.name, e.e_mail, e.position_id,e.master,d.department_name, p.position_name,rownum rn from 
+    		employee e join position p
+			on e.position_id=p.position_id
+			join department d
+			on e.department_id=d.department_id
+			where e.exist='y'
+    		and rownum <= #{pageNum} * #{amount}
+   			) el where el.rn > (#{pageNum} -1) * #{amount}
+		]]>
+	</select>
+	
+	<select id="getCountEmployee" resultType="int">
+		<![CDATA[
+		select count(employee_no) from employee where exist='y'
+		]]>
+	</select>
+	
+	<update id="deleteMember" parameterType="int">
+		update employee set exist='n'where employee_no=#{employee_no}
+	</update>
+	
+	<select id="listRequest" resultType="cot.colabare.profile.domain.ModifyRequestDto">
+		select * from modifyrequest
+	</select>
+	
+	<delete id="deleteReq" parameterType="int">
+		delete from modifyrequest where modify_no=#{modify_no}
+	</delete>
+	
+	<select id="selectSec" parameterType="int" resultType="cot.colabare.master.domain.SecurityAuthDto">
+		select * from sequrityauth where employee_id=#{employee_no}
+	</select>
+	
+	<insert id="insertSec" parameterType="cot.colabare.master.domain.SecurityAuthDto">
+		insert into sequrityauth values(#{employee_id},#{reference_cud},#{meeting_cud},#{notice_cud},#{project_c})
+	</insert>
+	
+	<insert id="insertMasterSec" parameterType="int">
+		insert into sequrityauth values(#{employee_id},'y','y','y','y')
+	</insert>
+
+	<update id="updateMember" parameterType="cot.colabare.profile.domain.EmployeeDto">
+		update employee set name=#{name}, department_id=#{department_id}, position_id=#{position_id}, master=#{master} where employee_no=#{employee_no}
+	</update>
+
+	<update id="updateSec" parameterType="cot.colabare.master.domain.SecurityAuthDto">
+		update sequrityauth set reference_cud=#{reference_cud}, meeting_cud=#{meeting_cud}, notice_cud=#{notice_cud}, project_c=#{project_c} where employee_id=#{employee_id}
+	</update>
+
+</mapper>
