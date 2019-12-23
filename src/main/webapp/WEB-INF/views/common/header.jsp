@@ -621,11 +621,8 @@ if(session.getAttribute("employee")==null){
                             <!-- User Dropdown -->
                             <li class="dropdown">
                                 <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-<<<<<<< HEAD
                                     <img src="/resources/img/placeholders/avatars/avatar9.jpg" alt="avatar">
-=======
-                                    <img src="../resources/img/placeholders/avatars/avatar9.jpg" alt="avatar">
->>>>>>> colabareV2/Ang
+
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     <li class="dropdown-header">
