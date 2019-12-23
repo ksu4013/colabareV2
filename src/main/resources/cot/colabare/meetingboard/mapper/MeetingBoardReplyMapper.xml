@@ -39,6 +39,14 @@
  	<insert id="insertMBReply" >
 	  		insert into meetingboard_reply values ( meetingboard_reply_seq.nextval , #{board_no} , sysdate, #{content}, #{employee_no} )
 	</insert>
+	
+	<delete id="deleteMBReply" >
+	  		delete from meetingboard_reply where reply_no = #{reply_no}
+	</delete>
+	
+	<update id="updateMBReply" >
+	 		update meetingboard_reply set write_date = sysdate, content = #{content} where reply_no = #{reply_no} 
+	</update>
  
  	<!--  회의록 댓글   --> 
  	

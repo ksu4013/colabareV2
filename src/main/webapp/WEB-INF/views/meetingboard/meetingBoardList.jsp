@@ -59,6 +59,7 @@
             <!-- END Table Styles Content -->
         </div>
         <!-- END Table Styles Block -->
+        </div>
         
          <!-- Pagination Alignment -->
          
