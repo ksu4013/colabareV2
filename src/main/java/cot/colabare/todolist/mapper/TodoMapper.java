@@ -16,7 +16,7 @@ public interface TodoMapper {
 	
 	public int updateTodo(TodoDto todo);
 	
-	public List<TodoDto> getTodoList();
+	public List<TodoDto> getTodoList(int todo_type_no);
 	
 	public TodoDto detail(int todo_no);
 	

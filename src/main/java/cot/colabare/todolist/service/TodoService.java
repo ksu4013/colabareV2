@@ -22,20 +22,25 @@ public interface TodoService {
 	public boolean removeTodo(int todo_no);
 	
 	//할일 목록 조회
-	public List<TodoDto> getTodoList();
+	public List<TodoDto> getTodoList(int todo_type_no);
 	
 	
 	
 	//할일 유형
 	
+	//유형 등록
 	public void registerType(TodotypeDto type);
-	
+
+	//유형 상세
 	public TodotypeDto getType(int todo_type_no);
-	
+
+	//유형 수정
 	public boolean modifyType(TodotypeDto type);
-	
+
+	//유형 삭제
 	public boolean removeType(int todo_type_no);
-	
+
+	//유형 목록 조회
 	public List<TodotypeDto> getTypeList();
 	
 	

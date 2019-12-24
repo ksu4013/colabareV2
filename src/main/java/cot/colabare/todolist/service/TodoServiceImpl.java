@@ -3,13 +3,11 @@ package cot.colabare.todolist.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import cot.colabare.todolist.domain.TodoDto;
 import cot.colabare.todolist.domain.TodotypeDto;
 import cot.colabare.todolist.mapper.TodoMapper;
-import lombok.AllArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
@@ -47,10 +45,10 @@ public class TodoServiceImpl implements TodoService {
 	}
 
 	@Override
-	public List<TodoDto> getTodoList() {
+	public List<TodoDto> getTodoList(int todo_type_no) {
 		log.info("getList....");
 
-		return mapper.getTodoList();
+		return mapper.getTodoList(todo_type_no);
 	}
 
 	
