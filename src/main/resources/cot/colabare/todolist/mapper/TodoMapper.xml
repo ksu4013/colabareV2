@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cot.colabare.todolist.mapper.TodoMapper">
+
+	<!-- TODO LIST -->
+	
+	<!-- 할일 등록 -->
+	<insert id="insertTodo">
+		INSERT INTO todo_list 
+		
+		VALUES(
+		todo_list_seq.nextval,#{todo_title},#{todo_contents},sysdate,null,
+		'n',#{todo_priority},0,#{todo_type_no},'n',null,null)
+	
+		
+	</insert>
+
+	<!-- 목록 조회 -->
+	<select id="getTodoList" resultType="cot.colabare.todolist.domain.TodoDto">
+		SELECT todo_no,todo_title,todo_contents,todo_priority,
+		upload_on_cal,startdate,enddate
+		
+		FROM todo_list
+		
+		where todo_type_no=#{todo_type_no}
+		
+		ORDER BY todo_no desc
+	</select>
+	
+	
+	
+	<!-- 할일 수정 -->
+	<update id="updateTodo">
+		UPDATE todo_list
+		SET 
+			todo_title = #{todo_title},
+			todo_contents = #{todo_contents},
+			todo_priority = #{todo_priority}
+			
+		WHERE todo_no = #{todo_no}
+		<!-- AND todo_type_no = #{todo_type_no} -->
+	
+	</update>
+
+	<!-- 할일 삭제 -->
+	<delete id="deleteTodo">
+		DELETE FROM todo_list
+		WHERE 
+			todo_no = #{todo_no}
+	</delete>
+
+
+
+
+
+
+
+	<!-- TODO TYPE -->
+	
+	<!-- 유형 목록 조회 -->
+	<select id="getTypeList" resultType="cot.colabare.todolist.domain.TodotypeDto">
+		select todo_type_no,todo_type_title,todo_type_contents 
+		from todo_type
+		order by todo_type_no desc
+	</select>
+	
+	<!-- 할일 유형 등록 -->
+	<insert id="insertType">
+		insert into todo_type (todo_type_no,todo_type_title,todo_type_contents) 
+		values (todo_type_seq.nextval,#{todo_type_title},#{todo_type_contents})
+	</insert>
+	
+	<!-- 할일 유형 수정 -->
+	<update id="updateType" parameterType="cot.colabare.todolist.domain.TodotypeDto">
+		UPDATE todo_type
+		SET 
+			todo_type_title = #{todo_type_title},
+			todo_type_contents = #{todo_type_contents}
+		WHERE 
+			todo_type_no = #{todo_type_no}
+	</update>	
+	
+	
+	<!-- 할일 유형 상세보기 -->
+	<select id="detailType" resultType="cot.colabare.todolist.domain.TodotypeDto">
+		select * from todo_type
+		where todo_type_no = #{todo_type_no}	
+	
+	</select>
+	
+	<!-- 할일 유형 삭제 -->
+	<delete id="deleteType" parameterType="int">
+		DELETE FROM todo_type
+		WHERE 
+			todo_type_no = #{todo_type_no}
+	</delete>
+	
+</mapper>

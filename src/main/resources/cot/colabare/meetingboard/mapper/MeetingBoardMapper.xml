@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="cot.colabare.meetingboard.mapper.MeetingBoardMapper">
+	
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item='type' collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							title like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'C'.toString()">
+							content like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'W'.toString()">
+							name like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+	
+	<!--  회의록 게시판 --> 
+	
+	  <select id="meetingBoardListPaging" resultType="cot.colabare.meetingboard.domain.MeetingBoardDto">
+		  <![CDATA[
+		  select 
+		    b.board_no, b.title, b.content, b.employee_no, b.write_date, b.read_count , b.active, b.name, b.replycnt
+		  from 
+		      (
+		      select /*+INDEX_DESC(meetingboard m.meetingboard_pk) */
+		       rownum rn, m.board_no, m.title, m.content, m.employee_no, m.write_date, m.read_count , m.active, e.name, m.replycnt
+		      from 
+		        meetingboard m, employee e 
+		      where m.employee_no = e.employee_no and m.active = 'y' and
+		  ]]>
+			 <include refid="criteria"></include> 
+		      
+		  <![CDATA[    
+		      rownum <= #{pageNum} * #{amount}
+		     
+		      ) b
+		       where b.rn > (#{pageNum} -1) * #{amount}
+		  ]]>
+		      
+		  
+	  </select>
+	  
+	  <select id="getTotalCount" resultType="int">
+		  select count(*) from meetingboard where 
+		  
+		    <include refid="criteria"></include> 
+		    
+		  board_no > 0  and active = 'y'
+	  
+	  </select>
+	  
+	  <!--글 작성하기 -->
+	  <insert id="insertMeetingBoard" >
+	  		
+	  	<selectKey keyProperty="board_no" order="BEFORE" resultType="long">
+			select meetingboard_seq.nextval from dual
+		</selectKey>
+
+		insert into meetingboard
+		values (#{board_no}, #{title}, #{content}, #{employee_no}, 0, sysdate, null, null, 'y' )
+	  </insert>
+	  
+	  
+	  <!-- 회의록 상세보기  -->
+	  <select id="detailMeetingBoard" resultType="cot.colabare.meetingboard.domain.MeetingBoardDto">
+		select m.board_no, m.title, m.write_date, m.content, e.name, m.read_count, m.active, m.employee_no, m.replycnt from meetingboard m, employee e where m.employee_no = e.employee_no and m.board_no = #{m.board_no}
+	  </select>
+	  
+	  <!-- 회의록 수정  -->
+	  <update id="updateMeetingBoard">
+		update meetingboard
+		set title= #{title},
+		content=#{content},
+		employee_no = #{employee_no},
+		write_date = sysdate
+		where board_no = #{board_no}
+	</update>
+	  
+	  <!-- 삭제라고 쓰고 업데이트라고 읽는다.  -->
+	  <update id="deleteMeetingBoard">
+	  		update meetingboard set active = 'n' where board_no = #{board_no}
+	  </update>
+	  
+	  <!-- 해당글의 댓글 갯수  -->
+	  <update id="updateReplyCnt">
+	    update meetingboard set replycnt = replycnt + #{amount} where board_no = #{board_no}
+	  </update> 
+	  
+	  <!-- 상세보기 할 때마다 조회수 증가  -->
+	  <update id="updateReadCountMeetingBoard" >
+	  		update meetingboard set read_count = read_count +1 where board_no = #{board_no}
+	  </update>
+	  
+	  
+	  <!-- <select id="countMeetingBoard" resultType="int">
+	  	select count(*) from meetingboard where active = 'y'
+	  </select> 
+	  
+	  <insert id="insertMeetingBoard" parameterType="cot.colabare.meetingboard.mapper.MeetingBoardMapper">
+	  		insert into meetingboard values ( meetingboard_seq.nextval , #{title}, #{content}, #{employee_no}, 0, sysdate, null, null, 'y' )
+	  </insert> 	
+	  
+	  <select id="detailMeetingBoard" parameterType="int" resultType="cot.colabare.meetingboard.mapper.MeetingBoardMapper">
+	  		select m.board_no, m.title, m.write_date, m.content, e.name, m.read_count, m.active, m.employee_no from meetingboard m, employee e where m.employee_no = e.employee_no and m.board_no = #{m.board_no}
+	  </select> 
+	  
+	  <update id="updateMeetingBoard" parameterType="cot.colabare.meetingboard.mapper.MeetingBoardMapper">
+	  		update meetingboard set title = #{title}, content = #{content}, write_date = sysdate where board_no = #{board_no}
+	  </update> 
+	  
+	  <update id="updateReadCountMeetingBoard" parameterType="int">
+	  		update meetingboard set read_count = read_count +1 where board_no = #{board_no}
+	  </update> 
+	  
+	  <update id="deleteMeetingBoard" parameterType="int">
+	  		update meetingboard set active = 'n' where board_no = #{board_no}
+	  </update>  -->
+ 
+ 
+ 
+ 	<!--  회의록 댓글   --> 
+ 	
+	 <!--  <select id="listMeetingBoardReply" parameterType="int" resultType="MeetingBoardReply">
+	  		select r.reply_no, r.board_no, r.write_date, r.content, e.name, r.employee_no from meetingboard_reply r, employee e where r.employee_no = e.employee_no and r.board_no = #{r.board_no} order by 1 desc
+	  </select> 
+	  
+	  <select id="detailMeetingBoardReply" parameterType="int" resultType="MeetingBoardReply">
+	  		select r.reply_no, r.board_no, r.write_date, r.content, e.employee_no, e.name from meetingboard_reply r, employee e where r.employee_no = e.employee_no and r.reply_no = #{r.reply_no}
+	  </select>
+	  
+	  <insert id="insertMeetingBoardReply" parameterType="MeetingBoardReply">
+	  		insert into meetingboard_reply values ( meetingboard_reply_seq.nextval , #{board_no} , sysdate, #{content}, #{employee_no} )
+	  </insert> 
+	  
+	  <update id="updateMeetingBoardReply" parameterType="MeetingBoardReply">
+	 		update meetingboard_reply set write_date = sysdate, content = #{content} where reply_no = #{reply_no} 
+	  </update>
+	  
+	  <delete id="deleteMeetingBoardReply" parameterType="int">
+	  		delete from meetingboard_reply where reply_no = #{reply_no}
+	  </delete> -->
+	  
+</mapper>
