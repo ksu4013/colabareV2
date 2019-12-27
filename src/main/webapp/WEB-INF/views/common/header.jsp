@@ -263,7 +263,7 @@ if(session.getAttribute("employee")==null){
                                     <a href="#" class="sidebar-nav-menu"><i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-more_items sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">업무</span></a>
                                     <ul>
                                         <li>
-                                            <a href="page_layout_static.html">전자결재</a>
+                                            <a href="/document/documentList">전자결재</a>
                                         </li>
                                         <li>
                                             <a href="poll/poll_insert_form.do">설문조사</a>
@@ -621,11 +621,7 @@ if(session.getAttribute("employee")==null){
                             <!-- User Dropdown -->
                             <li class="dropdown">
                                 <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-<<<<<<< HEAD
-                                    <img src="/resources/img/placeholders/avatars/avatar9.jpg" alt="avatar">
-=======
                                     <img src="../resources/img/placeholders/avatars/avatar9.jpg" alt="avatar">
->>>>>>> colabareV2/Ang
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     <li class="dropdown-header">
@@ -684,12 +680,10 @@ if(session.getAttribute("employee")==null){
         <script src="/resources/js/plugins.js"></script>
         <script src="/resources/js/app.js"></script>
 
-<<<<<<< HEAD
-=======
         <!-- Load and execute javascript code used only in this page -->
-        <script src="/resources/js/pages/readyDashboard.js"></script>
+<!--         <script src="/resources/js/pages/readyDashboard.js"></script>
         <script>$(function(){ ReadyDashboard.init(); });</script>
->>>>>>> colabareV2/Ang
+ --><!-- 나만 있어서 일단 주석  -->
   
 </body>
 </html>

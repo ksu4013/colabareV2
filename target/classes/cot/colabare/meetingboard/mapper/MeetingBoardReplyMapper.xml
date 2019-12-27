@@ -36,7 +36,7 @@
 		]]>
 	</select>
  
- 	<insert id="insertMBReply" >
+ 	<insert id="insertMBReply" > 
 	  		insert into meetingboard_reply values ( meetingboard_reply_seq.nextval , #{board_no} , sysdate, #{content}, #{employee_no} )
 	</insert>
 	

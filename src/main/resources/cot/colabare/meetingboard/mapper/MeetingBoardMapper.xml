@@ -68,7 +68,7 @@
 		</selectKey>
 
 		insert into meetingboard
-		values (#{board_no}, #{title}, #{content}, #{employee_no}, 0, sysdate, null, null, 'y' )
+		values (#{board_no}, #{title}, #{content}, #{employee_no}, 0, sysdate, null, null, 'y', 0 )
 	  </insert>
 	  
 	  

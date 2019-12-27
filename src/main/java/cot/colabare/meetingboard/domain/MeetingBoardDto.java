@@ -20,7 +20,7 @@ public class MeetingBoardDto {
 	
 	private String name;				// 사원이름
 	
-	private List<MeetingBoardAttachDTO> attachList;
+	private List<MeetingBoardAttachDto> attachList;	// 파일 첨부
 	
 	
 	
