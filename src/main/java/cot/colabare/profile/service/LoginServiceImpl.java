@@ -13,6 +13,7 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class LoginServiceImpl implements LoginService {
 
+	
 	private LoginMapper mapper;
 	
 	@Override
@@ -25,6 +26,12 @@ public class LoginServiceImpl implements LoginService {
 	public EmplDepPosDto memberInfoService(int employee_no) {
 		log.info("infoservice.......");
 		return mapper.selectEmployeeInfo(employee_no);	
+	}
+
+	@Override
+	public int employee_noService(String name) {
+		log.info("infoservice.......");
+		return mapper.selectEmployeeno(name);	
 	}
 
 }

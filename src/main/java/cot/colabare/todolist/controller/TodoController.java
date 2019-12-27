@@ -3,6 +3,7 @@ package cot.colabare.todolist.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,23 +24,31 @@ public class TodoController {
 
 	private TodoService service;
 	
-	@GetMapping("/todolist")
-	public void listTodo(Model model){
-		log.info("todolist");
-		model.addAttribute("todolist", service.getTodoList());
-	}
-	
-	@GetMapping("/todoinsertform")
-	public void registerTodo(){
+	@GetMapping("/todostyle")
+	public void todostyle (){
 		
 	}
 	
-	@PostMapping("/todoinsertform")
+	@GetMapping("/todolist")
+	public void listTodo(@RequestParam(value="todo_type_no")int todo_type_no,Model model){
+		log.info("todolist");
+		model.addAttribute("todolist", service.getTodoList(todo_type_no));
+		model.addAttribute("todo_type_no", todo_type_no);
+	}
+	
+	@GetMapping("/todoinsertform")
+	public void registerTodo(@RequestParam(value="todo_type_no") int todo_type_no, Model model,RedirectAttributes rttr){
+		log.info("todoinsertform");
+		model.addAttribute("todolist", service.getType(todo_type_no));
+	}
+	
+	@PostMapping("/registerTodo")
 	public String registerTodo(TodoDto todo, RedirectAttributes rttr) {
 		log.info("registerTodo: " + todo);
 		service.registerTodo(todo);
 		rttr.addFlashAttribute("result", todo.getTodo_no());
-		return "redirect:/todo/todolist";
+		
+		return "redirect:/todo/todolist?todo_type_no="+todo.getTodo_type_no(); 
 	}
 	
 	@GetMapping("/getTodo")
@@ -51,32 +60,46 @@ public class TodoController {
 	
 	
 	@GetMapping({"/getTodo","/todoupdateform"})
-	public void modifyTodo(@RequestParam("todo_no")int todo_no,Model model,RedirectAttributes rttr){
+	public void modifyTodo(@RequestParam(value="todo_no") int todo_no,@RequestParam(value="todo_type_no") int todo_type_no, Model model){
 		
-		log.info("/getTodo or modifyTodo");
-		model.addAttribute("type", service.getType(todo_no));
+		log.info("/getTodo or /modifyTodo");
+		model.addAttribute("todolist", service.getType(todo_type_no));
+		model.addAttribute("todo",service.getTodo(todo_no));
 		
+		//투두 하나로 가보자,, 지금 타입에 해당되는 투두 다 불러ㅇ와서 안된다구 지수가 그래따 
 	}
 	
+	//할일 수정
 	@PostMapping("/modifyTodo")
 	public String modifyTodo(TodoDto todo,RedirectAttributes rttr){
 		log.info("modifyTodo: " + todo);
 		
+		
 		if(service.modifyTodo(todo)){
 			rttr.addFlashAttribute("result", "success");
 		}
-		return "redirect:/todo/todolist";
+		return "redirect:/todo/todolist?todo_type_no="+todo.getTodo_type_no();
 	}
 	
+	
+	//할일 삭제
+	
 	@RequestMapping(value="/deleteTodo", method ={RequestMethod.GET,RequestMethod.POST})
-	public String deleteTodo(@RequestParam("todo_no")int todo_no,RedirectAttributes rttr){
+	public String deleteTodo(@RequestParam("todo_no")int todo_no,@RequestParam(value="todo_type_no") int todo_type_no,RedirectAttributes rttr,TodoDto todo){
+		
 		log.info("deleteTodo..." + todo_no);
 		if(service.removeTodo(todo_no)){
 			rttr.addFlashAttribute("result", "success");
 		}
-		return "redirect:/todo/todolist";
+		return "redirect:/todo/todolist?todo_type_no="+todo.getTodo_type_no(); 
 	}
 
+	//할일 카운트
+	@RequestMapping(value= "/cntTodo",method={RequestMethod.GET,RequestMethod.POST})
+	public void cntTodo(@RequestParam(value="todo_type_no")int todo_type_no,Model model){
+		log.info("cntTodo");
+		model.addAttribute("cnt",service.cntTodo(todo_type_no));
+	}
 	
 	
 	/*TODO TYPE*/
@@ -117,7 +140,7 @@ public class TodoController {
 	
 	
 	@GetMapping({"/getType","/typeupdateform"})
-	public void modifyType(@RequestParam("todo_type_no")int todo_type_no,Model model,RedirectAttributes rttr){
+	public void modifyType(@RequestParam(value="todo_type_no",required=false) int todo_type_no,Model model,RedirectAttributes rttr){
 		
 		log.info("/getType or modifyType");
 		model.addAttribute("type", service.getType(todo_type_no));
@@ -125,7 +148,7 @@ public class TodoController {
 	}
 	
 	@PostMapping("/modifyType")
-	public String modifyType(TodotypeDto type,RedirectAttributes rttr){
+	public String modifyType(TodotypeDto type,@ModelAttribute("todo_type_no")TodotypeDto todo_type_no,RedirectAttributes rttr){
 		log.info("modifyType: " + type);
 		
 		if(service.modifyType(type)){

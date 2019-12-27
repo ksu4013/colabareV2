@@ -21,6 +21,7 @@ $(document).ready(function(){
 				data : { "employee_greeting" : $("#employee_greeting").val() },
 				success : function(result,status,xhr){
 					alert("인사말이 변경되었습니다.");
+					$('#employee_greeting').val('');
 				},
 				error: function(xhr,status,er){
 					alert("변경에 실패하였습니다.");

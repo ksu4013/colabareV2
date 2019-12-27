@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%
-if(session.getAttribute("employee")==null){
-	response.sendRedirect("/login/login.do");
-}
-%>
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -286,16 +281,16 @@ if(session.getAttribute("employee")==null){
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="#" class="sidebar-nav-menu"><i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="fa fa-gift sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Extra Pages</span></a>
+                                    <a href="#" class="sidebar-nav-menu"><i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="fa fa-gift sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">협업</span></a>
                                     <ul>
                                         <li>
-                                            <a href="#" class="sidebar-nav-submenu"><i class="fa fa-chevron-left sidebar-nav-indicator"></i>Base</a>
+                                            <a href="#" class="sidebar-nav-submenu"><i class="fa fa-chevron-left sidebar-nav-indicator"></i>메신저</a>
                                             <ul>
                                                 <li>
-                                                    <a href="page_ready_blank.html">Blank</a>
+                                                    <a href="page_ready_blank.html">채팅</a>
                                                 </li>
                                                 <li>
-                                                    <a href="page_ready_error.html">Error</a>
+                                                    <a href="/video/videochat">화상전화</a>
                                                 </li>
                                                 <li>
                                                     <a href="page_ready_search_results.html">Search Results (5)</a>
@@ -621,8 +616,11 @@ if(session.getAttribute("employee")==null){
                             <!-- User Dropdown -->
                             <li class="dropdown">
                                 <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="../resources/img/placeholders/avatars/avatar9.jpg" alt="avatar">
+
+                                    <img src="/resources/img/placeholders/avatars/avatar9.jpg" alt="avatar">
+
                                 </a>
+
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     <li class="dropdown-header">
                                         <strong>ADMINISTRATOR</strong>
@@ -683,8 +681,11 @@ if(session.getAttribute("employee")==null){
         <!-- Load and execute javascript code used only in this page -->
 <!--         <script src="/resources/js/pages/readyDashboard.js"></script>
         <script>$(function(){ ReadyDashboard.init(); });</script>
+<<<<<<< HEAD
+
+=======
  --><!-- 나만 있어서 일단 주석  -->
-  
+
 </body>
 </html>
 

@@ -5,6 +5,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,28 +35,28 @@ public class LoginController {
 	public void loginForm(){
 		log.info("/loginform");
 	}
-	
+	@GetMapping("/loginformmm")
+	public void loginFormmm(){
+		log.info("/loginform");
+	}
 	@GetMapping("/chklogin")
-	public ResponseEntity<String> chkLogin(@RequestParam("employee_no") int employee_no, @RequestParam("password") String password, HttpServletRequest request){
+	public String chkLogin( HttpServletRequest request){
 		log.info("/chklogin");
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication(); 
+		User user = (User) authentication.getPrincipal(); 
+		String username=user.getUsername();
 		
+		int employee_no=service.employee_noService(username);
 		EmployeeDto employee=service.loginService(employee_no);
 		HttpSession session=request.getSession();
-		System.out.println(employee_no +" + " +password);
-		if(employee!=null){
-			if(password.equals(employee.getPassword())){
+		
+		
 				session.setAttribute("employee", employee);
 				EmplDepPosDto meminfo=service.memberInfoService(employee_no);
 				SecurityAuthDto security=m_service.selectSec(employee_no);
 				session.setAttribute("meminfo", meminfo);
 				session.setAttribute("secauth", security);
-				return new ResponseEntity<String>("success",HttpStatus.OK);
-			}
-			else{
-				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-			}
-		}
-		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+				return "redirect:/login/main";
 		
 	}
 	
