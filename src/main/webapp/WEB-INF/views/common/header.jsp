@@ -624,6 +624,7 @@ if(session.getAttribute("employee")==null){
                                     <img src="/resources/img/placeholders/avatars/avatar9.jpg" alt="avatar">
 
                                 </a>
+
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     <li class="dropdown-header">
                                         <strong>ADMINISTRATOR</strong>
@@ -680,7 +681,6 @@ if(session.getAttribute("employee")==null){
         <script src="/resources/js/vendor/bootstrap.min.js"></script>
         <script src="/resources/js/plugins.js"></script>
         <script src="/resources/js/app.js"></script>
-
 
         <!-- Load and execute javascript code used only in this page -->
         <script src="/resources/js/pages/readyDashboard.js"></script>

@@ -7,13 +7,13 @@
 <head>
 <meta charset="UTF-8">
 
+	<%@ include file = "../common/header.jsp" %>
 <script type="text/javascript" src="/resources/js/pages/profilemodify.js">
 </script>
 <title>Insert title here</title>
 
 </head>
 <body>
-	<%@ include file = "../common/header.jsp" %>
 	<!-- Page content -->
                     <div id="page-content">
                         <!-- Validation Header -->
