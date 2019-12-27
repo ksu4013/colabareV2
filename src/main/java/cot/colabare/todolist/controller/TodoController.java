@@ -94,6 +94,12 @@ public class TodoController {
 		return "redirect:/todo/todolist?todo_type_no="+todo.getTodo_type_no(); 
 	}
 
+	//할일 카운트
+	@RequestMapping(value= "/cntTodo",method={RequestMethod.GET,RequestMethod.POST})
+	public void cntTodo(@RequestParam(value="todo_type_no")int todo_type_no,Model model){
+		log.info("cntTodo");
+		model.addAttribute("cnt",service.cntTodo(todo_type_no));
+	}
 	
 	
 	/*TODO TYPE*/

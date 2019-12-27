@@ -86,4 +86,10 @@ public class TodoServiceImpl implements TodoService {
 		return mapper.getTypeList();
 	}
 
+	@Override
+	public int cntTodo(int todo_type_no) {
+		log.info("cntTodo....");
+		return mapper.cntTodo(todo_type_no);
+	}
+
 }

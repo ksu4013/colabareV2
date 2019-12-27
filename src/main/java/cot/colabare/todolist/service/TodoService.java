@@ -24,7 +24,8 @@ public interface TodoService {
 	//할일 목록 조회
 	public List<TodoDto> getTodoList(int todo_type_no);
 	
-	
+	//할일 카운트
+	public int cntTodo(int todo_type_no);
 	
 	//할일 유형
 	
