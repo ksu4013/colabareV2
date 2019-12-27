@@ -286,16 +286,16 @@ if(session.getAttribute("employee")==null){
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="#" class="sidebar-nav-menu"><i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="fa fa-gift sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Extra Pages</span></a>
+                                    <a href="#" class="sidebar-nav-menu"><i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="fa fa-gift sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">협업</span></a>
                                     <ul>
                                         <li>
-                                            <a href="#" class="sidebar-nav-submenu"><i class="fa fa-chevron-left sidebar-nav-indicator"></i>Base</a>
+                                            <a href="#" class="sidebar-nav-submenu"><i class="fa fa-chevron-left sidebar-nav-indicator"></i>메신저</a>
                                             <ul>
                                                 <li>
-                                                    <a href="page_ready_blank.html">Blank</a>
+                                                    <a href="page_ready_blank.html">채팅</a>
                                                 </li>
                                                 <li>
-                                                    <a href="page_ready_error.html">Error</a>
+                                                    <a href="/video/videochat">화상전화</a>
                                                 </li>
                                                 <li>
                                                     <a href="page_ready_search_results.html">Search Results (5)</a>
@@ -681,13 +681,11 @@ if(session.getAttribute("employee")==null){
         <script src="/resources/js/plugins.js"></script>
         <script src="/resources/js/app.js"></script>
 
-<<<<<<< HEAD
-=======
+
         <!-- Load and execute javascript code used only in this page -->
         <script src="/resources/js/pages/readyDashboard.js"></script>
         <script>$(function(){ ReadyDashboard.init(); });</script>
->>>>>>> colabareV2/Ang
-  
+
 </body>
 </html>
 
