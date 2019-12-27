@@ -33,7 +33,7 @@
 <hr>
 <a href="notice/notice_list.do">공지사항</a>
 <hr>
-<a href="poll/poll_insert_form.do">설문조사</a>
+<a href="/poll/pollinsertform">설문조사</a>
 <hr>
 <a href="mail/mailcheck.do">E-MAIL</a>
 
