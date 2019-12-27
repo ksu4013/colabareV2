@@ -13,7 +13,7 @@
 			<a href="javascript:void(0)" class="btn btn-block btn-effect-ripple btn-primary visible-xs" data-toggle="collapse" data-target="#people-nav">People</a>
 			<div id="people-nav" class="collapse navbar-collapse remove-padding">
 				<div class="block-section">
-					<h4 class="inner-sidebar-header">
+					<h4 class="inner-sidebar-header"> 
 					<a href="javascript:void(0)" class="btn btn-effect-ripple btn-xs btn-default pull-right"><i class="fa fa-cog"></i></a>
 					결재자
 					</h4>
@@ -119,156 +119,53 @@
 							<div class="block-title">
 								<h2>General Elements</h2>
 							</div>
-							<form action="page_forms_components.php" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered" onsubmit="return false;">
+							
+							<form id="documentSub" action="/document/insertApproval" method="post"  class="form-horizontal form-bordered" >
+								
 								<div class="form-group">
-									<label class="col-md-3 control-label">Static</label>
-									<div class="col-md-9">
-										<p class="form-control-static">This is static text</p>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-md-3 control-label" for="example-text-input">Text</label>
+									<label class="col-md-3 control-label" for="example-text-input">기안제목</label>
 									<div class="col-md-6">
-										<input type="text" id="example-text-input" name="example-text-input" class="form-control" placeholder="Text">
-										<span class="help-block">This is a help text</span>
+										<input type="text"  name="title" class="form-control" >
 									</div>
 								</div>
+								
 								<div class="form-group">
-									<label class="col-md-3 control-label" for="example-email">Email</label>
+									<label class="col-md-3 control-label">부서명</label>
+									<div class="col-md-9">
+										<p class="form-control-static">${meminfo.department_name }</p>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-md-3 control-label">작성자명</label>
+									<div class="col-md-9">
+										<p class="form-control-static">${employee.name }</p>
+										<input type="hidden" name="employee_no" value="${employee.employee_no }">
+										<input type="hidden" name="department_id" value="${employee.department_id }">
+										<input type="hidden" name="content2" value="왜 안 되는데?">
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="example-disabled">작성일</label>
 									<div class="col-md-6">
-										<input type="email" id="example-email" name="example-email" class="form-control" placeholder="Email">
+										<!-- <input type="text" id="example-disabled" name="example-disabled" class="form-control" placeholder="Disabled" disabled=""> -->
 									</div>
 								</div>
-									<div class="form-group">
-										<label class="col-md-3 control-label" for="example-password">Password</label>
-										<div class="col-md-6">
-											<input type="password" id="example-password" name="example-password" class="form-control" placeholder="Password">
-										</div>
-									</div>
+								
 								<div class="form-group">
-									<label class="col-md-3 control-label" for="example-disabled">Disabled</label>
-									<div class="col-md-6">
-										<input type="text" id="example-disabled" name="example-disabled" class="form-control" placeholder="Disabled" disabled="">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-md-3 control-label" for="example-textarea-input">Textarea</label>
+									<label class="col-md-3 control-label" for="example-textarea-input">내용</label>
 									<div class="col-md-9">
-										<textarea id="example-textarea-input" name="example-textarea-input" rows="7" class="form-control" placeholder="Description.."></textarea>
-									</div>
-								</div>
-								<div class="form-group">
-								<label class="col-md-3 control-label" for="example-select">Select</label>
-									<div class="col-md-6">
-										<select id="example-select" name="example-select" class="form-control" size="1">
-											<option value="0">Please select</option>
-											<option value="1">HTML</option>
-											<option value="2">CSS</option>
-											<option value="3">Javascript</option>
-										</select>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-md-3 control-label" for="example-multiple-select">Multiple</label>
-									<div class="col-md-6">
-										<select id="example-multiple-select" name="example-multiple-select" class="form-control" size="5" multiple="">
-											<option value="1">Option #1</option>
-											<option value="2">Option #2</option>
-											<option value="3">Option #3</option>
-											<option value="4">Option #4</option>
-											<option value="5">Option #5</option>
-											<option value="6">Option #6</option>
-											<option value="7">Option #7</option>
-											<option value="8">Option #8</option>
-											<option value="9">Option #9</option>
-											<option value="10">Option #10</option>
-										</select>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-md-3 control-label">Radios</label>
-										<div class="col-md-9">
-											<div class="radio">
-												<label for="example-radio1">
-													<input type="radio" id="example-radio1" name="example-radios" value="option1"> HTML
-												</label>
-											</div>
-											<div class="radio">
-												<label for="example-radio2">
-													<input type="radio" id="example-radio2" name="example-radios" value="option2"> CSS
-												</label>
-											</div>
-											<div class="radio">
-												<label for="example-radio3">
-													<input type="radio" id="example-radio3" name="example-radios" value="option3"> Javascript
-												</label>
-											</div>
-										</div>
-								</div>
-								<div class="form-group">
-									<label class="col-md-3 control-label">Inline Radios</label>
-									<div class="col-md-9">
-										<label class="radio-inline" for="example-inline-radio1">
-											<input type="radio" id="example-inline-radio1" name="example-inline-radios" value="option1"> HTML
-										</label>
-										<label class="radio-inline" for="example-inline-radio2">
-											<input type="radio" id="example-inline-radio2" name="example-inline-radios" value="option2"> CSS
-										</label>
-										<label class="radio-inline" for="example-inline-radio3">
-											<input type="radio" id="example-inline-radio3" name="example-inline-radios" value="option3"> Javascript
-										</label>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-md-3 control-label">Checkboxes</label>
-									<div class="col-md-9">
-										<div class="checkbox">
-											<label for="example-checkbox1">
-												<input type="checkbox" id="example-checkbox1" name="example-checkbox1" value="option1"> HTML
-											</label>
-										</div>
-										<div class="checkbox">
-											<label for="example-checkbox2">
-												<input type="checkbox" id="example-checkbox2" name="example-checkbox2" value="option2"> CSS
-											</label>
-										</div>
-										<div class="checkbox">
-											<label for="example-checkbox3">
-												<input type="checkbox" id="example-checkbox3" name="example-checkbox3" value="option3"> Javascript
-											</label>
-										</div>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-md-3 control-label">Inline Checkboxes</label>
-									<div class="col-md-9">
-										<label class="checkbox-inline" for="example-inline-checkbox1">
-											<input type="checkbox" id="example-inline-checkbox1" name="example-inline-checkbox1" value="option1"> HTML
-										</label>
-										<label class="checkbox-inline" for="example-inline-checkbox2">
-											<input type="checkbox" id="example-inline-checkbox2" name="example-inline-checkbox2" value="option2"> CSS
-										</label>
-										<label class="checkbox-inline" for="example-inline-checkbox3">
-											<input type="checkbox" id="example-inline-checkbox3" name="example-inline-checkbox3" value="option3"> Javascript
-										</label>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-md-3 control-label" for="example-file-input">File</label>
-									<div class="col-md-9">
-										<input type="file" id="example-file-input" name="example-file-input">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-md-3 control-label" for="example-file-multiple-input">Multiple File</label>
-									<div class="col-md-9">
-										<input type="file" id="example-file-multiple-input" name="example-file-multiple-input" multiple="">
+										<textarea id="example-textarea-input" name="content" rows="7" class="form-control" placeholder="1. 귀사의 무궁한 발전을 기원합니다.
+
+2. 본사에서는 "></textarea>
 									</div>
 								</div>
 								<div class="form-group form-actions">
 									<div class="col-md-9 col-md-offset-3">
-										<button type="submit" class="btn btn-effect-ripple btn-primary" style="overflow: hidden; position: relative;">Submit</button>
-										<button type="reset" class="btn btn-effect-ripple btn-danger" style="overflow: hidden; position: relative;">Reset</button>
+										<button id = "documentSav" type="button" class="btn btn-effect-ripple btn-primary">완료</button>
+										<button type="reset" class="btn btn-effect-ripple btn-danger">취소</button>
+										<button id = "approvalSav" type="button" class="btn btn-effect-ripple btn-primary">저장</button>
 									</div>
 								</div>
 							</form>
@@ -290,10 +187,11 @@
 					<!-- search button  -->
 					<div class="col-md-9">
 						<div class="input-group">
+							<input type="text" id="example-input1-group2" name="example-input1-group2" class="form-control" placeholder="Username">
 							<span class="input-group-btn">
 								<button type="button" class="btn btn-effect-ripple btn-primary" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 84px; width: 84px; top: -23px; left: -1.625px;"></span><i class="fa fa-search"></i> Search</button>
 							</span>
-							<input type="text" id="example-input1-group2" name="example-input1-group2" class="form-control" placeholder="Username">
+								
 						</div>
 					</div>
 					<!--search botton 끝  -->
@@ -384,7 +282,7 @@
 							<span class="input-group-btn">
 								<button type="button" class="btn btn-effect-ripple btn-primary" style="overflow: hidden; position: relative;"><span class="btn-ripple animate" style="height: 84px; width: 84px; top: -23px; left: -1.625px;"></span><i class="fa fa-search"></i> Search</button>
 							</span>
-							<input type="text" id="example-input1-group2" name="example-input1-group2" class="form-control" placeholder="Username">
+							<!-- <input type="text" id="example-input1-group2" name="example-input1-group2" class="form-control" placeholder="Username"> -->
 						</div>
 					</div>
 					<!--search botton 끝  -->
@@ -467,10 +365,174 @@
 		</div>
 	</div>
 
+<!-- Modal -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+          
+          
+          
+          
+          <div class="widget-content"><!-- 결재내용 시작  -->
+						<div class="block">
+							<div class="block-title">
+								<h2>General Elements</h2>
+							</div>
+							
+							<form id="documentSub" action="/document/insertApproval" method="post"  class="form-horizontal form-bordered" >
+								
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="example-text-input">기안제목</label>
+									<div class="col-md-6">
+										<input type="text"  name="title" class="form-control" >
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-md-3 control-label">부서명</label>
+									<div class="col-md-9">
+										<p class="form-control-static">${meminfo.department_name }</p>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-md-3 control-label">작성자명</label>
+									<div class="col-md-9">
+										<p class="form-control-static">${employee.name }</p>
+										<input type="hidden" name="employee_no" value="${employee.employee_no }">
+										<input type="hidden" name="department_id" value="${employee.department_id }">
+										
+										
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="example-disabled">작성일</label>
+									<div class="col-md-6">
+										<!-- <input type="text" id="example-disabled" name="example-disabled" class="form-control" placeholder="Disabled" disabled=""> -->
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="example-textarea-input">내용</label>
+									<div class="col-md-9">
+										<textarea id="example-textarea-input" name="content" rows="7" class="form-control" placeholder="1. 귀사의 무궁한 발전을 기원합니다.
+
+2. 본사에서는 "></textarea>
+									</div>
+								</div>
+								<div class="form-group form-actions">
+									<div class="col-md-9 col-md-offset-3">
+										<button id = "documentSav" type="button" class="btn btn-effect-ripple btn-primary">완료</button>
+										<button type="reset" class="btn btn-effect-ripple btn-danger">취소</button>
+										<button id = "approvalSav" type="button" class="btn btn-effect-ripple btn-primary">저장</button>
+									</div>
+								</div>
+							</form>
+						</div>
+						
+					</div>
+          
+          
+          
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="myModalLabel">이대로 진행하시겠습니까?</h4>
+            </div>
+            
+            <div class="modal-body">
+            
+              
+      
+            </div>
+            
+            
+            
+	  		<div class="modal-footer">
+		        <button id='modalModBtn' type="button" class="btn btn-warning">Modify</button>
+		        <button id='modalRemoveBtn' type="button" class="btn btn-danger">Remove</button>
+		        <button id='modalRegisterBtn' type="button" class="btn btn-primary">Register</button>
+		        <button id='modalCloseBtn' type="button" class="btn btn-default">Close</button>
+		    </div>     
+		    
+		    
+		    
+		    
+		         
+      	</div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
 
 
+<script>
+$(document).ready(function(e){
+	
+	var documentSub = $("#documentSub");
+	
+	$("#documentSav").on("click", function(e){
+		e.preventDefault();
+		
+		console.log("document clicked");
+		
+		documentSub.submit();
+	});
+	
+	
+	// 모달 
+	var modal = $(".modal");
+	
+	$("#modalCloseBtn").on("click", function(e){
+    	
+    	modal.modal('hide');
+    });
+	
+	$("#approvalSav").on("click", function(e){
+		modal.modal('show');
+	});
+	
+	 // 댓글 삽입
+    $("button[data-oper='insert']").on("click", function(e){
+    	var content = $('#content').val();
 
-
+    	
+    	var reply = {
+    					board_no : board_no,
+    					employee_no : employee_no,
+    					content : content };
+    	
+    	MBReplyService.add(reply, function(result){
+    		alert(result);
+    		$('#content').val('');
+    		showList(-1);
+    	});
+    					
+    	
+    });
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+});
+</script>
 
 
 </body>

@@ -5,12 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import cot.colabare.meetingboard.domain.MeetingBoardAttachDTO;
+import cot.colabare.meetingboard.domain.MeetingBoardAttachDto;
 import cot.colabare.meetingboard.domain.MeettingBoardCriteria;
 import cot.colabare.meetingboard.domain.MeetingBoardDto;
 import cot.colabare.meetingboard.mapper.MeetingBoardAttachMapper;
 import cot.colabare.meetingboard.mapper.MeetingBoardMapper;
-import javafx.collections.ArrayChangeListener;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
@@ -61,12 +60,11 @@ public class MeetingBoardServiceImpl implements MeetingBoardService {
 		log.info("register......" + meetingboard);
 		
 		mapper.insertMeetingBoard(meetingboard);
-		System.out.println("매퍼 후야");
+		
 		if (meetingboard.getAttachList() == null || meetingboard.getAttachList().size() <= 0) {
-			System.out.println("if문 안이야");
 			return;
 		}
-		System.out.println("if문 밖이야");
+		
 		meetingboard.getAttachList().forEach(attach -> {
 			System.out.println("meetingboard.getBoard_no 뭔데 : " + meetingboard.getBoard_no() );
 			attach.setBoard_no(meetingboard.getBoard_no());
@@ -89,7 +87,7 @@ public class MeetingBoardServiceImpl implements MeetingBoardService {
 
 
 	@Override
-	public List<MeetingBoardAttachDTO> attachListMeetingBoard(Long board_no) {
+	public List<MeetingBoardAttachDto> attachListMeetingBoard(Long board_no) {
 		
 		log.info("get Attach list by board_no" + board_no);
 		

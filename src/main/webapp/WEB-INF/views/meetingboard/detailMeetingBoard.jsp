@@ -67,10 +67,10 @@
                  <h1>${meetingBoard.title }</h1>
                  <h2>${meetingBoard.name }</h2>
                  	<button data-oper='list' type="button" class="btn btn-effect-ripple btn-primary" style="overflow: hidden; position: relative;">목록</button>
-                 <%-- <c:if test="${employee.employee_no == meetingBoard.employee_no}"> --%>
+                <c:if test="${employee.employee_no == meetingBoard.employee_no}"> 
                  	<button data-oper='modify' type="button" class="btn btn-effect-ripple btn-info"    style="overflow: hidden; position: relative;">수정</button>
                  	<button data-oper='remove' type="submit" class="btn btn-effect-ripple btn-danger"  style="overflow: hidden; position: relative;">삭제</button>
-             	<%-- </c:if> --%>
+             	</c:if>
              </div>
          </div>
          

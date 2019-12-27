@@ -2,9 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ include file = "../common/header.jsp" %>
-
-
-                    
                     
 	
     <!-- Page content -->
@@ -14,15 +11,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="header-section">
-                        <h1>Page Title</h1>
-                    </div>
-                </div>
-                <div class="col-sm-6 hidden-xs">
-                    <div class="header-section">
-                        <ul class="breadcrumb breadcrumb-top">
-                            <li>Extra Pages</li>
-                            <li><a href="">Blank</a></li>
-                        </ul>
+                        <h1>전자결재</h1>
                     </div>
                 </div>
             </div>
@@ -33,7 +22,7 @@
         <div class="block full">
             <!-- Get Started Title -->
             <div class="block-title">
-                <h2>Block Title</h2>
+                <h2>문서목록</h2>
             </div>
             <!-- END Get Started Title -->
             
@@ -43,6 +32,7 @@
 			<button id='regBtn' type="button" class="btn btn-effect-ripple btn-primary" style="overflow: hidden; position: right;">
 					<span class="btn-ripple animate" style="height: 75px; width: 75px; top: -29.5px; left: -14.5px;"></span>글쓰기
 			</button><br><br>
+			<a href="autoAjax"> 가자 </a>
             <!-- Table Styles Content -->
             <div class="table-responsive">
                
@@ -59,7 +49,7 @@
 					<tbody>
 						<tr>
 							<td class="text-center"><label class="csscheckbox csscheckbox-primary"><input type="checkbox"><span></span></label></td>
-							<td><strong><a href="/document/example1">인클루드 가자</a></strong></td>
+							<td><strong><a href="/document/document1">일반 기안서</a></strong></td>
 							<td>gabriel.morris@example.com</td>
 							<td>
 							<div class="progress progress-mini active remove-margin">

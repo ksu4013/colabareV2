@@ -2,7 +2,7 @@ package cot.colabare.meetingboard.service;
 
 import java.util.List;
 
-import cot.colabare.meetingboard.domain.MeetingBoardAttachDTO;
+import cot.colabare.meetingboard.domain.MeetingBoardAttachDto;
 import cot.colabare.meetingboard.domain.MeettingBoardCriteria;
 import cot.colabare.meetingboard.domain.MeetingBoardDto;
 
@@ -22,7 +22,7 @@ public interface MeetingBoardService {
 	public boolean deleteMeetingBoard(Long board_no);
 	
 	// 게시판 첨부파일 목록 불러오기
-	public List<MeetingBoardAttachDTO> attachListMeetingBoard(Long board_no);
+	public List<MeetingBoardAttachDto> attachListMeetingBoard(Long board_no);
 	
 	public boolean updateMeetingBoard(MeetingBoardDto meetingboard);
 

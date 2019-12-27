@@ -87,7 +87,7 @@
 					<label class="col-md-3 control-label">작성자</label>
 					<div class="col-md-9">
 					<p class="form-control-static">${meetingBoard.name }</p>
-					<input type="hidden" name="employee_no" value='<c:out value="1"/>'>
+					<input type="hidden" name="employee_no" value='${employee.employee_no }'>
 					</div>
 				</div>
 				

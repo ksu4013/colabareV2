@@ -33,17 +33,11 @@
 				<h2>글 작성하기</h2>
 			</div>
 			<form role="form" action="/meetingboard/insertMeetingBoard" method="post" class="form-horizontal form-bordered" >
+				
 				<div class="form-group">
 					<label class="col-md-3 control-label">작성자</label>
 					<div class="col-md-9">
-					<p class="form-control-static">로그인 기능 pull 받은 후 jstl로 하기   </p>
-					
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-md-3 control-label">작성자</label>
-					<div class="col-md-9">
-						<input type="hidden" name="employee_no" value="1">
+						<input type="hidden" name="employee_no" value="${employee.employee_no }">
 					</div>
 				</div>
 				

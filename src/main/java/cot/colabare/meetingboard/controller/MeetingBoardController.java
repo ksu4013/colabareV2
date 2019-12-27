@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import cot.colabare.meetingboard.domain.MeetingBoardAttachDTO;
+import cot.colabare.meetingboard.domain.MeetingBoardAttachDto;
 import cot.colabare.meetingboard.domain.MeetingBoardDto;
 import cot.colabare.meetingboard.domain.MeettingBoardCriteria;
 import cot.colabare.meetingboard.domain.PageDTO;
@@ -92,7 +92,7 @@ public class MeetingBoardController {
 		
 		log.info("remove..." + board_no);
 		
-		List<MeetingBoardAttachDTO> attachList = service.attachListMeetingBoard(board_no);
+		List<MeetingBoardAttachDto> attachList = service.attachListMeetingBoard(board_no);
 		
 		if(service.deleteMeetingBoard(board_no)){
 			
@@ -106,7 +106,7 @@ public class MeetingBoardController {
 	}
 	
 	// 파일 삭제 처리
-		private void deleteFiles(List<MeetingBoardAttachDTO> attachList) {
+		private void deleteFiles(List<MeetingBoardAttachDto> attachList) {
 		    
 		    if(attachList == null || attachList.size() == 0) {
 		      return;
@@ -139,7 +139,7 @@ public class MeetingBoardController {
 	
 	@GetMapping(value = "/attachListMeetingBoard", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
-	public ResponseEntity<List<MeetingBoardAttachDTO>> attachListMeetingBoard(Long board_no) {
+	public ResponseEntity<List<MeetingBoardAttachDto>> attachListMeetingBoard(Long board_no) {
 
 		log.info("getAttachList " + board_no);
 
