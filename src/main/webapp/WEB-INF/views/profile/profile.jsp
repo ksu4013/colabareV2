@@ -67,8 +67,11 @@
                                     
                                         <div class="widget-image-content text-center">
                                         	<div id=profileimg>
-                                        		<img src='/profile/displayprofile?fileName=${profilepic}' alt="avatar" class="img-circle img-thumbnail img-thumbnail-transparent img-thumbnail-avatar-2x push">
-                                            	<!-- 
+                                        	<c:if test="${profilepic ==null}"><img src="/resources/img/placeholders/avatars/avatar13@2x.jpg" alt="avatar" class="img-circle img-thumbnail img-thumbnail-transparent img-thumbnail-avatar-2x push">
+                                            </c:if>
+                                            <c:if test="${profilepic !=null}"><img src='/profile/displayprofile?fileName=${profilepic}' alt="avatar" class="img-circle img-thumbnail img-thumbnail-transparent img-thumbnail-avatar-2x push">
+                                            	</c:if>
+                                        		<!-- 
                                             	
                                             	<img src="/resources/img/placeholders/avatars/avatar13@2x.jpg" alt="avatar" class="img-circle img-thumbnail img-thumbnail-transparent img-thumbnail-avatar-2x push">
                                              --></div>

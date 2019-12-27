@@ -13,8 +13,8 @@
 		insert into employee_profile values (#{employee_no},null,null)
 	</insert>
 	
-	<update id="updatePass" parameterType="cot.colabare.profile.domain.EmployeeDto">
-		update employee set password=#{password} where employee_no=#{employee_no}
+	<update id="updatePass" >
+		update user_tbl set userpw=#{userpw} where employee_no=#{employee_no}
 	</update>
 	
 	<update id="updateGreeting" parameterType="cot.colabare.profile.domain.ProfileDto">

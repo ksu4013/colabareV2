@@ -9,6 +9,8 @@ import cot.colabare.master.domain.EmplDepPosDto;
 import cot.colabare.master.domain.EmployeePageDto;
 import cot.colabare.master.domain.PositionDto;
 import cot.colabare.master.domain.SecurityAuthDto;
+import cot.colabare.master.domain.UserAuthDto;
+import cot.colabare.master.domain.UserDto;
 import cot.colabare.master.mapper.MasterMapper;
 import cot.colabare.profile.domain.Criteria;
 import cot.colabare.profile.domain.EmployeeDto;
@@ -86,6 +88,18 @@ public class MasterServiceImpl implements MasterService {
 	public int deleteRequest(int modify_no) {
 		log.info("deleterequest.......");
 		return mapper.deleteReq(modify_no);
+	}
+
+	@Override
+	public int insertUserService(UserDto user) {
+		log.info("insertUserService.......");
+		return mapper.insertUser(user);
+	}
+
+	@Override
+	public int insertUserAuthService(UserAuthDto userauth) {
+		log.info("insertUserAuthService.......");
+		return mapper.insertUserAuth(userauth);
 	}
 
 }

@@ -62,6 +62,14 @@
 	<insert id="insertMasterSec" parameterType="int">
 		insert into sequrityauth values(#{employee_id},'y','y','y','y')
 	</insert>
+	
+	<insert id="insertUser">
+		insert into user_tbl values(#{userid},#{userpw},#{employee_no},'1')
+	</insert>
+	
+	<insert id="insertUserAuth">
+		insert into user_auth values(#{userid},#{auth})
+	</insert>
 
 	<update id="updateMember" parameterType="cot.colabare.profile.domain.EmployeeDto">
 		update employee set name=#{name}, department_id=#{department_id}, position_id=#{position_id}, master=#{master} where employee_no=#{employee_no}

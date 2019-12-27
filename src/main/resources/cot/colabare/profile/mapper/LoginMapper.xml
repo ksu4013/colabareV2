@@ -19,4 +19,8 @@
 		where employee_no=#{employee_no}
 		
 	</select>
+	
+	<select id="selectEmployeeno" parameterType="String" resultType="int">
+		select employee_no from user_tbl where userid=#{userid}
+	</select>
 </mapper>

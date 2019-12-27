@@ -7,10 +7,12 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.aspectj.weaver.NewConstructorTypeMunger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,12 +25,15 @@ import cot.colabare.master.domain.DepartmentDto;
 import cot.colabare.master.domain.EmplDepPosDto;
 import cot.colabare.master.domain.PositionDto;
 import cot.colabare.master.domain.SecurityAuthDto;
+import cot.colabare.master.domain.UserAuthDto;
+import cot.colabare.master.domain.UserDto;
 import cot.colabare.master.service.MasterService;
 import cot.colabare.profile.domain.Criteria;
 import cot.colabare.profile.domain.EmployeeDto;
 import cot.colabare.profile.domain.ModifyRequestDto;
 import cot.colabare.profile.service.LoginService;
 import lombok.AllArgsConstructor;
+import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
@@ -38,6 +43,9 @@ import lombok.extern.log4j.Log4j;
 public class MasterController {
 	private	MasterService service;
 	private LoginService l_service;
+	
+	@Setter(onMethod_=@Autowired)
+	private PasswordEncoder pwencoder;
 	
 	@GetMapping("/insertmemform")
 	public void insertmemform(HttpServletRequest request){
@@ -54,6 +62,21 @@ public class MasterController {
 	public ResponseEntity<String> insertmember(HttpServletRequest request){
 		log.info("insertmember....");
 		EmployeeDto employee = new EmployeeDto();
+		UserDto user=new UserDto();
+		UserAuthDto userauth=new UserAuthDto();
+
+		
+		user.setUserid(request.getParameter("userid"));
+		user.setUserpw(pwencoder.encode(request.getParameter("userpw")));
+		user.setEmployee_no(Integer.parseInt(request.getParameter("employee_no")));
+		
+		userauth.setUserid(request.getParameter("userid"));
+		if(request.getParameter("master").equals('y')){
+			userauth.setAuth("ROLE_ADMIN");
+		}else{
+			userauth.setAuth("ROLE_MEMBER");
+		}
+		
 		employee.setEmployee_no(Integer.parseInt(request.getParameter("employee_no")));
 		employee.setName(request.getParameter("name"));
 		employee.setPosition_id(Integer.parseInt(request.getParameter("position_id")));
@@ -78,7 +101,9 @@ public class MasterController {
 		}
 		int success=service.insertMemberService(employee);
 		int successauth=service.insertMemberAuthService(secauth);
-		if (success>0&&successauth>0) {
+		int successuser=service.insertUserService(user);
+		int successuserauth=service.insertUserAuthService(userauth);
+		if (success>0&&successauth>0&&successuser>0&&successuserauth>0) {
 			return new ResponseEntity<String>("success",HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
