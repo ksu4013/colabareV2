@@ -3,6 +3,7 @@ package cot.colabare.profile.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import cot.colabare.master.domain.UserDto;
 import cot.colabare.meetingboard.mapper.MeetingBoardMapper;
 import cot.colabare.profile.domain.EmployeeDto;
 import cot.colabare.profile.domain.ModifyRequestDto;
@@ -31,9 +32,9 @@ public class ProfileServiceImpl implements ProfileService {
 	}
 
 	@Override
-	public int modifyPassService(EmployeeDto employee) {
+	public int modifyPassService(UserDto user) {
 		log.info("modifypassservice.......");
-		return mapper.updatePass(employee);
+		return mapper.updatePass(user);
 	}
 
 	@Override
@@ -64,6 +65,12 @@ public class ProfileServiceImpl implements ProfileService {
 	public ProfileAttachDto selectProfilePicService(String p_uuid) {
 		log.info("selectprofilepicservice.......");
 		return pa_mapper.selectProfilePic(p_uuid);
+	}
+
+	@Override
+	public int insertProfileService(int employee_no) {
+		log.info("updateprofilepicinfoservice.......");
+		return mapper.insertProfile(employee_no);
 	}
 
 }

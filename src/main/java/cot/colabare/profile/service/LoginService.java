@@ -9,4 +9,5 @@ import cot.colabare.profile.domain.EmployeeDto;
 public interface LoginService {
 	public EmployeeDto loginService(int employee_no);
 	public EmplDepPosDto memberInfoService(int employee_no);
+	public int employee_noService(String name);
 }

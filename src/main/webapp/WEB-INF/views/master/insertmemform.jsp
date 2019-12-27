@@ -50,6 +50,18 @@
 
                                     <!-- Form Validation Form -->
                                     <form id="insertmemform" method="post" class="form-horizontal form-bordered">
+                                    <div class="form-group">
+                                            <label class="col-md-3 control-label" for="val-username">아이디 <span class="text-danger">*</span></label>
+                                            <div class="col-md-6">
+                                                <input type="text" name="userid" id="userid" class="form-control" placeholder="아이디를 입력해주세요">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="val-username">비밀번호 <span class="text-danger">*</span></label>
+                                            <div class="col-md-6">
+                                                <input type="password" name="userpw" id="userpw" class="form-control" placeholder="비밀번호를 입력해주세요">
+                                            </div>
+                                        </div>
                                         <div class="form-group">
                                             <label class="col-md-3 control-label" for="val-username">사원번호 <span class="text-danger">*</span></label>
                                             <div class="col-md-6">

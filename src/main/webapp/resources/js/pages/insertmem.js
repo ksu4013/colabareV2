@@ -4,6 +4,8 @@ $(document).ready(function(){
 				url : "/master/insertmember.do",
 				type : 'post',
 				data : {
+					"userid":$('#userid').val(),
+					"userpw":$('#userpw').val(),
 					"employee_no":$('#employee_no').val(),
 					"department_id":$('#department_id option:selected').val(),
 					"name":$('#name').val(),
@@ -14,6 +16,8 @@ $(document).ready(function(){
 				} ,
 				success : function(result,status,xhr){
 					alert("등록되었습니다.");
+					$('#userid').val(''),
+					$('#userpw').val(''),
 					$('#employee_no').val('');
 					$('#departmen_id').val('');
 					$('#name').val('');

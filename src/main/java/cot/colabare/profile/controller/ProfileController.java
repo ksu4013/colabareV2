@@ -10,10 +10,12 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,12 +25,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import cot.colabare.master.domain.UserDto;
 import cot.colabare.profile.domain.EmployeeDto;
 import cot.colabare.profile.domain.ModifyRequestDto;
 import cot.colabare.profile.domain.ProfileAttachDto;
 import cot.colabare.profile.domain.ProfileDto;
 import cot.colabare.profile.service.ProfileService;
 import lombok.AllArgsConstructor;
+import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import net.coobird.thumbnailator.Thumbnailator;
 
@@ -39,6 +43,9 @@ import net.coobird.thumbnailator.Thumbnailator;
 public class ProfileController {
 	private ProfileService service;
 	
+	@Setter(onMethod_=@Autowired)
+	private PasswordEncoder pwencoder;
+	
 	@GetMapping("/profile")
 	public void detailProfile(HttpServletRequest request){
 		HttpSession session=request.getSession();
@@ -46,6 +53,10 @@ public class ProfileController {
 		int employee_no=employee.getEmployee_no();
 		
 		ProfileDto profile=service.profileDetailService(employee_no);
+		if(profile==null){
+			service.insertProfileService(employee_no);
+			profile=service.profileDetailService(employee_no);
+		}
 		if(profile.getEmployee_greeting()==null) {
 			profile.setEmployee_greeting("안녕하세요! "+employee.getName()+"입니다.");
 		}
@@ -53,6 +64,8 @@ public class ProfileController {
 			ProfileAttachDto profilepic=service.selectProfilePicService(profile.getEmployee_img());
 			String fileCallPath =  profilepic.getP_uploadPath()+ "/s_"+profilepic.getP_uuid() +"_"+profilepic.getP_fileName();
 			request.setAttribute("profilepic", fileCallPath);
+		}else{
+			request.setAttribute("profilepic", null);
 		}
 		request.setAttribute("profile", profile);
 	}
@@ -70,9 +83,10 @@ public class ProfileController {
 		HttpSession session=request.getSession();
 		EmployeeDto employee=(EmployeeDto)session.getAttribute("employee");
 		String password=request.getParameter("password");
-		employee.setPassword(password);
-		
-		int success=service.modifyPassService(employee);
+		UserDto user=new UserDto();
+		user.setEmployee_no(employee.getEmployee_no());
+		user.setUserpw(pwencoder.encode(password));
+		int success=service.modifyPassService(user);
 		if(success>0){
 			return new ResponseEntity<String>("success",HttpStatus.OK);
 		}
