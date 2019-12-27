@@ -24,6 +24,11 @@ public class TodoController {
 
 	private TodoService service;
 	
+	@GetMapping("/todostyle")
+	public void todostyle (){
+		
+	}
+	
 	@GetMapping("/todolist")
 	public void listTodo(@RequestParam(value="todo_type_no")int todo_type_no,Model model){
 		log.info("todolist");
@@ -55,11 +60,13 @@ public class TodoController {
 	
 	
 	@GetMapping({"/getTodo","/todoupdateform"})
-	public void modifyTodo(@RequestParam(value="todo_no") int todo_no,@RequestParam(value="todo_type_no") int todo_type_no, Model model, RedirectAttributes rttr){
+	public void modifyTodo(@RequestParam(value="todo_no") int todo_no,@RequestParam(value="todo_type_no") int todo_type_no, Model model){
 		
 		log.info("/getTodo or /modifyTodo");
 		model.addAttribute("todolist", service.getType(todo_type_no));
+		model.addAttribute("todo",service.getTodo(todo_no));
 		
+		//투두 하나로 가보자,, 지금 타입에 해당되는 투두 다 불러ㅇ와서 안된다구 지수가 그래따 
 	}
 	
 	//할일 수정
@@ -78,13 +85,13 @@ public class TodoController {
 	//할일 삭제
 	
 	@RequestMapping(value="/deleteTodo", method ={RequestMethod.GET,RequestMethod.POST})
-	public String deleteTodo(@RequestParam("todo_no")int todo_no,RedirectAttributes rttr,TodoDto todo){
+	public String deleteTodo(@RequestParam("todo_no")int todo_no,@RequestParam(value="todo_type_no") int todo_type_no,RedirectAttributes rttr,TodoDto todo){
 		
 		log.info("deleteTodo..." + todo_no);
 		if(service.removeTodo(todo_no)){
 			rttr.addFlashAttribute("result", "success");
 		}
-		return "redirect:/todo/todolist?todo_type_no="+todo.getTodo_type_no();
+		return "redirect:/todo/todolist?todo_type_no="+todo.getTodo_type_no(); 
 	}
 
 	

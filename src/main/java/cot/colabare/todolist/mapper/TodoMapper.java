@@ -18,7 +18,7 @@ public interface TodoMapper {
 	
 	public List<TodoDto> getTodoList(int todo_type_no);
 	
-	public TodoDto detail(int todo_no);
+	public TodoDto detailTodo(int todo_no);
 	
 	
 	//유형 등록

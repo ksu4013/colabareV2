@@ -22,10 +22,7 @@
 			<td>할일 번호</td>
 			<td>할일 제목</td>
 			<td>할일 내용</td>
-			<td>우선순위</td>
-			<td>캘린더연동여부</td>
-			<td>시작일</td>
-			<td>마감일</td>
+
 			
 		</tr>
 		
@@ -34,13 +31,10 @@
 			<td>${todolist.todo_no }</td>
 			<td>${todolist.todo_title }</td>
 			<td>${todolist.todo_contents }</td>
-			<td>${todolist.todo_priority}</td>
-			<td>${todolist.upload_on_cal}</td>
-			<td>${todolist.startdate }</td>
-			<td>${todolist.enddate }</td>
-				<%-- <td><a href="todolistupdateform.do?todo_no=${todolist.todo_no}">수정하기</a><td> --%>
+			
+				
 			<td><a href="todoupdateform?todo_no=${todolist.todo_no}&todo_type_no=${todolist.todo_type_no}">수정하기</a></td>
-			<td><a href="deleteTodo?todo_no=${todolist.todo_no}&todo_type_no=${type.todo_type_no}">삭제하기</a></td>
+			<td><a href="deleteTodo?todo_no=${todolist.todo_no}&todo_type_no=${todolist.todo_type_no}">삭제하기</a></td>
 		</tr>				
 		<input type="hidden" name="todo_type_no" value="${todo_type_no}">
 		</c:forEach>

@@ -28,7 +28,7 @@ public class TodoServiceImpl implements TodoService {
 	public TodoDto getTodo(int todo_no) {
 		log.info("get...." + todo_no);
 
-		return mapper.detail(todo_no);
+		return mapper.detailTodo(todo_no);
 	}
 
 	@Override
