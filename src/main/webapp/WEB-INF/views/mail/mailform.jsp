@@ -40,12 +40,12 @@
                                 <div class="block">
                                     <!-- Form Validation Title -->
                                     <div class="block-title">
-                                        <h2>Example Form</h2>
+                                        <h2>Send Mail Form</h2>
                                     </div>
                                     <!-- END Form Validation Title -->
 
                                     <!-- Form Validation Form -->
-                                    <form id="mailform" method="post" class="form-horizontal form-bordered">
+                                    <form id="mailform" method="post" class="form-horizontal form-bordered" enctype="multipart/form-data">
                                         <div class="form-group">
                                             <label class="col-md-3 control-label" for="val-username">받는 사람 메일<span class="text-danger">*</span></label>
                                             <div class="col-md-6">
@@ -64,7 +64,12 @@
                                                 <textarea rows=12 cols=63 name="content" id="content" class="form-control" placeholder="내용을 입력해주세요"></textarea>
                                             </div>
                                         </div>
-                                        
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="val-username">파일 첨부 <span class="text-danger">*</span></label>
+                                            <div class="col-md-6">
+												<input type='file' name='uploadFile' multiple>
+                                            </div>
+                                        </div>
                                         <div class="form-group form-actions">
                                             <div class="col-md-8 col-md-offset-3">
                                                <input type="button" value="보내기" id="mailsendbtn">
