@@ -2,12 +2,12 @@ package cot.colabare.poll.domain;
 
 import java.util.List;
 
+
 import lombok.Data;
 
 @Data
-public class PollUserInputForm {
+public class PollGetVO {
 
 	private PollListVO polllist;
-	private List<PollQuestionDTO> questions;
-	private List<PollItemDTO> items;
+	private List<questionAnditemList> qilist;
 }
