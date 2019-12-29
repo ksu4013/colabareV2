@@ -229,7 +229,7 @@
                                     <a href="#" class="sidebar-nav-menu"><i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-airplane sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">개인 업무 관리</span></a>
                                     <ul>
                                         <li>
-                                            <a href="todolist/todotypelist.do">To-do Type</a>
+                                            <a href="/todo/typelist">To-do Type</a>
                                         </li>
                                         <li>
                                             <a href="/profile/profile.do">프로필보기</a>
@@ -238,7 +238,7 @@
                                             <a href="http://192.168.0.57:3000/">Project & Chat</a>
                                         </li>
                                         <li>
-                                            <a href="page_comp_calendar.html">Calendar</a>
+                                            <a href="/calendar/calendarform">Calendar</a>
                                         </li>
                                         <li>
                                             <a href="page_comp_charts.html">Charts</a>
