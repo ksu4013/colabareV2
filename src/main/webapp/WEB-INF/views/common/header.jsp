@@ -287,10 +287,10 @@
                                             <a href="#" class="sidebar-nav-submenu"><i class="fa fa-chevron-left sidebar-nav-indicator"></i>메신저</a>
                                             <ul>
                                                 <li>
-                                                    <a href="page_ready_blank.html">채팅</a>
+                                                    <a href="http://localhost:3001/">채팅</a>
                                                 </li>
                                                 <li>
-                                                    <a href="/video/videochat">화상전화</a>
+                                                    <a href="http://localhost:3000/">화상전화</a>
                                                 </li>
                                                 <li>
                                                     <a href="page_ready_search_results.html">Search Results (5)</a>
@@ -674,8 +674,51 @@
                         <!-- END Right Header Navigation -->
                     </header>
                     <!-- END Header -->
-
-                   
+	
+                   <!-- 챗봇 -->
+                   <!-- Channel Plugin Scripts -->
+<script>
+  (function() {
+    var w = window;
+    if (w.ChannelIO) {
+      return (window.console.error || window.console.log || function(){})('ChannelIO script included twice.');
+    }
+    var d = window.document;
+    var ch = function() {
+      ch.c(arguments);
+    };
+    ch.q = [];
+    ch.c = function(args) {
+      ch.q.push(args);
+    };
+    w.ChannelIO = ch;
+    function l() {
+      if (w.ChannelIOInitialized) {
+        return;
+      }
+      w.ChannelIOInitialized = true;
+      var s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.async = true;
+      s.src = 'https://cdn.channel.io/plugin/ch-plugin-web.js';
+      s.charset = 'UTF-8';
+      var x = document.getElementsByTagName('script')[0];
+      x.parentNode.insertBefore(s, x);
+    }
+    if (document.readyState === 'complete') {
+      l();
+    } else if (window.attachEvent) {
+      window.attachEvent('onload', l);
+    } else {
+      window.addEventListener('DOMContentLoaded', l, false);
+      window.addEventListener('load', l, false);
+    }
+  })();
+  ChannelIO('boot', {
+    "pluginKey": "c9108fd1-aaf0-4d38-99a2-6688d7d5ef39"
+  });
+</script>
+<!-- End Channel Plugin -->
 
         <!-- jQuery, Bootstrap, jQuery plugins and Custom JS code -->
         <script src="/resources/js/vendor/jquery-3.3.1.min.js"></script>
