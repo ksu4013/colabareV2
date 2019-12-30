@@ -21,9 +21,11 @@ public interface MasterService {
 	public List<PositionDto> positionList();
 	public List<DepartmentDto> departmentList();
 	public SecurityAuthDto selectSec(int employee_no);
+	public String selectUserId(int employee_no);
 	
 	public int updateMember(EmployeeDto employee);
 	public int updateSecAuth(SecurityAuthDto secauth);
+	public int updateUserAuth(UserAuthDto userauth);
 	
 	public int deleteMember(int employee_no);
 	public int deleteRequest(int employee_no);
@@ -34,7 +36,8 @@ public interface MasterService {
 	public int insertUserAuthService(UserAuthDto userauth);
 	
 	public List<ModifyRequestDto> requestList();
-	public EmployeePageDto employeeList(Criteria cri);
+	public List<EmplDepPosDto> employeeList(Criteria cri);
+	public int totalCount(Criteria cri);
 	
 
 }

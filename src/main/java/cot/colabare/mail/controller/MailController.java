@@ -31,8 +31,12 @@ public class MailController {
 	}
 	
 	@GetMapping("/mailform")
-	public void mailInsertForm(){
+	public void mailInsertForm(HttpServletRequest request){
 		log.info("mailform.....");
+		String to =request.getParameter("to");
+		if(to!=null){
+			request.setAttribute("to", to);
+		}
 	}
 	
 	@GetMapping(value="/sendmail", produces= MediaType.APPLICATION_JSON_UTF8_VALUE)

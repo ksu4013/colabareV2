@@ -1,8 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@include file="../todo/todoform.jsp" %>
 
 <!DOCTYPE html>
+
+
+
 <html>
 <head>
 <meta charset="UTF-8">
@@ -13,17 +17,39 @@
 
 	<h3>todo 작성</h3><hr>
 	
-	<form action="registerTodo" method="post">
+	<%-- <form action="registerTodo" method="post">
 	<input type="hidden" name="todo_type_no" value="${todolist.todo_type_no}">
 	제목:<input type="text" name="todo_title"placeholder="할일 제목을 입력하세요."><br>
 	내용:<textarea name="todo_contents" placeholder="내용을 입력하세요"></textarea><br>
 	
 		
 		<input type="submit" value="작성">
-	</form>
+	</form><br><hr> --%>
+	
+		<form id="add-task-form" class="push" action = "registerTodo" method='post'>
+			<input type="hidden" name="todo_type_no" value="${todolist.todo_type_no}">
+			<input type="text" id="add-task" name="todo_title"
+				class="form-control input-lg"
+				placeholder="할일을 입력 후 엔터를 누르세요">
+		</form>
+		<hr>
 
 </body>
 </html>
+<script type="text/javascript">
+$("#add-task-form").keydown(function(key) {
+
+	if (key.keyCode == 13) {
+
+		registerTodo;
+
+	}
+
+	});
+
+
+
+</script>
 
 <style>
 element.style {

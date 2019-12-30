@@ -13,13 +13,38 @@
 <body>
 
 <h3>todo 유형 작성</h3><hr>
-
+<!-- 
 	<form action="registerType" method='post'>
 		<input type="hidden" value="">
 	제목:<input type="text" name="todo_type_title"><br>
 	내용:<input type="text" name="todo_type_contents"><br>
 		<input type="submit" value="작성">	
 	</form>
+	
+ -->
+ 	<form id="add-task-form" class="push" action = "registerType" method='post'>
+			
+			<input type="text" id="add-task" name="todo_type_title"
+				class="form-control input-lg"
+				placeholder="카테고리를 입력 후 엔터를 누르세요">
+		</form><hr>
+
+</body>
+</html>
+<script type="text/javascript">
+$("#add-task-form").keydown(function(key) {
+
+	if (key.keyCode == 13) {
+
+		registerTodo;
+
+	}
+
+	});
+
+
+
+</script>
 
 </body>
 </html>

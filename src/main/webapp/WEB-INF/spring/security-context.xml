@@ -4,13 +4,14 @@
 	xmlns:security="http://www.springframework.org/schema/security"
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-		<bean id="customLoginSuccess" class="cot.colabare.security.CustomLoginSuccessHandler"></bean>
 		
-   		<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+		<bean id="customLoginSuccess" class="cot.colabare.security.CustomLoginSuccessHandler"/>
+		
+   		<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
    
 		<security:http>
 			
-			<security:intercept-url pattern="/login/main" access="hasRole('ROLE_MEMBER')"/>
+			<security:intercept-url pattern="/login/*" access="hasRole('ROLE_MEMBER')"/> 
 			<security:intercept-url pattern="/mail/*" access="hasRole('ROLE_MEMBER')"/>
 			<security:intercept-url pattern="/meetingboard/*" access="hasRole('ROLE_MEMBER')"/>
 			<security:intercept-url pattern="/document/*" access="hasRole('ROLE_MEMBER')"/>
@@ -21,8 +22,8 @@
 			<security:intercept-url pattern="/master/*" access="hasRole('ROLE_ADMIN')"/>
 			<!-- 
 			login-page="/login/loginformmm" -->
-			<security:form-login login-page="/login/loginformmm" authentication-success-handler-ref="customLoginSuccess"/>
-			<!-- <security:logout logout-url="/login/loginformmm" invalidate-session="true"></security:logout> -->
+			<security:form-login login-page="/" authentication-success-handler-ref="customLoginSuccess"/>
+			<security:logout logout-url="/login/logout" logout-success-url="/" invalidate-session="true"></security:logout>
 			<security:csrf disabled="true"/>
 			<security:access-denied-handler error-page="/login/main"/>
 		</security:http>

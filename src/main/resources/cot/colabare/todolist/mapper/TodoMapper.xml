@@ -14,7 +14,7 @@
 		INSERT INTO todo_list
 
 		VALUES(
-		todo_list_seq.nextval,#{todo_title},#{todo_contents},sysdate,null,
+		todo_list_seq.nextval,#{todo_title},null,sysdate,null,
 		'n',null,0,#{todo_type_no},'n',null,null)
 	</insert>
 
@@ -22,13 +22,15 @@
 	<select id="getTodoList" resultType="cot.colabare.todolist.domain.TodoDto">
 		SELECT
 		todo_no,todo_title,todo_contents,todo_type_no
-
+		
 		FROM todo_list
 
 		where
 		todo_type_no=#{todo_type_no}
 
 		ORDER BY todo_no desc
+		
+		
 	</select>
 
 
@@ -86,9 +88,9 @@
 	<!-- 할일 유형 등록 -->
 	<insert id="insertType">
 		insert into todo_type
-		(todo_type_no,todo_type_title,todo_type_contents)
+		(todo_type_no,todo_type_title)
 		values
-		(todo_type_seq.nextval,#{todo_type_title},#{todo_type_contents})
+		(todo_type_seq.nextval,#{todo_type_title})
 	</insert>
 
 	<!-- 할일 유형 수정 -->

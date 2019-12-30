@@ -6,11 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cot.colabare.poll.domain.PollAnswer;
+import cot.colabare.poll.domain.PollAnswerUserVO;
+import cot.colabare.poll.domain.PollAnswerVO;
 import cot.colabare.poll.domain.PollDTO;
 import cot.colabare.poll.domain.PollItemDTO;
 import cot.colabare.poll.domain.PollJoiner;
 import cot.colabare.poll.domain.PollListVO;
 import cot.colabare.poll.domain.PollQuestionDTO;
+import cot.colabare.poll.domain.PollVO;
 import cot.colabare.poll.mapper.PollMapper;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
@@ -46,8 +49,8 @@ public class PollServiceImpl implements PollService {
 	}
 
 	@Override
-	public PollListVO detailPollService(int pnum) {
-		return mapper.detailPoll(pnum); 
+	public PollVO detailPollService(int pnum) {
+		return mapper.detailPoll(pnum);  
 	}
 
 	@Override
@@ -61,14 +64,23 @@ public class PollServiceImpl implements PollService {
 	}
 	
 	@Override
-	public void insertPollJoiner(PollJoiner joiner) {
-		mapper.insertPollJoinerKey(joiner);
+	public void insertJoinerService(PollJoiner joiner) {
+		mapper.insertJoinerKey(joiner);
 	}
 	
 	@Override
-	public void insertPollAnswer(PollAnswer answer) {
-		log.info("메퍼 전.......................");
-		mapper.insertPollAnswer(answer);
+	public void insertAnswerService(PollAnswer answer) {
+		mapper.insertAnswer(answer);
+	}
+
+	@Override
+	public List<PollAnswerVO> detailAnswerService(PollAnswerUserVO pauv) {
+		return mapper.detailAnswer(pauv);
+	}
+
+	@Override
+	public void updateAnswerService(PollAnswer answer) {
+		mapper.updateAnswer(answer);
 	}
 
 
