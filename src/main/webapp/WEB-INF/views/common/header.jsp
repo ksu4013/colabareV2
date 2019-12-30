@@ -106,8 +106,8 @@
                         <div class="sidebar-content">
                             <!-- Profile -->
                             <div class="sidebar-section">
-                                <h2 class="text-light">Profile</h2>
-                                <form action="index.html" method="post" class="form-control-borderless" onsubmit="return false;">
+                                <h2 class="text-light"><a href="/profile/profile">Profile</a></h2>
+                                <!-- <form action="index.html" method="post" class="form-control-borderless" onsubmit="return false;">
                                     <div class="form-group">
                                         <label for="side-profile-name">Name</label>
                                         <input type="text" id="side-profile-name" name="side-profile-name" class="form-control" value="John Doe">
@@ -127,7 +127,7 @@
                                     <div class="form-group remove-margin">
                                         <button type="submit" class="btn btn-effect-ripple btn-primary" onclick="App.sidebar('close-sidebar-alt');">Save</button>
                                     </div>
-                                </form>
+                                </form> -->
                             </div>
                             <!-- END Profile -->
 
@@ -232,7 +232,7 @@
                                             <a href="/todo/typelist">To-do Type</a>
                                         </li>
                                         <li>
-                                            <a href="/profile/profile.do">프로필보기</a>
+                                            <a href="/contact/contactlist">주소록</a>
                                         </li>
                                         <li>
                                             <a href="http://192.168.0.57:3000/">Project & Chat</a>
@@ -362,7 +362,7 @@
                                             <a href="/master/insertmemform.do">회원 추가</a>
                                         </li>
                                         <li>
-                                            <a href="/master/listmember.do">회원 수정/삭제</a>
+                                            <a href="/master/listmember">회원 수정/삭제</a>
                                         </li>
                                         <li>
                                             <a href="page_layout_fixed_bottom.html">Bottom Header (Fixed)</a>
@@ -616,8 +616,10 @@
                             <!-- User Dropdown -->
                             <li class="dropdown">
                                 <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-
-                                    <img src="/resources/img/placeholders/avatars/avatar9.jpg" alt="avatar">
+									<c:if test="${sessionScope.profilepic ==null}"><img src="/resources/img/placeholders/avatars/avatar13@2x.jpg" alt="avatar">
+                                            </c:if>
+                                            <c:if test="${sessionScope.profilepic !=null}"><img src='/profile/displayprofile?fileName=${profilepic}' alt="avatar">
+                                            	</c:if>
 
                                 </a>
 
@@ -632,7 +634,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="page_app_social.html">
+                                        <a href="/profile/profile">
                                             <i class="fa fa-pencil-square fa-fw pull-right"></i>
                                             Profile
                                         </a>
@@ -657,10 +659,13 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="/login/logout.do">
+                                        
                                             <i class="fa fa-power-off fa-fw pull-right"></i>
-                                            Log out
-                                        </a>
+                                            <form action="/login/logout" method="post">
+												<input type="hidden" name="{_csrf.parameterName}" value="{_crsf.token}"/>
+												<button> Log out</button>
+											</form>
+                                           
                                     </li>
                                 </ul>
                             </li>

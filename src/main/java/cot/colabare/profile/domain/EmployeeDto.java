@@ -10,7 +10,6 @@ public class EmployeeDto implements Serializable{
 	String department_id;
 	String name;
 	String e_mail;
-	String password;
 	int position_id;
 	String master;
 	String approval_img;

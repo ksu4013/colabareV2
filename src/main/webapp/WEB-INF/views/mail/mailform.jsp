@@ -49,7 +49,7 @@
                                         <div class="form-group">
                                             <label class="col-md-3 control-label" for="val-username">받는 사람 메일<span class="text-danger">*</span></label>
                                             <div class="col-md-6">
-                                                <input type="text" name="to" id="to" class="form-control" placeholder="받는 사람 메일을 입력해주세요">
+                                                <input type="text" name="to" id="to" class="form-control" value="${to }" placeholder="받는 사람 메일을 입력해주세요">
                                             </div>
                                         </div>
                                         <div class="form-group">
