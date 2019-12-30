@@ -18,5 +18,9 @@ public class CalendarController {
 	public void calendarList(){
 		
 	}
+	@GetMapping("/calendarform2")
+	public void calendarList2(){
+		
+	}
 	
 }

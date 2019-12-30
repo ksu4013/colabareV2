@@ -10,7 +10,7 @@
 <!-- Main Container -->
 
 
-<div id="page-content" class="inner-sidebar-left">
+<div id="page-content" class="row">
 	<!-- Inner Sidebar -->
 	<div id="page-content-sidebar">
 		<!-- Collapsible Options -->
@@ -33,7 +33,7 @@
                             </a>
                         </li> -->
 					<li><c:forEach var="todotype" items="${typelist }">
-							<a href="javascript:void(0)"> <span class="badge pull-right">x</span>
+							<a href="javascript:void(0)"> <span class="badge pull-right"><a href="deleteType?todo_type_no=${todotype.todo_type_no }">x</a></span>
 								<i class="fa fa-book fa-fw icon-push"></i> <strong><a href="todolist?todo_type_no=${todotype.todo_type_no }">${todotype.todo_type_title }</strong>
 							</a>
 						</c:forEach></li>
@@ -104,8 +104,8 @@
 	</div>
 	<!-- END Inner Sidebar -->
 
-	<!-- Tasks List -->
-	<!-- Add new task functionality (initialized in js/pages/readyTasks.js) -->
+	<!-- Tasks List
+	Add new task functionality (initialized in js/pages/readyTasks.js)
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1 col-lg-6 col-lg-offset-3">
 			<form id="add-task-form" class="push">
@@ -166,7 +166,7 @@
 			</ul>
 		</div>
 	</div>
-	<!-- END Task List -->
+	END Task List -->
 </div>
 <!-- END Page Content -->
 

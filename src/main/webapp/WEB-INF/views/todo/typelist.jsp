@@ -14,8 +14,9 @@
 </head>
 <body>
 	
-	<h1>TYPE LIST</h1>
+	<%-- <h1>TYPE LIST</h1>
 	<a href="typeinsertform">쓰기</a>
+	<button id="newTypeBtn">new</button>
 
 	<table border="1">
 		<tr>
@@ -40,10 +41,10 @@
 				<td><a href="todolist?todo_type_no=${todotype.todo_type_no }">TODO LIST</a></td>
 			</tr>
 		</c:forEach>
-	</table>
+	</table> --%>
 </body>
 <script type="text/javascript">
-	$(document.ready(function() {
+	$(document).ready(function() {
 
 		function del(todo_type_no) {
 			location.href = 'deleteType?todo_type_no=' + todo_type_no;
@@ -51,11 +52,11 @@
 
 		$("#newTypeBtn").on("click", function() {
 
-			self.location = "todo/typeinsertform";
+			self.location = "/todo/typeinsertform";
 
 		});
 
-	}));
+	});
 </script>
 </html>
 

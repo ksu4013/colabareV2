@@ -14,27 +14,29 @@
 <!-- Tasks List -->
 <!-- Add new task functionality (initialized in js/pages/readyTasks.js) -->
 <div class="row">
+	
 	<div class="col-md-10 col-md-offset-1 col-lg-6 col-lg-offset-3">
 	<!-- 	<form id="add-task-form" class="push">
 			<input type="text" id="add-task" name="add-task"
 				class="form-control input-lg"
 				placeholder="Enter a task and press enter..">
 		</form> -->
-		<a href="todoinsertform?todo_type_no=${todo_type_no}">새로운 todo</a>
+		<a href="todoinsertform?todo_type_no=${todo_type_no}">new todo</a>
+		<a href="todoinsertform?todo_type_no=${todo_type_no }" class="btn btn-xs btn-default pull-left"><i
+					class="fa fa-plus"></i></a>
 		<ul class="task-list">
 		<c:forEach var="todolist" items="${todolist }">
 			<li>
 			
-			<a href="javascript:void(0)" class="task-close text-danger"><i
+			<a href="deleteTodo?todo_no=${todolist.todo_no}&todo_type_no=${todolist.todo_type_no}" class="task-close text-danger"><i
 					class="fa fa-times" id="delBtn"></i></a> <label class="checkbox-inline"> <input
-					type="checkbox"> title: ${todolist.todo_title }	contents: ${todolist.todo_contents }
-			</label>
+					type="checkbox"> ${todolist.todo_title }	</label>
 			
 			</li>
 			
 			</c:forEach>
 		</ul>
-		<a href="typelist">TODO TYPE</a>
+		<a href="typelist">TODO TYPE</a><hr>
 	</div>
 </div>
 <!-- END Task List -->
