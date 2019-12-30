@@ -56,42 +56,23 @@
                         </tr>
                     </thead>
                     <tbody>
+                    	<c:forEach var = "approval" items="${list }">
+                    	<c:if test="${employee.employee_no == approval.employee_no}">
                         <tr>
                             <td class="text-center" style="width: 75px;"><i class="gi gi-globe fa-2x text-muted text-muted"></i></td>
                             <td>
                                 <h4>
-                                    <a href="javascript:void(0)" class="text-dark"><strong>기안서 제목이 들어 갈 자리입니다. approval title</strong></a>
+                                    <a href="javascript:void(0)" class="text-dark"><strong>${approval.title }</strong></a>
                                 </h4>
-                                <div class="text-muted">document title이 들어갈 자리</div>
+                                <div class="text-muted">${approval.dtitle }</div>
                             </td>
                             <td class="text-center hidden-xs hidden-sm"><a href="javascript:void(0)"><strong>205</strong></a></td>
                             <td class="text-center hidden-xs hidden-sm"><a href="javascript:void(0)"><strong>1265</strong></a></td>
-                            <td class="hidden-xs hidden-sm">by <a href="page_ready_profile.html">Sandra Gilbert</a><br><small>February 30, 2015</small></td>
+                            <td class="hidden-xs hidden-sm">${approval.write_date }</td>
+                            <!-- <td class="hidden-xs hidden-sm">by <a href="page_ready_profile.html">Sandra Gilbert</a><br><small>February 30, 2015</small></td> -->
                         </tr>
-                        <tr>
-                            <td class="text-center"><i class="gi gi-bullhorn fa-2x text-muted"></i></td>
-                            <td>
-                                <h4>
-                                    <a href="javascript:void(0)" class="text-dark"><strong>Announcements</strong></a>
-                                </h4>
-                                <div class="text-muted">For the latest news, this is the place</div>
-                            </td>
-                            <td class="text-center hidden-xs hidden-sm"><a href="javascript:void(0)"><strong>251</strong></a></td>
-                            <td class="text-center hidden-xs hidden-sm"><a href="javascript:void(0)"><strong>6352</strong></a></td>
-                            <td class="hidden-xs hidden-sm">by <a href="page_ready_profile.html">Carolyn Cruz</a><br><small>June 15, 2015</small></td>
-                        </tr>
-                        <tr>
-                            <td class="text-center"><i class="gi gi-pen fa-2x text-muted"></i></td>
-                            <td>
-                                <h4>
-                                    <a href="javascript:void(0)" class="text-dark"><strong>Terms &amp; Conditions</strong></a>
-                                </h4>
-                                <div class="text-muted">Please read the rules of our forum</div>
-                            </td>
-                            <td class="text-center hidden-xs hidden-sm"><a href="javascript:void(0)"><strong>20</strong></a></td>
-                            <td class="text-center hidden-xs hidden-sm"><a href="javascript:void(0)"><strong>20</strong></a></td>
-                            <td class="hidden-xs hidden-sm">by <a href="page_ready_profile.html">Shirley Ray</a><br><small>February 10, 2015</small></td>
-                        </tr>
+                        </c:if>
+                        </c:forEach>
                     </tbody>
                 </table>
                 <!-- END Intro Category -->

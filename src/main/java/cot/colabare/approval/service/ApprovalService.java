@@ -48,4 +48,18 @@ public interface ApprovalService {
 	
 	// 보낸 기안문서 목록
 	public List<ApprovalDto> sentList(ApprovalCriteria cri);
+	
+	public int getTotalCount(ApprovalCriteria cri);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

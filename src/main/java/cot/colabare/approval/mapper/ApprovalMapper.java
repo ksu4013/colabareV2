@@ -19,5 +19,7 @@ public interface ApprovalMapper {
 	// 보낸 기안문서 페이징
 	//List<ApprovalDto> sentListPaging (ApprovalCriteria cri);
 	
+	// 글 목록 카운트
+    public int getTotalCount(ApprovalCriteria cri);
 	
 }

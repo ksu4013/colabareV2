@@ -143,6 +143,11 @@ public class ApprovalServiceImpl implements ApprovalService {
 		return mapper.sentList(cri);
 	}
 
+	@Override
+	public int getTotalCount(ApprovalCriteria cri) {
+		return mapper.getTotalCount(cri);
+	}
+
 
 
 }
