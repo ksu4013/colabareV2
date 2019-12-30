@@ -112,13 +112,14 @@ var maxSize =5242880; //5MB
              formData.append("uploadFile", files[i]);
           }
        $.ajax({
-          		  url: '/profile/uploadProfilePic.do',
+          		  url: '/profile/uploadprofilepic.do',
           processData: false,
           contentType: false,
            		 data: formData,
           		 type: 'POST',
           	 dataType:'json',
-          	  success: function(result,status,xhr){
+          	  success: function(result){
+          		  alert("한글");
           		  			alert(result);
 		                   showUploadedFile(result);
 		                }

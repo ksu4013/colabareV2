@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,7 +57,9 @@
 <body>
 <%@ include file = "../common/header.jsp" %>
 
-<script type="text/javascript" src="/resources/js/pages/profilepicupdate.js"></script>
+
+<!-- 
+<script type="text/javascript" src="/resources/js/pages/profilepicupdate.js"></script> -->
 <!-- Page content -->
                     <div id="page-content">
                         <!-- User Profile Row -->
@@ -66,7 +70,7 @@
                                         <img src="/resources/img/placeholders/photos/photo1@2x.jpg" alt="image">
                                     
                                         <div class="widget-image-content text-center">
-                                        	<div id=profileimg>
+                                        	<div id="profileimg">
                                         	<c:if test="${profilepic ==null}"><img src="/resources/img/placeholders/avatars/avatar13@2x.jpg" alt="avatar" class="img-circle img-thumbnail img-thumbnail-transparent img-thumbnail-avatar-2x push">
                                             </c:if>
                                             <c:if test="${profilepic !=null}"><img src='/profile/displayprofile?fileName=${profilepic}' alt="avatar" class="img-circle img-thumbnail img-thumbnail-transparent img-thumbnail-avatar-2x push">
@@ -102,7 +106,7 @@
                                             <a href="javascript:void(0)" class="btn btn-default" data-toggle="tooltip" title="Google Plus"><i class="fa fa-google-plus fa-fw"></i></a>
                                             <a href="javascript:void(0)" class="btn btn-default" data-toggle="tooltip" title="Pinterest"><i class="fa fa-pinterest fa-fw"></i></a>
                                             <a href="javascript:void(0)" class="btn btn-default" data-toggle="tooltip" title="Dribbble"><i class="fa fa-dribbble fa-fw"></i></a>
-                                        	 <form method="post" enctype="multipart/form-data">
+                                        	 <form action="/profile/uploadprofilepic" method="post" enctype="multipart/form-data">
 												<input type='file' name='uploadFile'>
 												<button id='uploadBtn' name='uploadBtn'>Submit</button>
 											</form>

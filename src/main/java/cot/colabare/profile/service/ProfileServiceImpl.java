@@ -2,6 +2,7 @@ package cot.colabare.profile.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import cot.colabare.master.domain.UserDto;
 import cot.colabare.meetingboard.mapper.MeetingBoardMapper;
@@ -28,6 +29,7 @@ public class ProfileServiceImpl implements ProfileService {
 	@Override
 	public ProfileDto profileDetailService(int employee_no) {
 		log.info("profiledetailservice.......");
+		System.out.println("service call");
 		return mapper.selectProfile(employee_no);
 	}
 
@@ -55,6 +57,7 @@ public class ProfileServiceImpl implements ProfileService {
 		return pa_mapper.insertProfilePic(profile);
 	}
 
+	
 	@Override
 	public int updateProfilePicInfoService(ProfileAttachDto profile) {
 		log.info("updateprofilepicinfoservice.......");
