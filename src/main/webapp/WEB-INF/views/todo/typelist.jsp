@@ -15,7 +15,7 @@
 <body>
 	
 	<%-- <h1>TYPE LIST</h1>
-	<a href="typeinsertform">쓰기</a>
+	<a href="typeinsertform">쓰기zz</a>
 	<button id="newTypeBtn">new</button>
 
 	<table border="1">
