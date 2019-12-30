@@ -261,7 +261,7 @@
                                             <a href="/document/documentList">전자결재</a>
                                         </li>
                                         <li>
-                                            <a href="poll/poll_insert_form.do">설문조사</a>
+                                            <a href="/poll/pollinsertform">설문조사</a>
                                         </li>
                                         <li>
                                             <a href="/mail/maillist.do">E-mail 확인</a>

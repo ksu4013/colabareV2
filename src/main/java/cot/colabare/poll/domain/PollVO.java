@@ -4,7 +4,7 @@ package cot.colabare.poll.domain;
 import lombok.Data;
 
 @Data
-public class PollDTO {
+public class PollVO {
 
 	private int poll_num;
 	private int poll_writer;
@@ -13,4 +13,6 @@ public class PollDTO {
 	private String poll_contents;
 	private String poll_stime;
 	private String poll_etime;
+	private String name;
+	private String department_name;
 }
