@@ -7,7 +7,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,11 +50,16 @@ public class ProfileController {
 	
 	@GetMapping("/profile")
 	public void detailProfile(HttpServletRequest request){
+		
+		
 		HttpSession session=request.getSession();
 		EmployeeDto employee=(EmployeeDto)session.getAttribute("employee");
 		int employee_no=employee.getEmployee_no();
 		
 		ProfileDto profile=service.profileDetailService(employee_no);
+		
+		System.out.println(profile.getEmployee_img());
+		request.setAttribute("profilepic", null);
 		if(profile==null){
 			service.insertProfileService(employee_no);
 			profile=service.profileDetailService(employee_no);
@@ -60,6 +67,7 @@ public class ProfileController {
 		if(profile.getEmployee_greeting()==null) {
 			profile.setEmployee_greeting("안녕하세요! "+employee.getName()+"입니다.");
 		}
+		
 		if(profile.getEmployee_img()!=null){
 			ProfileAttachDto profilepic=service.selectProfilePicService(profile.getEmployee_img());
 			String fileCallPath =  profilepic.getP_uploadPath()+ "/s_"+profilepic.getP_uuid() +"_"+profilepic.getP_fileName();
@@ -132,8 +140,8 @@ public class ProfileController {
 	      return str.replace("-", File.separator);
 	   }
 	
-	 @PostMapping(value = "/uploadProfilePic", produces= MediaType.APPLICATION_JSON_UTF8_VALUE)
-	   public ResponseEntity<ProfileAttachDto> uploadAjaxPost(MultipartFile uploadFile, HttpServletRequest request) {
+	 @PostMapping(value = "/uploadprofilepic", produces= MediaType.APPLICATION_JSON_UTF8_VALUE)
+	   public String uploadAjaxPost(MultipartFile uploadFile, HttpServletRequest request) {
 
 		  ProfileAttachDto profileimg = new ProfileAttachDto();
 	      String uploadFolder = "c:\\upload\\profile";
@@ -187,12 +195,8 @@ public class ProfileController {
 	         } catch (Exception e) {
 	            log.error(e.getMessage());
 	         }
-
 	      
-	      if(success_2>0){
-	    	  return new ResponseEntity<ProfileAttachDto>(profileimg, HttpStatus.OK);
-	      }
-	      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	      return "redirect:/profile/profile";
 	   }
 	 
 	 @GetMapping("/displayprofile")
