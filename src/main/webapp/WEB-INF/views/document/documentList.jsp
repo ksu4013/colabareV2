@@ -34,7 +34,7 @@
 			</button><br><br>
             <!-- Table Styles Content -->
             <div class="table-responsive">
-               <a href="/document/approvalList">결재목록 가기</a><br>
+               <a href="/document/approvalList?employee_no=${employee.employee_no }">결재목록 가기</a><br>
                <a href="/document/example1">기본폼</a>
                 <table id="general-table" class="table table-striped table-bordered table-vcenter table-hover">
 					<thead>

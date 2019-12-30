@@ -138,9 +138,14 @@ public class ApprovalServiceImpl implements ApprovalService {
 	}
 
 	@Override
-	public List<ApprovalDto> sentList(ApprovalCriteria cri) {
+	public List<ApprovalDto> sentList(Long employee_no, ApprovalCriteria cri) {
 		
-		return mapper.sentList(cri);
+		return mapper.sentList(employee_no, cri);
+	}
+
+	@Override
+	public int getTotalCount(ApprovalCriteria cri) {
+		return mapper.getTotalCount(cri);
 	}
 
 
