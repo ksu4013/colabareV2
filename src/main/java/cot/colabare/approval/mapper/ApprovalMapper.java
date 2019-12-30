@@ -14,7 +14,7 @@ public interface ApprovalMapper {
 	public ApprovalDto lastNum();
 	
 	// 보낸 기안문서 목록 리스트
-	List<ApprovalDto> sentList(ApprovalCriteria cri);
+	List<ApprovalDto> sentList(Long employee_no, ApprovalCriteria cri);
 	
 	// 보낸 기안문서 페이징
 	//List<ApprovalDto> sentListPaging (ApprovalCriteria cri);

@@ -57,7 +57,6 @@
                     </thead>
                     <tbody>
                     	<c:forEach var = "approval" items="${list }">
-                    	<c:if test="${employee.employee_no == approval.employee_no}">
                         <tr>
                             <td class="text-center" style="width: 75px;"><i class="gi gi-globe fa-2x text-muted text-muted"></i></td>
                             <td>
@@ -71,7 +70,6 @@
                             <td class="hidden-xs hidden-sm">${approval.write_date }</td>
                             <!-- <td class="hidden-xs hidden-sm">by <a href="page_ready_profile.html">Sandra Gilbert</a><br><small>February 30, 2015</small></td> -->
                         </tr>
-                        </c:if>
                         </c:forEach>
                     </tbody>
                 </table>
@@ -214,6 +212,28 @@
     <!-- END Forum Block -->
 </div>
 <!-- END Page Content -->
+<script>
+$(document).ready(function(e){
+	
+	
+	
 
+
+	
+	
+	
+
+	
+
+	
+
+	
+});
+
+
+
+
+
+</script>
 </body>
 </html>

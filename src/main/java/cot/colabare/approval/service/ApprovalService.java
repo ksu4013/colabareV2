@@ -47,7 +47,7 @@ public interface ApprovalService {
 	public Long approvalNumVSelect(Long apprviewer);
 	
 	// 보낸 기안문서 목록
-	public List<ApprovalDto> sentList(ApprovalCriteria cri);
+	public List<ApprovalDto> sentList(Long employee_no ,ApprovalCriteria cri);
 	
 	public int getTotalCount(ApprovalCriteria cri);
 	

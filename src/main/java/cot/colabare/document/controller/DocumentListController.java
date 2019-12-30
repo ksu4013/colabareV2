@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import cot.colabare.approval.domain.ApprovalCriteria;
@@ -23,10 +24,10 @@ public class DocumentListController {
 	private ApprovalService service;
 	
 	// 내가보낸 결재문서 목록
-	@GetMapping("/sentList")
-	public void sentList(ApprovalCriteria cri, Model model){
+	@GetMapping("/approvalList")
+	public void sentList(ApprovalCriteria cri, Model model, @RequestParam(value="employee_no") Long employee_no){
 		
-		model.addAttribute("list", service.sentList(cri));
+		model.addAttribute("list", service.sentList(employee_no, cri));
 		
 		int total = service.getTotalCount(cri);
 		
@@ -45,10 +46,11 @@ public class DocumentListController {
 		
 	}
 	
-	@GetMapping("approvalList")
-	public void approvalList(){
+	// 전자결재 목록 게시판
+	/*@GetMapping("approvalList")
+	public void approvalList(@RequestParam(value="employee_no") Long employee_no){
 		
-	}
+	}*/
 	
 	@GetMapping("document1")
 	public void documentexam(){
