@@ -68,12 +68,7 @@
                                                 <input type="text" name="employee_no" id="employee_no" class="form-control" placeholder="사원번호를 입력해주세요">
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label" for="val-password">Password <span class="text-danger">*</span></label>
-                                            <div class="col-md-6">
-                                                <input type="password" name="password" id="password" class="form-control" placeholder="비밀번호를 입력해주세요">
-                                            </div>
-                                        </div>
+                                        
                                         <div class="form-group">
                                             <label class="col-md-3 control-label" for="val-username">이름 <span class="text-danger">*</span></label>
                                             <div class="col-md-6">

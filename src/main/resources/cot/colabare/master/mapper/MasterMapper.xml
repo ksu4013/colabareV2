@@ -14,7 +14,7 @@
 	</select>
 	
 	 <insert id="insertMember" parameterType="cot.colabare.profile.domain.EmployeeDto">
-		insert into employee values (#{employee_no},#{department_id},#{name},#{e_mail},#{password},#{position_id},#{master},null,'y')
+		insert into employee values (#{employee_no},#{department_id},#{name},#{e_mail},#{position_id},#{master},null)
 	</insert>
 	
 	<select id="listEmployee" parameterType="cot.colabare.profile.domain.Criteria" resultType="cot.colabare.master.domain.EmplDepPosDto">
@@ -27,20 +27,39 @@
 			on e.position_id=p.position_id
 			join department d
 			on e.department_id=d.department_id
-			where e.exist='y'
-    		and rownum <= #{pageNum} * #{amount}
+			join user_tbl u
+      		on u.employee_no=e.employee_no
+			where u.enabled='1']]>
+			<if test="type != null ">
+					and e.department_id=#{type}
+				</if>
+				<if test="keyword !=null">
+					and e.name like '%'||#{keyword}||'%'
+				</if>
+			<![CDATA[
+			and rownum <= #{pageNum} * #{amount}
    			) el where el.rn > (#{pageNum} -1) * #{amount}
 		]]>
 	</select>
 	
 	<select id="getCountEmployee" resultType="int">
 		<![CDATA[
-		select count(employee_no) from employee where exist='y'
-		]]>
+		select count(e.employee_no) from employee e
+		join user_tbl u
+		on u.employee_no=e.employee_no
+		where  u.enabled='1']]>
+			
+				<if test="type != null ">
+					and e.department_id=#{type}
+				</if>
+				<if test="keyword !=null">
+					and e.name like '%'||#{keyword}||'%'
+				</if>
+			
 	</select>
 	
 	<update id="deleteMember" parameterType="int">
-		update employee set exist='n'where employee_no=#{employee_no}
+		update user_tbl set enabled='0' where employee_no=#{employee_no}
 	</update>
 	
 	<select id="listRequest" resultType="cot.colabare.profile.domain.ModifyRequestDto">
@@ -78,5 +97,21 @@
 	<update id="updateSec" parameterType="cot.colabare.master.domain.SecurityAuthDto">
 		update sequrityauth set reference_cud=#{reference_cud}, meeting_cud=#{meeting_cud}, notice_cud=#{notice_cud}, project_c=#{project_c} where employee_id=#{employee_id}
 	</update>
+	
+	<select id="selectUserId" resultType="String">
+		select userid from user_tbl where employee_no=#{employee_no}
+	</select>
+	
+	<select id="getAdminAuth" resultType="cot.colabare.master.domain.UserAuthDto">
+		select * from user_auth where userid=#{userid} and auth='ROLE_ADMIN'
+	</select>
+	
+	<insert id="updateUserAuth" >
+		insert into user_auth values(#{userid},#{auth})
+	</insert>
+	
+	<delete id="deleteUserAuth" >
+		delete from user_auth where userid=#{userid} and auth='ROLE_ADMIN'
+	</delete>
 
 </mapper>
