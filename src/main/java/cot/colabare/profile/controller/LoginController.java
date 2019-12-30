@@ -19,7 +19,10 @@ import cot.colabare.master.domain.EmplDepPosDto;
 import cot.colabare.master.domain.SecurityAuthDto;
 import cot.colabare.master.service.MasterService;
 import cot.colabare.profile.domain.EmployeeDto;
+import cot.colabare.profile.domain.ProfileAttachDto;
+import cot.colabare.profile.domain.ProfileDto;
 import cot.colabare.profile.service.LoginService;
+import cot.colabare.profile.service.ProfileService;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
@@ -30,15 +33,10 @@ import lombok.extern.log4j.Log4j;
 public class LoginController {
 	private LoginService service;
 	private MasterService m_service;
+	private ProfileService p_service;
 	
-	@GetMapping("/loginform")
-	public void loginForm(){
-		log.info("/loginform");
-	}
-	@GetMapping("/loginformmm")
-	public void loginFormmm(){
-		log.info("/loginform");
-	}
+	
+	
 	@GetMapping("/chklogin")
 	public String chkLogin( HttpServletRequest request){
 		log.info("/chklogin");
@@ -49,6 +47,15 @@ public class LoginController {
 		int employee_no=service.employee_noService(username);
 		EmployeeDto employee=service.loginService(employee_no);
 		HttpSession session=request.getSession();
+		
+		ProfileDto profile=p_service.profileDetailService(employee_no);
+		if(profile.getEmployee_img()!=null){
+			ProfileAttachDto profilepic=p_service.selectProfilePicService(profile.getEmployee_img());
+			String fileCallPath =  profilepic.getP_uploadPath()+ "/s_"+profilepic.getP_uuid() +"_"+profilepic.getP_fileName();
+			session.setAttribute("profilepic", fileCallPath);
+		}else{
+			session.setAttribute("profilepic", null);
+		}
 		
 		
 				session.setAttribute("employee", employee);
@@ -66,10 +73,9 @@ public class LoginController {
 	}
 	
 	@GetMapping("/logout")
-	public String logout(HttpServletRequest request){
+	public void logout(HttpServletRequest request){
 		HttpSession session=request.getSession();
 		session.invalidate();
 		
-		return "redirect:/login/loginform.do";
 	}
 }

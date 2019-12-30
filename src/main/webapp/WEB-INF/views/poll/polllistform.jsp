@@ -34,7 +34,7 @@
 	<div id="paper"><br>
 		<c:choose>
 		 	<c:when test="${empty PollList }">
-		 		<br><br><br><br><br><br><br><br><label>지금 등록된 설문이 없습니다.</label><br><br><br><br><br><br><br><br>
+		 		<br><br><br><br><br><br><br><br><label>등록된 설문이 없습니다.</label><br><br><br><br><br><br><br><br>
 		 	</c:when>
 			 <c:when test="${!empty PollList }"> 
 				<div id="listtab">
@@ -71,6 +71,11 @@
 </html>
 
 <style>
+
+label {
+	margin-left: 200px;
+	color: aqua;
+}
 
 #id {
 	color: white;

@@ -9,4 +9,5 @@ public class questionAnditemList {
 
 	private PollQuestionDTO question;
 	private List<PollItemDTO> item;
+	
 }

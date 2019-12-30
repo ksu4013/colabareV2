@@ -33,5 +33,10 @@ public interface MasterMapper {
 	int updateSec(SecurityAuthDto secauth);
 	int updateMember(EmployeeDto employee);
 	
-	public int getCountEmployee();
+	String selectUserId(int employee_no);
+	public int getCountEmployee(Criteria cri);
+	
+	UserAuthDto getAdminAuth(String userid);
+	int updateUserAuth(UserAuthDto userauth);
+	int deleteUserAuth(String userid);
 }

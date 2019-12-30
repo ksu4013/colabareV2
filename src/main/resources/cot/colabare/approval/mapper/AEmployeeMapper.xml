@@ -7,4 +7,13 @@
 	<select id="approvalM" resultType="cot.colabare.approval.domain.AEmployeeDto">
 		select employee_no, department_id, name, e_mail, position_id from employee where name like #{query}
 	</select>
+	
+	<select id="selectMem" resultType="cot.colabare.approval.domain.AEmployeeDto">
+		select employee_no, department_id, name, e_mail, position_id from employee where employee_no = #{employee_no}
+	</select>
+	
+
+	
+	
+	
 </mapper>

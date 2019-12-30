@@ -8,26 +8,60 @@
 		
 		<insert id="insertPollKey" parameterType="cot.colabare.poll.domain.PollDTO">
 			<selectKey keyProperty="poll_num" order="BEFORE" resultType="integer">
-				select poll_seq.nextval from dual
+				select 
+					poll_seq.nextval 
+				from 
+					dual
 			</selectKey>
-			insert into poll values(
-			#{poll_num}, #{poll_writer}, #{poll_type}, #{poll_title},
-			#{poll_contents}, sysdate, TO_DATE(#{poll_etime},'YYYY-MM-dd hh24:mi:ss'))
+				insert into 
+					poll 
+				values(
+					#{poll_num}, #{poll_writer}, #{poll_type}, #{poll_title},
+					#{poll_contents}, sysdate, TO_DATE(#{poll_etime},'YYYY-MM-dd hh24:mi:ss'))
 		</insert>
 		
 		<insert id="insertQuestionKey" parameterType="cot.colabare.poll.domain.PollQuestionDTO">
 			<selectKey keyProperty="poll_question_num" order="BEFORE" resultType="integer">
-				select poll_question_seq.nextval from dual
+				select 
+					poll_question_seq.nextval 
+				from 
+					dual
 			</selectKey>
-				insert into poll_question values(
+				insert into 
+					poll_question 
+				values(
 					#{poll_question_num}, #{poll_num},#{poll_question_text},
 					#{poll_multiple},#{poll_num_question_num})
 		</insert>
 		
 		<insert id="insertItem" parameterType="cot.colabare.poll.domain.PollItemDTO">
-			insert into poll_item(poll_item_num,poll_question_num,poll_item_text) 
-				values(poll_item_seq.nextval, #{poll_question_num},#{poll_item_text})
+			insert into 
+				poll_item(poll_item_num,poll_question_num,poll_item_text) 
+			values(
+				poll_item_seq.nextval, #{poll_question_num},#{poll_item_text})
 		</insert>
+		
+		<insert id="insertJoinerKey" parameterType="cot.colabare.poll.domain.PollJoiner">
+			<selectKey keyProperty="poll_joiner_num" order="BEFORE" resultType="integer">
+				select 
+					poll_joiner_seq.nextval 
+				from 
+					dual
+			</selectKey>
+				insert into 
+					poll_joiner 
+				values(
+					#{poll_joiner_num},#{poll_num},#{employee_no})
+		</insert>
+		
+ 		<insert id="insertAnswer" parameterType="cot.colabare.poll.domain.PollAnswer">
+			insert into 
+				poll_answer 
+			values(
+				poll_answer_seq.nextval, #{poll_item_num}, #{poll_joiner_num}, 
+				#{poll_question_num}, #{poll_select_num})
+		</insert>
+		
 		
 		<select id="listPoll" resultType="cot.colabare.poll.domain.PollListVO">
 		<![CDATA[
@@ -41,57 +75,74 @@
 				on e.department_id = d.department_id
 			where 
 				poll_num > 0
+			order by 
+				poll_num
 		]]>
 		</select>
-		<!-- where poll_num >= 0 AND e.EMPLOYEE_NO >= 0 -->
 		
-		<select id="detailPoll" parameterType="int" resultType="cot.colabare.poll.domain.PollListVO">
-		select 
-			p.*,e.name,d.department_name
-		from 
-			poll p inner join employee e
-			on p.poll_writer = e.employee_no
-			join department d
-			on e.department_id = d.department_id
-		where 
-			p.poll_num = #{poll_num}
+		<select id="detailPoll" parameterType="int" resultType="cot.colabare.poll.domain.PollVO">
+			select 
+				p.*,e.name,d.department_name
+			from 
+				poll p inner join employee e
+				on p.poll_writer = e.employee_no
+				join department d
+				on e.department_id = d.department_id
+			where 
+				p.poll_num = #{poll_num}
 		</select>
 
 		<select id="detailQuestion" parameterType="int" resultType="cot.colabare.poll.domain.PollQuestionDTO">
-		select * 
-		from 
-			poll_question 
-		where 
-			poll_num = #{poll_num}
+			select 
+				* 
+			from 
+				poll_question 
+			where 
+				poll_num = #{poll_num}
 		</select>
 		
 		<select id="detailItem" parameterType="int" resultType="cot.colabare.poll.domain.PollItemDTO">
-		select i.*
-		from 
-			poll_item i INNER JOIN poll_question q
-			ON i.poll_question_num = q.poll_question_num
-		where 
-			q.poll_question_num = #{poll_num}
+			select 
+				i.*
+			from 
+				poll_item i INNER JOIN poll_question q
+				ON i.poll_question_num = q.poll_question_num
+			where 
+				q.poll_question_num = #{poll_num}
+			order by 
+				poll_item_num
 		</select>
 		
+		<select id="detailAnswer" parameterType="int" resultType="cot.colabare.poll.domain.PollAnswerVO">
 		
- 		 
- 		 
-		<insert id="insertPollJoinerKey" parameterType="cot.colabare.poll.domain.PollJoiner">
-			<selectKey keyProperty="poll_joiner_num" order="BEFORE" resultType="integer">
-				select poll_joiner_seq.nextval from dual
-			</selectKey>
-				insert into poll_joiner values(
-					#{poll_joiner_num},#{poll_num},#{employee_no})
-		</insert>
-		
-		
-		
- 		<insert id="insertPollAnswer" parameterType="cot.colabare.poll.domain.PollAnswer">
-				insert into poll_answer values (
-					poll_answer_seq.nextval, #{poll_item_num}, #{poll_joiner_num}, 
-					#{poll_question_num}, #{poll_select_num})
-		</insert>
+			select 
+				a.*, j.employee_no
+			from 
+				POLL_ANSWER a inner JOIN POLL_JOINER j
+				on j.POLL_JOINER_NUM = a.POLL_JOINER_NUM
+			where 
+				poll_answer_num > 0 AND poll_question_num = #{poll_question_num} 
+				AND employee_no = #{employee_no} AND poll_item_num > 0
+			order by
+				poll_answer_num
+			
+		</select>
+  		 
+  		 <update id="updateAnswer" parameterType="cot.colabare.poll.domain.PollAnswer">
+ 		<!-- <update id="updateAnswer" parameterType="cot.colabare.poll.domain.PollAnswer"> -->
+ 			<!-- <foreach item="item" collection="list" separator=";" index="index"> -->
+ 			update
+ 				poll_answer 
+ 			set
+ 				poll_item_num = #{poll_item_num},
+ 				poll_joiner_num = #{poll_joiner_num},
+ 				poll_question_num = #{poll_question_num},
+ 				poll_select_num = #{poll_select_num}
+ 			where
+ 				poll_answer_num = #{poll_answer_num}
+ 			<!-- </foreach> -->
+ 		</update> 
+
 		
 		
 		

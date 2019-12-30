@@ -91,10 +91,11 @@
                                          <div class="form-group">
                                             <label class="col-md-3 control-label" for="val-skill">관리자여부 <span class="text-danger">*</span></label>
                                             <div class="col-md-6">
-                                            	<c:if test="${employee.master eq 'n' }">
+                                            <select name="master" id="master" class="form-control">
+                                            	<c:if test="${employee.master eq 'n'}">
 													<option value="n" selected disabled hidden>관리자아님</option>
 												</c:if>
-                                                <select name="master" id="master" class="form-control">
+                                                
                                                     <option value="y"> 관리자 </option>
     												<option value="n"> 관리자아님 </option>
                                                 </select>

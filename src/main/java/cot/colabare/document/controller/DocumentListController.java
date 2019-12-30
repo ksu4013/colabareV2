@@ -17,8 +17,10 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class DocumentListController {
 	
-	// 서비스 주입하기
 	private ApprovalService service;
+	
+	// 내가보낸 결재문서 목록
+	
 	
 	// 문서 목록 페이지 이동
 	@GetMapping("/documentList")
@@ -27,34 +29,60 @@ public class DocumentListController {
 		System.out.println("문서목록으로 이동");
 		
 	}
+	@GetMapping("example1")
+	public void example1(){
+		
+	}
+	
+	@GetMapping("approvalList")
+	public void approvalList(){
+		
+	}
 	
 	@GetMapping("document1")
 	public void documentexam(){
 		
+	}
+	@GetMapping("document2")
+	public void documentexam2(){
+		
+	} 
+	@GetMapping("document3")
+	public void documentexam3(){
+		
+	} 
+	@GetMapping("document4")
+	public void documentexam4(){
+		
+	} 
+	@GetMapping("document5")
+	public void documentexam5(){
+		
+	} 
+	@GetMapping("document6")
+	public void documentexam6(){
+		
+	} 
+	@GetMapping("document7")
+	public void documentexam7(){
+		
+	} 
+	@GetMapping("document8")
+	public void documentexam8(){
+		
+	} 
+	@GetMapping("document9")
+	public void documentexam9(){
+		
+	} 
+	@GetMapping("document10")
+	public void documentexam10(){
+		
 	} 
 	
-	@GetMapping("/autoAjax")
-	public void autoAjax(){
-		
-	}
+
 	
-	// 전자결재 문서 내 삽입
-	@PostMapping("/insertApproval")
-	public String insertApproval(ApprovalDto approvaldto, RedirectAttributes rttr){
-		
-		System.out.println("==========================");
-		System.out.println("Approval register: " + approvaldto);
-		System.out.println("넘버!!!!!! : " + approvaldto.getApproval_no());
-		service.insertApproval(approvaldto);
-		
-		System.out.println("넘버!!!!!!@@@@ : " + approvaldto.getApproval_no()); 
-		
-		System.out.println("오나욤");
-		
-		rttr.addFlashAttribute("result", approvaldto.getApproval_no());
-		
-		return "redirect:/document/documentList";
-	}
+	
 	
 	
 	

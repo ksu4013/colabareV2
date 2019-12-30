@@ -8,6 +8,8 @@ import lombok.Data;
 @Data
 public class PollGetVO {
 
-	private PollListVO polllist;
+	private PollVO pollVO;
+	private List<PollAnswerVO> answer;
 	private List<questionAnditemList> qilist;
+	
 }

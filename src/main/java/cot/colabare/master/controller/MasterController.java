@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cot.colabare.master.domain.EmployeePageDto;
+import cot.colabare.master.domain.PageDto;
 import cot.colabare.master.domain.DepartmentDto;
 import cot.colabare.master.domain.EmplDepPosDto;
 import cot.colabare.master.domain.PositionDto;
@@ -32,6 +33,7 @@ import cot.colabare.profile.domain.Criteria;
 import cot.colabare.profile.domain.EmployeeDto;
 import cot.colabare.profile.domain.ModifyRequestDto;
 import cot.colabare.profile.service.LoginService;
+import cot.colabare.profile.service.ProfileService;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -43,6 +45,7 @@ import lombok.extern.log4j.Log4j;
 public class MasterController {
 	private	MasterService service;
 	private LoginService l_service;
+	private ProfileService p_service;
 	
 	@Setter(onMethod_=@Autowired)
 	private PasswordEncoder pwencoder;
@@ -76,11 +79,10 @@ public class MasterController {
 		}else{
 			userauth.setAuth("ROLE_MEMBER");
 		}
-		
+		System.out.println(userauth.getAuth());
 		employee.setEmployee_no(Integer.parseInt(request.getParameter("employee_no")));
 		employee.setName(request.getParameter("name"));
 		employee.setPosition_id(Integer.parseInt(request.getParameter("position_id")));
-		employee.setPassword(request.getParameter("password"));
 		employee.setMaster(request.getParameter("master"));
 		employee.setE_mail(request.getParameter("e_mail"));
 		employee.setDepartment_id(request.getParameter("department_id"));
@@ -103,7 +105,8 @@ public class MasterController {
 		int successauth=service.insertMemberAuthService(secauth);
 		int successuser=service.insertUserService(user);
 		int successuserauth=service.insertUserAuthService(userauth);
-		if (success>0&&successauth>0&&successuser>0&&successuserauth>0) {
+		int successprofile=p_service.insertProfileService(employee.getEmployee_no());
+		if (success>0&&successauth>0&&successuser>0&&successuserauth>0&&successprofile>0) {
 			return new ResponseEntity<String>("success",HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -111,19 +114,42 @@ public class MasterController {
 	}
 	
 	@GetMapping("/listmember")
-	public void listmember(){
-		log.info("listmember....");
+	public void listmember(HttpServletRequest request){
+		List<DepartmentDto> departments=service.departmentList();
+		request.setAttribute("departments", departments);
+
+		System.out.println(request.getParameter("pageNum"));
+		Criteria cri=new Criteria(1,10);
+		if(request.getParameter("pageNum")!=null){
+			cri.setPageNum(Integer.parseInt(request.getParameter("pageNum")));
+		}
+		if(request.getParameter("department_info")!=null&&request.getParameter("department_info")!=""){
+			cri.setType(request.getParameter("department_info"));
+		}
+		if(request.getParameter("keyword")!=null){
+			cri.setKeyword(request.getParameter("keyword"));
+		}else{
+			cri.setKeyword("");
+		}
+		System.out.println(cri.getPageNum()+" "+cri.getKeyword());
+		request.setAttribute("employeelist",service.employeeList(cri));
+		int count=service.totalCount(cri);
+		System.out.println(service.employeeList(cri)+"   "+count);
+		request.setAttribute("pageMaker",new PageDto(cri, count));
+		System.out.println(new PageDto(cri,count));
+		request.setAttribute("department_id", request.getParameter("department_info"));
+		
 	}
 	
-	@GetMapping(value="/listmem/{page}", produces={MediaType.APPLICATION_XML_VALUE,MediaType.APPLICATION_JSON_UTF8_VALUE})
+	/*@GetMapping(value="/listmem/{page}", produces={MediaType.APPLICATION_XML_VALUE,MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<EmployeePageDto> getMemlist (@PathVariable("page") int page){
 		Criteria cri=new Criteria(page,10);
 
-		EmployeePageDto employeepage=service.employeeList(cri);
+		//EmployeePageDto employeepage=service.employeeList(cri);
 		
 		return new ResponseEntity<EmployeePageDto>(employeepage,HttpStatus.OK);
 		
-	}
+	}*/
 	
 	@GetMapping(value="/listreq")
 	public ResponseEntity<List<ModifyRequestDto>> getReqlist(){
@@ -135,8 +161,8 @@ public class MasterController {
 	@GetMapping("/modifymemform")
 	public void modifymemform(HttpServletRequest request){
 		log.info("modifymemform....");
-		
-		int employee_no=Integer.parseInt(request.getParameter("employee_no"));
+		String num=request.getParameter("employee_no");
+		int employee_no=Integer.parseInt(num);
 
 		EmployeeDto employee=l_service.loginService(employee_no);
 		List<DepartmentDto> departments=service.departmentList();
@@ -159,9 +185,14 @@ public class MasterController {
 		employee.setDepartment_id(request.getParameter("department_id"));
 		employee.setPosition_id(Integer.parseInt(request.getParameter("position_id")));
 		employee.setMaster(request.getParameter("master"));
+		
+		UserAuthDto userauth =new UserAuthDto();
+		userauth.setUserid(service.selectUserId(employee.getEmployee_no()));
+		System.out.println(service.selectUserId(employee.getEmployee_no()));
+		userauth.setAuth(request.getParameter("master"));
 
 		sec.setEmployee_id(Integer.parseInt(request.getParameter("employee_id")));
-		if (employee.getMaster().equals("y")) {
+		if (userauth.getAuth().equals("y")) {
 			sec.setMeeting_cud("y");
 			sec.setNotice_cud("y");
 			sec.setProject_c("y");
@@ -191,8 +222,9 @@ public class MasterController {
 		}
 		int m_success=service.updateMember(employee);
 		int s_success=service.updateSecAuth(sec);
+		int a_success=service.updateUserAuth(userauth);
 		
-		if(m_success>0&&s_success>0){
+		if(m_success>0&&s_success>0&&a_success>0){
 			return new ResponseEntity<String>("success",HttpStatus.OK);
 		}
 		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
