@@ -3,20 +3,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ include file = "../common/header.jsp" %>
 
-
+<script type="text/javascript" src="../resources/js/moment.min.js"></script>
+<script type="text/javascript" src="../resources/js/daterangepicker.js"></script>
+<link rel="stylesheet" href="../resources/css/daterangepicker.css">
 
 
 
 <!--  -->
 	<div id="page-content" class="inner-sidebar-right">
-	
 		<div id="page-content-sidebar">
-			<div class="form-group form-actions">
-				<div class="col-md-9 col-md-offset-3">
-					<button id = "finalDoc" type="button" class="btn btn-effect-ripple btn-primary">기안</button>
-					<button type="reset" class="btn btn-effect-ripple btn-danger">리셋</button>
-				</div>
-			</div>
 			<a href="javascript:void(0)" class="btn btn-block btn-effect-ripple btn-primary visible-xs" data-toggle="collapse" data-target="#people-nav">People</a>
 			<div id="people-nav" class="collapse navbar-collapse remove-padding">
 				<div class="block-section">
@@ -54,7 +49,7 @@
 				<div class="widget">
 					<div class="widget-content widget-content-mini themed-background-dark text-light-op">
 						<span class="pull-right text-muted"></span>
-						일반적인 기안서를 작성하기 위하여 사용하는 양식입니다.
+						결근시 제출하는 서류이며, 무단 결근 시 징계 등의 불이익을 받을 수 있습니다.
 					</div>
 					<div class="widget-content"><!-- 결재내용 시작  -->
 						<div class="block">
@@ -67,7 +62,7 @@
 								<div class="form-group">
 									<label class="col-md-3 control-label" for="example-text-input">기안제목</label>
 									<div class="col-md-6">
-										<input type="text" id="title"  name="title" class="form-control" >
+										<input type="text" id="title"  name="title" class="form-control" placeholder="결근사유서">
 									</div>
 								</div>
 								
@@ -84,10 +79,10 @@
 										<p class="form-control-static">${employee.name }</p>
 										<input type="hidden" id="demployee_no" name="employee_no" value="${employee.employee_no }">
 										<input type="hidden" id="ddepartment_id" name="department_id" value="${employee.department_id }">
-										<input type="hidden" id="ddocument_no" name="document_no" value="22">
-										<input type="hidden" id="dcontent2" name="dcontent2" value="">
-										<input type="hidden" id="dcontent3" name="dcontent3" value="">
-										<input type="hidden" id="dcontent4" name="dcontent4" value="">
+										<input type="hidden" id="ddocument_no" name="document_no" value="65">
+										<!-- <input type="hidden" id="dcontent2" name="dcontent2" value=""> -->
+										<!-- <input type="hidden" id="dcontent3" name="dcontent3" value=""> -->
+										<!-- <input type="hidden" id="dcontent4" name="dcontent4" value=""> -->
 										<input type="hidden" id="dcontent5" name="dcontent5" value="">
 										<input type="hidden" id="dcontent6" name="dcontent6" value="">
 										<input type="hidden" id="dcontent7" name="dcontent7" value="">
@@ -105,15 +100,41 @@
 								</div>
 								
 								<div class="form-group">
-									<label class="col-md-3 control-label" for="example-textarea-input">내용</label>
+									<label class="col-md-3 control-label" for="example-datepicker">결근 기간</label>
+									<div class="col-md-5"> 시작일
+										<input type="text" id="dcontent2" name="dcontent2" class="form-control">
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="example-datepicker"></label>
+									<div class="col-md-5"> 종료일
+										<input type="text" id="dcontent3" name="dcontent3" class="form-control">
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="example-select">결근 종류</label>
+									<div class="col-md-6">
+										<select id="dcontent4" name="dcontent4" class="form-control" size="1">
+											<option value="무단결근">무단결근</option>
+											<option value="사고결근">사고결근</option>
+											<option value="보고 후 결근">보고 후 결근</option>
+											<option value="기타 결근">기타 결근</option>
+										</select>
+									</div>
+								</div>	
+								
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="example-textarea-input">결근 사유</label>
 									<div class="col-md-9">
-										<textarea id="dcontent" name="content" rows="7" class="form-control" placeholder="1. 귀사의 무궁한 발전을 기원합니다."></textarea>
+										<textarea id="dcontent" name="content" rows="7" class="form-control" placeholder=""></textarea>
 									</div>
 								</div>
 								<div class="form-group form-actions">
 									<div class="col-md-9 col-md-offset-3">
-										<button id = "documentSav" type="button" class="btn btn-effect-ripple btn-primary">저장</button>
-										<button type="reset" class="btn btn-effect-ripple btn-danger">리셋</button>
+										<button id = "documentSav" type="button" class="btn btn-effect-ripple btn-primary">완료</button>
+										<button type="reset" class="btn btn-effect-ripple btn-danger">취소</button>
 									</div>
 								</div>
 							</form>
@@ -191,8 +212,29 @@
 $(document).ready(function(e){
 	
 	
-	
+	  $('input[name="dcontent2"]').daterangepicker({
+		    singleDatePicker: true,
+		    showDropdowns: true
+		  }, function(start, end, label) {
+			  
+		  });
+		  
+		  
+		  $('input[name="dcontent2"]').on('apply.daterangepicker', function(ev, picker) {
+		      $(this).val(picker.startDate.format('YY/MM/DD'));
+		  });	
 
+		  $('input[name="dcontent3"]').daterangepicker({
+			    singleDatePicker: true,
+			    showDropdowns: true
+			  }, function(start, end, label) {
+				  
+			  });
+			  
+			  
+			  $('input[name="dcontent3"]').on('apply.daterangepicker', function(ev, picker) {
+			      $(this).val(picker.startDate.format('YY/MM/DD'));
+			  });	
 
 	
 	
