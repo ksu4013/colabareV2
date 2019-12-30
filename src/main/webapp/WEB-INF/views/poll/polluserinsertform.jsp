@@ -2,10 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
+<script type="text/javascript" src="/resources/js/vendor/jquery-3.3.1.min.js"></script>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/js/vendor/jquery-3.3.1.min.js"></script>
+
 <!-- 
 <link rel="stylesheet" href="./css/polluserinsertcss.css" type="text/css" >
 <script type="text/javascript" src="./source/poll_uisource.js"></script>
@@ -34,24 +35,30 @@
 		<div id="paper">	
 			<div class="pollform">
 				<div class="pollinfo">
-					<h4>${poll.polllist.poll_num }☆번 설문조사</h4>
-					<div>컨텍스트: ${poll.polllist.poll_contents }</div>
-					<div>설문: </div>
+					<h4>${poll.pollVO.poll_num }번 설문 입니다.</h4>
+					<label>부서: ${poll.pollVO.department_name }</label><br>
+					<div>내용: ${poll.pollVO.poll_contents }</div>
 				</div>
-				 <%-- <c:choose>
-				 	<c:when test="">
-				 		
-				 	</c:when>
-				 	<c:when test="">
-				 		<form action="pollusermodify&delete" method="post">
-				 	</c:when>
-				 </c:choose> --%>
-				 <form action="polluserinsertform" method="post">
-				<input type="hidden" name="poll_num" value="${poll.polllist.poll_num }">
+				<c:choose>
+					<c:when test="${employee.employee_no eq poll.answer[0].employee_no }">
+						<form action="polluserupdate" name="form" method="post">
+					</c:when>
+					<c:when test="${employee.employee_no ne poll.answer[0].employee_no }">
+						<form action="polluserinsertform" name="form" method="post">
+					</c:when>
+				</c:choose>
+				<input type="hidden" name="poll_num" value="${poll.pollVO.poll_num }">
+				<input type="hidden" name="employee_no" value="${employee.employee_no }">
+				<input type="hidden" name="poll_joiner_num" value="${poll.answer[0].poll_joiner_num }">
+				 
+				<c:forEach var="answer" items="${poll.answer }" varStatus="ansnum">
+					<input type="hidden" name="poll_answer_num" value="${answer.poll_answer_num}">
+					<input type="hidden" id="getanswerI_${ansnum.count }" class="getanswerC" value="${answer.poll_select_num }">
+				</c:forEach>
 				<c:forEach var="qilist" items="${poll.qilist }" varStatus="qnum">
 			 		<div class="questionTab">
 						<div id="q_text_${qnum.count }"	>
-							NO_${qilist.question.poll_question_num }번.<br>${qilist.question.poll_question_text }
+							<br>${qilist.question.poll_question_text }
 						</div>
 						<div id="q_multiple_${qnum.count }" class="multiple">
 							<input type="hidden" id="qm_${qilist.question.poll_num_question_num }" value="${qilist.question.poll_multiple}">
@@ -68,36 +75,63 @@
 						<div class="itemList" id="Ilist_${qnum.count }">
 							<c:forEach var="items" items="${qilist.item }" varStatus="inum">
 								
-								1사용자 전달값 (선택시)[itemID]	<input type="text" id="itemNum_${qilist.question.poll_num_question_num}_${inum.count}" class="itemidc_${qilist.question.poll_num_question_num}" value="${items.poll_item_num }"><br>
-								<div class="itemButton itemButton_${qilist.question.poll_num_question_num}" id="itemLS_${qilist.question.poll_num_question_num}_${inum.count}" >${items.poll_item_text }</div>
-								<br><br><br>
+								<input type="hidden" id="itemNum_${qilist.question.poll_num_question_num}_${inum.count}" 
+									name="poll_item_num_${qilist.question.poll_num_question_num -1}" class="itemidc_${qilist.question.poll_num_question_num}" 
+									value="${items.poll_item_num }">
+								<div class="itemButton itemButton_${qilist.question.poll_num_question_num} button_${items.poll_item_num}" 
+									id="itemLS_${qilist.question.poll_num_question_num}_${inum.count}" >${items.poll_item_text }</div>
+								<br>
 							</c:forEach>
 								
 							<c:forEach var="itemnum" items="${qilist.item }" varStatus="selectnum">
-							5사용자 전달값[selectNum]<input type="text" class="userselectI" id="userinput_${qnum.count }_${selectnum.count}" name="poll_select_num_${qilist.question.poll_num_question_num -1}" name="poll_select_num_1"><br>
+							
+							<input type="hidden" class="userselectI_${qilist.question.poll_num_question_num}" 
+							id="userinput_${qnum.count }_${selectnum.count}" name="poll_select_num_${qilist.question.poll_num_question_num -1}" value="0"><br>
+							<input type="hidden" class="userselectQ" id="userinputQnum_${qnum.count }" 
+							name="poll_question_num_${qilist.question.poll_num_question_num -1}" value="${qilist.question.poll_question_num }"><br>
 							</c:forEach>
 							<br>
 							<div class="qtag_${qilist.question.poll_num_question_num }">
-							<c:choose>
-							<c:when test='${qilist.question.poll_multiple eq "1".charAt(0)}'>
-							4사용자 전달값이름[questionNum]<input type="text" class="userselectQ" id="userinputQnum_${qnum.count }" name="poll_question_num_${qilist.question.poll_num_question_num -1}" value="${qilist.question.poll_question_num }">
+							<%-- <c:choose>
+							<c:when test='${qilist.question.poll_multiple eq "1".charAt(0)}'> --%>
+							
+							<%-- </c:when>
+							<c:when test='${qilist.question.poll_multiple eq "2".charAt(0)}'> --%>
+							<%-- qID값 전달값[questionNum]<input type="text" class="userselectQ" id="Qnum_${qnum.count }" name="" value="${qilist.question.poll_question_num }">
 							</c:when>
-							<c:when test='${qilist.question.poll_multiple eq "2".charAt(0)}'>
-							qID값 전달값[questionNum]<input type="text" class="userselectQ" id="Qnum_${qnum.count }" name="" value="${qilist.question.poll_question_num }">
-							</c:when>
-							</c:choose>
+							</c:choose> --%>
 							</div>
 						</div>
 					</div>
 					<input type="hidden" name="question_size" value="0">
 				</c:forEach>
-				<br><br>
 				<div class="subutton">
-					<input class="submitButton" type="submit" value="설문 제출">
+					<input class="submitButton" type="submit" 
+					<c:choose>
+					<c:when test="${employee.employee_no eq poll.answer[0].employee_no }">
+						value="설문 수정"
+					</c:when>
+					<c:when test="${employee.employee_no ne poll.answer[0].employee_no }">
+						value="설문 제출"
+					</c:when>
+					
+				</c:choose>
+					>
 				</div>
+				<c:if test="${employee.employee_no eq  poll.pollVO.poll_writer}">
+					<div id="formdeletebutton">
+						설문 삭제
+					</div>
+					<div id="formupdatebutton">
+						작성자 수정 버튼
+					</div>
+				</c:if>
+				
 				</form>
+				<br>
 			</div>
 		</div>
+		<br><br>
 	</div>
 </body>
 </html>
@@ -106,8 +140,7 @@
 <script>
 
 $(document).ready(function(){
-	var name = $('input[name1=b]').attr('value');
-
+	
  	
 	$(function() {
 		$('.itemButton').hover(function() {
@@ -116,17 +149,19 @@ $(document).ready(function(){
 			$(this).removeClass('hover');
 		});
 	});
- 
+
+	
 //버튼을 클릭하면 하나씩 아래의 input에 입력됨
 //두번클릭하면 입력된 값을 없에야됨
 //다중선택시 여러가지 선택
 //단일선택시 하나 클릭후 다른 값 없엠
 $(function(){
 	
-	$('.itemList .itemButton').on('click',function(){
+	$('.itemButton').on('click',function(){
 		
 		//클릭한 버튼 ID
- 		var ButtonID = $(this).attr('id');
+		var ButtonID = $(this).attr('id');
+
 		//버튼ID의 풀번호 ex(1-1)
 		var inum = ButtonID.substring(ButtonID.length-3);
 		//선택한 버튼의 질문순서번호(pnqn) 가운데 단일 번호
@@ -137,8 +172,7 @@ $(function(){
 		var item_value = $(itemID).attr('value');
 		//select 클릭한 버튼의 id와 번호와 같은  select아이디번호   
 		var chid = "#userinput_" + inum;
-		
-		
+
 		var mulpichoID = "#qm_"+qnum;
 		
 		
@@ -153,14 +187,17 @@ $(function(){
 			$(this).addClass('itemclick');
 			
 			
-			//선택한 태그에 먼저 이름속성 제거하고, 새로운 태그에 이름 속성 달기 > 전달값 선택
-			var itemidc = ".itemidc_"+qnum;
-			$(itemidc).removeAttr('name');
-			$(itemID).attr('name','poll_item_num_'+(qnum-1));
+			//선택한 태그에 먼저 이름속성 제거하고, 새로운 태그에 이름 속성 달기 > 전달값 선택	//수정 모든 태그에 이름 적용함.
+			//var itemidc = ".itemidc_"+qnum;
+			//$(itemidc).removeAttr('name');
+			//$(itemID).attr('name','poll_item_num_'+(qnum-1));
 			
 			
-			//단일 선택은 1번만 선택하여 하나의 값만 저장
-			var oneid = "#userinput_" + qnum + "_1";
+			//단일 선택은 1번만 선택하여 하나의 값만 저장	//수정 먼저 모두 0을 만들고 클릭한것만 값 넣어주기
+			var uselect = ".userselectI_"+qnum;
+			$(uselect).attr('value',0);
+			//var oneid = "#userinput_" + qnum + "_1";
+			var oneid = "#userinput_" + inum;
 			//전달값에 아이템ID값 입력
 			$(oneid).attr('value', item_value); 
 		}
@@ -177,45 +214,46 @@ $(function(){
 			if ($(this).hasClass('itemclick')) {	
 				//클릭한 버튼에 클릭클래스가 있으면 클릭클래스 제거
 				$(this).removeClass('itemclick');
-				//선택한 태그에 이름속성 제거
-				$(itemID).removeAttr('name');
-				//value값 삭제
-				$(chid).removeAttr('value');
 				
-				//반복선택시 qid삭제
-				$(qtag).children(":last").remove();
+				//선택한 태그에 이름속성 제거	//수정: 이름속성 모두 적용 
+				//$(itemID).removeAttr('name');
+				
+				//value값 삭제 //수정 : 값을 0으로 바꾼다.
+				//$(chid).removeAttr('value');
+				$(chid).attr('value', 0); 
+				
+				/* //반복선택시 qid삭제
+				$(qtag).children(":last").remove(); */
 			} 
 			//처음 클릭이라면
 			else {
 					//버튼에 클래스 추가
 					$(this).addClass('itemclick');
-					//, 새로운 태그에 이름 속성 달기 > 전달값 선택
-					$(itemID).attr('name','poll_item_num_'+(qnum-1));
+					//, 새로운 태그에 이름 속성 달기 > 전달값 선택	//수정: 이름속성 모두 적용 
+					//$(itemID).attr('name','poll_item_num_'+(qnum-1));
+					
 					//전달값에 아이템ID값 value입력
 					$(chid).attr('value', item_value); 
-					//qid값 선택한만큼 생성
+					/* //qid값 선택한만큼 생성
 					$(qtag).append("<input type='text' class='userselectQ' id='userinputQnum_"+qnum 
-							+ "' name='poll_question_num_"+(qnum-1)+"' value='"+QID+"'>");
+							+ "' name='poll_question_num_"+(qnum-1)+"' value='"+QID+"'>"); */
 			}
-			
-			
-			
-			
-			
 		}
-		
-
 	});
-	
-	
-	
-	
-});
- 
- 
+	//저장된 응답번호 불러와 클릭해주기
+	if ($('.getanswerC').length != 0) {
+		var lennum = $('.getanswerC').length;
+		for (var i = 1; i <= lennum; i++) {
+			var id = "#getanswerI_"+i;
+			var rid = $(id).attr('value');
+			var bcl = ".button_"+rid;
+			$(bcl).trigger("click");
+		}
+	}
+
 });
 
-
+});
 
 
 
@@ -295,29 +333,29 @@ input {
 }
 
 .itemList {
-  /* float: left; */
-  /* background-color: #ffffff; */
-  border: 1px; 
-  /* solid #000; */
-  margin: 10px;
-  padding: 10px;
-  font-size: .9em; 
+	/* float: left; */
+	/* background-color: #ffffff; */
+	border: 1px; 
+	/* solid #000; */
+	margin: 10px;
+	padding: 10px;
+	font-size: .9em; 
 }
 .itemList h3 {
-  margin: 0;
+	margin: 0;
 }
 .itemList .itemButton {
 	cursor: pointer;
-  width: 80%;
-  float: left;
-  text-align: center;
-  margin: 5px;
-  padding: 5px;
-  background-color: gray;
-  border-top: 3px solid #888;
-  border-left: 3px solid #888;
-  border-bottom: 3px solid #888;
-  border-right: 3px solid #888;
+	width: 80%;
+	float: left;
+	text-align: center;
+	margin: 5px;
+	padding: 5px;
+	background-color: gray;
+	border-top: 3px solid #888;
+	border-left: 3px solid #888;
+	border-bottom: 3px solid #888;
+	border-right: 3px solid #888;
 }
 
 .hover {
@@ -335,6 +373,36 @@ input {
 .subutton {
 	display: inline-block;
 	margin: 20px 20px;
+}
+
+#formupdatebutton {
+	cursor: pointer;
+	float: right;
+	width: 120px;
+	height: 30px;
+	color: black;
+	text-align: center;
+	font-weight: bold;
+	padding-top: 2px;
+	margin: 20px 10px 0px 0px;
+	background-color:white;
+	border: 3px solid aqua;
+	
+}
+
+#formdeletebutton{
+	cursor: pointer;
+	float: right;
+	width: 80px;
+	height: 30px;
+	color: black;
+	text-align: center;
+	font-weight: bold;
+	padding-top: 2px;
+	margin: 20px 10px 0px 0px;
+	background-color:white;
+	border: 3px solid aqua;
+}
 
 
 </style>
