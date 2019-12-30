@@ -7,6 +7,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style>
+ul{
+background-color : #eee;
+cursor :pointer;
+}
+
+li{
+	padding: 12px;
+}
+</style>
 </head>
 <body>
 
@@ -19,8 +29,8 @@
 <div class="container" style="width:500px;">
 	<h3 align="center"> Autocomplete textbox using jQuery, PHP and MySQL</h3><br>
 	<label>Enter Country Name</label>
-	<input type="text" name="country" id="country" class="form-control" placeholder="EnterCountry Name"> 
-	<div id="countryList"></div>
+	<input type="text" name="country" id="country" aSearch    class="form-control" placeholder="EnterCountry Name"> 
+	<div id="countryList" aSearchList></div>
 </div>
 
 
@@ -49,21 +59,30 @@
 			}
 			
 		});
+
+		$(document).on('click', 'li', function(){
+			$('#country').val($(this).text());
+			$('#countryList').fadeOut();
+		});
 		
-		function searchList(data){
-			
-			var output = '';
-				
-			/* for(var i = 0 , len = list.length || 0 ; i < len; i++){ */
-				
-			$.each(data, function(index, list){	
-				output += "<li>" + list.name + "</li>";
-				
-			$("#countryList").fadeIn();
-			$("#countryList").html(output);
-			});
-		}
+		
 	});
+</script>
+<script>
+function searchList(data){
+	
+	var output = '';
+		
+		
+	$.each(data, function(index, list){	
+		output += "<li>" + list.name + "</li>";
+		
+	$("#countryList").fadeIn();
+	$("#countryList").html(output);
+	});
+
+}
+
 </script>
 </body>
 </html>

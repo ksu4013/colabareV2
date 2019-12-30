@@ -32,10 +32,10 @@
 			<button id='regBtn' type="button" class="btn btn-effect-ripple btn-primary" style="overflow: hidden; position: right;">
 					<span class="btn-ripple animate" style="height: 75px; width: 75px; top: -29.5px; left: -14.5px;"></span>글쓰기
 			</button><br><br>
-			<a href="autoAjax"> 가자 </a>
             <!-- Table Styles Content -->
             <div class="table-responsive">
-               
+               <a href="/document/approvalList">결재목록 가기</a><br>
+               <a href="/document/example1">기본폼</a>
                 <table id="general-table" class="table table-striped table-bordered table-vcenter table-hover">
 					<thead>
 						<tr>
@@ -63,7 +63,7 @@
 						</tr>
 						<tr>
 							<td class="text-center"><label class="csscheckbox csscheckbox-primary"><input type="checkbox"><span></span></label></td>
-							<td><strong>Ellis Thompson</strong></td>
+							<td><strong><a href="/document/document2">명함신청서</strong></td>
 							<td>ellis.thompson@example.com</td>
 							<td>
 							<div class="progress progress-mini active remove-margin">
@@ -77,7 +77,7 @@
 						</tr>
 						<tr>
 							<td class="text-center"><label class="csscheckbox csscheckbox-primary"><input type="checkbox"><span></span></label></td>
-							<td><strong>Reece Bell</strong></td>
+							<td><strong><a href="/document/document3">퇴직신청서</strong></td>
 							<td>reece.bell@example.com</td>
 							<td>
 							<div class="progress progress-mini active remove-margin">
@@ -91,7 +91,7 @@
 						</tr>
 						<tr>
 							<td class="text-center"><label class="csscheckbox csscheckbox-primary"><input type="checkbox"><span></span></label></td>
-							<td><strong>Scarlett Reid</strong></td>
+							<td><strong><a href="/document/document4">품질보고서</strong></td>
 							<td>user4@example.com</td>
 							<td>
 							<div class="progress progress-mini active remove-margin">
@@ -105,7 +105,7 @@
 						</tr>
 						<tr>
 							<td class="text-center"><label class="csscheckbox csscheckbox-primary"><input type="checkbox"><span></span></label></td>
-							<td><strong>Alfie Harrison</strong></td>
+							<td><strong><a href="/document/document5">교통비지출신청서</strong></td>
 							<td>alfie.harrison@example.com</td>
 							<td>
 							<div class="progress progress-mini active remove-margin">
@@ -119,7 +119,7 @@
 						</tr>
 						<tr>
 							<td class="text-center"><label class="csscheckbox csscheckbox-primary"><input type="checkbox"><span></span></label></td>
-							<td><strong>Finley Hunt</strong></td>
+							<td><strong><a href="/document/document6">경조비지급신청서</strong></td>
 							<td>finley.hunt@example.com</td>
 							<td>
 							<div class="progress progress-mini active remove-margin">
@@ -133,7 +133,7 @@
 						</tr>
 						<tr>
 							<td class="text-center"><label class="csscheckbox csscheckbox-primary"><input type="checkbox"><span></span></label></td>
-							<td><strong>Oliver Watson</strong></td>
+							<td><strong><a href="/document/document7">사직신청서</strong></td>
 							<td>oliver.watson@example.com</td>
 							<td>
 							<div class="progress progress-mini active remove-margin">
@@ -147,7 +147,7 @@
 						</tr>
 						<tr>
 							<td class="text-center"><label class="csscheckbox csscheckbox-primary"><input type="checkbox"><span></span></label></td>
-							<td><strong>Maddison Reid</strong></td>
+							<td><strong><a href="/document/document8">결근사유서</strong></td>
 							<td>maddison.reid@example.com</td>
 							<td>
 							<div class="progress progress-mini active remove-margin">
@@ -161,7 +161,7 @@
 						</tr>
 						<tr>
 							<td class="text-center"><label class="csscheckbox csscheckbox-primary"><input type="checkbox"><span></span></label></td>
-							<td><strong>Katie Ward</strong></td>
+							<td><strong><a href="/document/document9">프로젝트 업무보고</strong></td>
 							<td>katie.ward@example.com</td>
 							<td>
 							<div class="progress progress-mini active remove-margin">
@@ -175,7 +175,7 @@
 						</tr>
 						<tr>
 							<td class="text-center"><label class="csscheckbox csscheckbox-primary"><input type="checkbox"><span></span></label></td>
-							<td><strong>Aidan Powell</strong></td>
+							<td><strong><a href="/document/document10">채용계획서</strong></td>
 							<td>aidan.powell@example.com</td>
 							<td>
 							<div class="progress progress-mini active remove-margin">
@@ -197,11 +197,6 @@
             
             
             
-            
-
-            <!-- Get Started Content -->
-            Start your creative project!
-            <!-- END Get Started Content -->
         </div>
         <!-- END Get Started Block -->
     </div>

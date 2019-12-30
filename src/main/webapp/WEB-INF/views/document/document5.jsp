@@ -4,19 +4,14 @@
 <%@ include file = "../common/header.jsp" %>
 
 
-
+<script type="text/javascript" src="../resources/js/moment.min.js"></script>
+<script type="text/javascript" src="../resources/js/daterangepicker.js"></script>
+<link rel="stylesheet" href="../resources/css/daterangepicker.css">
 
 
 <!--  -->
 	<div id="page-content" class="inner-sidebar-right">
-	
 		<div id="page-content-sidebar">
-			<div class="form-group form-actions">
-				<div class="col-md-9 col-md-offset-3">
-					<button id = "finalDoc" type="button" class="btn btn-effect-ripple btn-primary">기안</button>
-					<button type="reset" class="btn btn-effect-ripple btn-danger">리셋</button>
-				</div>
-			</div>
 			<a href="javascript:void(0)" class="btn btn-block btn-effect-ripple btn-primary visible-xs" data-toggle="collapse" data-target="#people-nav">People</a>
 			<div id="people-nav" class="collapse navbar-collapse remove-padding">
 				<div class="block-section">
@@ -54,7 +49,7 @@
 				<div class="widget">
 					<div class="widget-content widget-content-mini themed-background-dark text-light-op">
 						<span class="pull-right text-muted"></span>
-						일반적인 기안서를 작성하기 위하여 사용하는 양식입니다.
+						교통비 사용 후 지급을 요청하기 위하여 사용하는 양식입니다.
 					</div>
 					<div class="widget-content"><!-- 결재내용 시작  -->
 						<div class="block">
@@ -84,12 +79,12 @@
 										<p class="form-control-static">${employee.name }</p>
 										<input type="hidden" id="demployee_no" name="employee_no" value="${employee.employee_no }">
 										<input type="hidden" id="ddepartment_id" name="department_id" value="${employee.department_id }">
-										<input type="hidden" id="ddocument_no" name="document_no" value="22">
-										<input type="hidden" id="dcontent2" name="dcontent2" value="">
-										<input type="hidden" id="dcontent3" name="dcontent3" value="">
-										<input type="hidden" id="dcontent4" name="dcontent4" value="">
-										<input type="hidden" id="dcontent5" name="dcontent5" value="">
-										<input type="hidden" id="dcontent6" name="dcontent6" value="">
+										<input type="hidden" id="ddocument_no" name="document_no" value="62">
+										<!-- <input type="hidden" id="dcontent2" name="dcontent2" value=""> -->
+										<!-- <input type="hidden" id="dcontent3" name="dcontent3" value=""> -->
+										<!-- <input type="hidden" id="dcontent4" name="dcontent4" value=""> -->
+										<!-- <input type="hidden" id="dcontent5" name="dcontent5" value=""> -->
+										<!-- <input type="hidden" id="dcontent6" name="dcontent6" value=""> -->
 										<input type="hidden" id="dcontent7" name="dcontent7" value="">
 										<input type="hidden" id="dcontent8" name="dcontent8" value="">
 										<input type="hidden" id="dcontent9" name="dcontent9" value="">
@@ -105,15 +100,60 @@
 								</div>
 								
 								<div class="form-group">
+									<label class="col-md-3 control-label" for="example-text-input">교통비 사용 목적</label>
+									<div class="col-md-6">
+										<input type="text" id="dcontent2"  name="dcontent2" class="form-control" >
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="example-text-input">교통 수단 사용 장소</label>
+									<div class="col-md-6">
+										<input type="text" id="dcontent3"  name="dcontent3" class="form-control" >
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="example-select">교통 수단</label>
+									<div class="col-md-6">
+										<select id="dcontent4" name="dcontent4" class="form-control" size="1">
+											<option value="택시">택시</option>
+											<option value="지하철">지하철</option>
+											<option value="버스">버스</option>
+											<option value="철도">철도</option>
+											<option value="항공">항공</option>
+											<option value="선박">선박</option>
+											<option value="기타">기타</option>
+										</select>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="example-datepicker">사용 일시</label>
+									<div class="col-md-5">
+										<input type="text" id="dcontent5" name="dcontent5" class="form-control">
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="example-text-input">교통 비용</label>
+									<div class="col-md-6">
+										￦<input type="text" id="dcontent6"  name="dcontent6" class="form-control" >
+									</div>
+								</div>
+								
+								
+								
+								<div class="form-group">
 									<label class="col-md-3 control-label" for="example-textarea-input">내용</label>
 									<div class="col-md-9">
-										<textarea id="dcontent" name="content" rows="7" class="form-control" placeholder="1. 귀사의 무궁한 발전을 기원합니다."></textarea>
+										<textarea id="dcontent" name="content" rows="7" class="form-control" placeholder=""></textarea>
 									</div>
 								</div>
 								<div class="form-group form-actions">
 									<div class="col-md-9 col-md-offset-3">
-										<button id = "documentSav" type="button" class="btn btn-effect-ripple btn-primary">저장</button>
-										<button type="reset" class="btn btn-effect-ripple btn-danger">리셋</button>
+										<button id = "documentSav" type="button" class="btn btn-effect-ripple btn-primary">완료</button>
+										<button type="reset" class="btn btn-effect-ripple btn-danger">취소</button>
 									</div>
 								</div>
 							</form>
@@ -191,6 +231,18 @@
 $(document).ready(function(e){
 	
 	
+	
+		  $('input[name="dcontent5"]').daterangepicker({
+		    singleDatePicker: true,
+		    showDropdowns: true
+		  }, function(start, end, label) {
+			  
+		  });
+		  
+		  
+		  $('input[name="dcontent5"]').on('apply.daterangepicker', function(ev, picker) {
+		      $(this).val(picker.startDate.format('YY/MM/DD'));
+		  });
 	
 
 

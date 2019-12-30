@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="cot.colabare.approval.mapper.ApproverMapper">
+	
+	<insert id="insertApprover">
+		insert into approver values( approver_seq.nextval, #{approval_no}, #{employee_no}, 'a', 0, null, 1 )
+	</insert>
+	
+	<select id="approverList" resultType="cot.colabare.approval.domain.ApproverDto">
+		select a.no, a.approval_no, a.employee_no, a.approval_active, a.approval_level, a.approval_date, a.approvercnt, e.name, d.department_name
+			from approver a, employee e, department d
+			where a.employee_no = e.employee_no and e.department_id = d.department_id and approval_no = #{approval_no}
+	</select>
+	
+	<delete id="approverRemove">
+		delete from approver where no = #{no}
+	</delete>
+	
+	<select id="approvalNumSelect" resultType="cot.colabare.approval.domain.ApproverDto">
+		select approval_no from approver where no = #{no}
+	</select>
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+</mapper>

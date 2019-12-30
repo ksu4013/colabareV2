@@ -9,14 +9,7 @@
 
 <!--  -->
 	<div id="page-content" class="inner-sidebar-right">
-	
 		<div id="page-content-sidebar">
-			<div class="form-group form-actions">
-				<div class="col-md-9 col-md-offset-3">
-					<button id = "finalDoc" type="button" class="btn btn-effect-ripple btn-primary">기안</button>
-					<button type="reset" class="btn btn-effect-ripple btn-danger">리셋</button>
-				</div>
-			</div>
 			<a href="javascript:void(0)" class="btn btn-block btn-effect-ripple btn-primary visible-xs" data-toggle="collapse" data-target="#people-nav">People</a>
 			<div id="people-nav" class="collapse navbar-collapse remove-padding">
 				<div class="block-section">
@@ -54,7 +47,7 @@
 				<div class="widget">
 					<div class="widget-content widget-content-mini themed-background-dark text-light-op">
 						<span class="pull-right text-muted"></span>
-						일반적인 기안서를 작성하기 위하여 사용하는 양식입니다.
+						품질 보고를 위하여 사용하는 양식입니다.
 					</div>
 					<div class="widget-content"><!-- 결재내용 시작  -->
 						<div class="block">
@@ -84,10 +77,10 @@
 										<p class="form-control-static">${employee.name }</p>
 										<input type="hidden" id="demployee_no" name="employee_no" value="${employee.employee_no }">
 										<input type="hidden" id="ddepartment_id" name="department_id" value="${employee.department_id }">
-										<input type="hidden" id="ddocument_no" name="document_no" value="22">
-										<input type="hidden" id="dcontent2" name="dcontent2" value="">
-										<input type="hidden" id="dcontent3" name="dcontent3" value="">
-										<input type="hidden" id="dcontent4" name="dcontent4" value="">
+										<input type="hidden" id="ddocument_no" name="document_no" value="61">
+										<!-- <input type="hidden" id="dcontent2" name="dcontent2" value=""> -->
+										<!-- <input type="hidden" id="dcontent3" name="dcontent3" value=""> -->
+										<!-- <input type="hidden" id="dcontent4" name="dcontent4" value=""> -->
 										<input type="hidden" id="dcontent5" name="dcontent5" value="">
 										<input type="hidden" id="dcontent6" name="dcontent6" value="">
 										<input type="hidden" id="dcontent7" name="dcontent7" value="">
@@ -98,22 +91,52 @@
 								</div>
 								
 								<div class="form-group">
-									<label class="col-md-3 control-label" for="example-disabled">작성일</label>
+									<label class="col-md-3 control-label" for="example-disabled">기안일</label>
 									<div class="col-md-6">
 										<!-- <input type="text" id="example-disabled" name="example-disabled" class="form-control" placeholder="Disabled" disabled=""> -->
 									</div>
 								</div>
 								
 								<div class="form-group">
-									<label class="col-md-3 control-label" for="example-textarea-input">내용</label>
-									<div class="col-md-9">
-										<textarea id="dcontent" name="content" rows="7" class="form-control" placeholder="1. 귀사의 무궁한 발전을 기원합니다."></textarea>
+									<label class="col-md-3 control-label" for="example-text-input">제품명</label>
+									<div class="col-md-6">
+										<input type="text" id="dcontent2"  name="dcontent2" class="form-control" >
 									</div>
 								</div>
+								
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="example-text-input">품질지표</label>
+									<div class="col-md-6">
+										<input type="text" id="dcontent3"  name="dcontent3" class="form-control" >
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="example-textarea-input">품질 이슈 사항</label>
+									<div class="col-md-9">
+										<textarea id="dcontent" name="content" rows="7" class="form-control" placeholder="품질 이슈 사항은 다음과 같습니다.
+
+
+
+1. "></textarea>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="example-textarea-input">개선 요청 사항</label>
+									<div class="col-md-9">
+										<textarea id="dcontent4" name="dcontent4" rows="7" class="form-control" placeholder="개선 요청 사항은 다음과 같습니다.
+
+
+
+1. "></textarea>
+									</div>
+								</div>
+								
 								<div class="form-group form-actions">
 									<div class="col-md-9 col-md-offset-3">
-										<button id = "documentSav" type="button" class="btn btn-effect-ripple btn-primary">저장</button>
-										<button type="reset" class="btn btn-effect-ripple btn-danger">리셋</button>
+										<button id = "documentSav" type="button" class="btn btn-effect-ripple btn-primary">완료</button>
+										<button type="reset" class="btn btn-effect-ripple btn-danger">취소</button>
 									</div>
 								</div>
 							</form>

@@ -9,14 +9,7 @@
 
 <!--  -->
 	<div id="page-content" class="inner-sidebar-right">
-	
 		<div id="page-content-sidebar">
-			<div class="form-group form-actions">
-				<div class="col-md-9 col-md-offset-3">
-					<button id = "finalDoc" type="button" class="btn btn-effect-ripple btn-primary">기안</button>
-					<button type="reset" class="btn btn-effect-ripple btn-danger">리셋</button>
-				</div>
-			</div>
 			<a href="javascript:void(0)" class="btn btn-block btn-effect-ripple btn-primary visible-xs" data-toggle="collapse" data-target="#people-nav">People</a>
 			<div id="people-nav" class="collapse navbar-collapse remove-padding">
 				<div class="block-section">
@@ -54,7 +47,7 @@
 				<div class="widget">
 					<div class="widget-content widget-content-mini themed-background-dark text-light-op">
 						<span class="pull-right text-muted"></span>
-						일반적인 기안서를 작성하기 위하여 사용하는 양식입니다.
+						정년이 되어 퇴직하기 위하여 사용하는 양식입니다.
 					</div>
 					<div class="widget-content"><!-- 결재내용 시작  -->
 						<div class="block">
@@ -85,8 +78,8 @@
 										<input type="hidden" id="demployee_no" name="employee_no" value="${employee.employee_no }">
 										<input type="hidden" id="ddepartment_id" name="department_id" value="${employee.department_id }">
 										<input type="hidden" id="ddocument_no" name="document_no" value="22">
-										<input type="hidden" id="dcontent2" name="dcontent2" value="">
-										<input type="hidden" id="dcontent3" name="dcontent3" value="">
+										<!-- <input type="hidden" id="dcontent2" name="dcontent2" value=""> -->
+										<!-- <input type="hidden" id="dcontent3" name="dcontent3" value=""> -->
 										<input type="hidden" id="dcontent4" name="dcontent4" value="">
 										<input type="hidden" id="dcontent5" name="dcontent5" value="">
 										<input type="hidden" id="dcontent6" name="dcontent6" value="">
@@ -98,27 +91,106 @@
 								</div>
 								
 								<div class="form-group">
-									<label class="col-md-3 control-label" for="example-disabled">작성일</label>
+									<label class="col-md-3 control-label" for="example-disabled">기안일</label>
 									<div class="col-md-6">
 										<!-- <input type="text" id="example-disabled" name="example-disabled" class="form-control" placeholder="Disabled" disabled=""> -->
 									</div>
 								</div>
 								
 								<div class="form-group">
-									<label class="col-md-3 control-label" for="example-textarea-input">내용</label>
+									<label class="col-md-3 control-label" for="example-text-input">퇴직 사유</label>
+									<div class="col-md-6">
+										<input type="text" id="dcontent2"  name="dcontent2" class="form-control" >
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="example-datepicker">퇴직 희망일</label>
+									<div class="col-md-5">
+										<input type="text" id="dcontent3" name="dcontent3" class="form-control input-datepicker" data-date-format="mm/dd/yy" placeholder="mm/dd/yy">
+									</div>
+								</div>
+								
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="example-datepicker">Datepicker</label>
+                                    <div class="col-md-5">
+                                        <input type="text" id="example-datepicker" name="example-datepicker" class="form-control input-datepicker" data-date-format="mm/dd/yy" placeholder="mm/dd/yy">
+                                    </div>
+                                    <div class="col-md-5 col-md-offset-3">
+                                        <input type="text" id="example-datepicker2" name="example-datepicker2" class="form-control input-datepicker" data-date-format="dd/mm/yy" placeholder="dd/mm/yy">
+                                    </div>
+                                    <div class="col-md-5 col-md-offset-3">
+                                        <input type="text" id="example-datepicker3" name="example-datepicker3" class="form-control input-datepicker" data-date-format="dd-mm-yyyy" placeholder="dd-mm-yyyy">
+                                    </div>
+                                </div>
+                                        
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="example-textarea-input">인수인계 내용</label>
 									<div class="col-md-9">
-										<textarea id="dcontent" name="content" rows="7" class="form-control" placeholder="1. 귀사의 무궁한 발전을 기원합니다."></textarea>
+										<textarea id="dcontent" name="content" rows="7" class="form-control" placeholder=""></textarea>
 									</div>
 								</div>
 								<div class="form-group form-actions">
 									<div class="col-md-9 col-md-offset-3">
-										<button id = "documentSav" type="button" class="btn btn-effect-ripple btn-primary">저장</button>
-										<button type="reset" class="btn btn-effect-ripple btn-danger">리셋</button>
+										<button id = "documentSav" type="button" class="btn btn-effect-ripple btn-primary">완료</button>
+										<button type="reset" class="btn btn-effect-ripple btn-danger">취소</button>
 									</div>
 								</div>
 							</form>
 						</div>
 						
+						
+						<div class="block">
+                                    <!-- Datepicker Title -->
+                                    <div class="block-title">
+                                        <div class="block-options pull-right">
+                                            <a href="javascript:void(0)" class="btn btn-effect-ripple btn-default toggle-bordered enable-tooltip" data-toggle="button" title="Toggles .form-bordered class">Borderless</a>
+                                        </div>
+                                        <h2>Datepicker</h2>
+                                    </div>
+                                    <!-- END Datepicker Title -->
+
+                                    <!-- Datepicker Content -->
+                                    <form action="page_forms_components.html" method="post" class="form-horizontal form-bordered" onsubmit="return false;">
+                                        <!-- Datepicker for Bootstrap (classes are initialized in js/app.js -> uiInit()), for extra usage examples you can check out http://eternicode.github.io/bootstrap-datepicker -->
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="example-daterange1">Date Range</label>
+                                            <div class="col-md-9">
+                                                <div class="input-group input-daterange" data-date-format="mm/dd/yyyy">
+                                                    <input type="text" id="example-daterange1" name="example-daterange1" class="form-control" placeholder="From">
+                                                    <span class="input-group-addon"><i class="fa fa-chevron-right"></i></span>
+                                                    <input type="text" id="example-daterange2" name="example-daterange2" class="form-control" placeholder="To">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Inline Datepicker</label>
+                                            <div class="col-md-9">
+                                                <div id="example-datepicker-inline" class="input-datepicker"></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="example-datepicker">Datepicker</label>
+                                            <div class="col-md-5">
+                                                <input type="text" id="example-datepicker" name="example-datepicker" class="form-control input-datepicker" data-date-format="mm/dd/yy" placeholder="mm/dd/yy">
+                                            </div>
+                                            <div class="col-md-5 col-md-offset-3">
+                                                <input type="text" id="example-datepicker2" name="example-datepicker2" class="form-control input-datepicker" data-date-format="dd/mm/yy" placeholder="dd/mm/yy">
+                                            </div>
+                                            <div class="col-md-5 col-md-offset-3">
+                                                <input type="text" id="example-datepicker3" name="example-datepicker3" class="form-control input-datepicker" data-date-format="dd-mm-yyyy" placeholder="dd-mm-yyyy">
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-actions">
+                                            <div class="col-md-9 col-md-offset-3">
+                                                <button type="submit" class="btn btn-effect-ripple btn-primary">Submit</button>
+                                                <button type="reset" class="btn btn-effect-ripple btn-danger">Reset</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <!-- END Datepicker Content -->
+                                </div>
+                                <!-- END Datepicker Block -->
 					</div><!-- 결재 내용 끝  -->
 					
 				</div>
@@ -184,7 +256,7 @@
 			</div>
 		</div>
 	</div>
-
+	
 <script type="text/javascript" src="../resources/js/DocumentCommon.js"></script>
 <script type="text/javascript" src="../resources/js/DCList.js"></script>
 <script>

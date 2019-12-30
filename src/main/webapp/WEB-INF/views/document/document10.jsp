@@ -3,20 +3,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ include file = "../common/header.jsp" %>
 
-
+<script type="text/javascript" src="../resources/js/moment.min.js"></script>
+<script type="text/javascript" src="../resources/js/daterangepicker.js"></script>
+<link rel="stylesheet" href="../resources/css/daterangepicker.css">
 
 
 
 <!--  -->
 	<div id="page-content" class="inner-sidebar-right">
-	
 		<div id="page-content-sidebar">
-			<div class="form-group form-actions">
-				<div class="col-md-9 col-md-offset-3">
-					<button id = "finalDoc" type="button" class="btn btn-effect-ripple btn-primary">기안</button>
-					<button type="reset" class="btn btn-effect-ripple btn-danger">리셋</button>
-				</div>
-			</div>
 			<a href="javascript:void(0)" class="btn btn-block btn-effect-ripple btn-primary visible-xs" data-toggle="collapse" data-target="#people-nav">People</a>
 			<div id="people-nav" class="collapse navbar-collapse remove-padding">
 				<div class="block-section">
@@ -54,7 +49,7 @@
 				<div class="widget">
 					<div class="widget-content widget-content-mini themed-background-dark text-light-op">
 						<span class="pull-right text-muted"></span>
-						일반적인 기안서를 작성하기 위하여 사용하는 양식입니다.
+						채용계획서는 채용을 위한 사항을 계획하는 문서입니다.
 					</div>
 					<div class="widget-content"><!-- 결재내용 시작  -->
 						<div class="block">
@@ -67,7 +62,7 @@
 								<div class="form-group">
 									<label class="col-md-3 control-label" for="example-text-input">기안제목</label>
 									<div class="col-md-6">
-										<input type="text" id="title"  name="title" class="form-control" >
+										<input type="text" id="title"  name="title" class="form-control" placeholder="채용계획서">
 									</div>
 								</div>
 								
@@ -84,16 +79,16 @@
 										<p class="form-control-static">${employee.name }</p>
 										<input type="hidden" id="demployee_no" name="employee_no" value="${employee.employee_no }">
 										<input type="hidden" id="ddepartment_id" name="department_id" value="${employee.department_id }">
-										<input type="hidden" id="ddocument_no" name="document_no" value="22">
-										<input type="hidden" id="dcontent2" name="dcontent2" value="">
-										<input type="hidden" id="dcontent3" name="dcontent3" value="">
-										<input type="hidden" id="dcontent4" name="dcontent4" value="">
-										<input type="hidden" id="dcontent5" name="dcontent5" value="">
-										<input type="hidden" id="dcontent6" name="dcontent6" value="">
-										<input type="hidden" id="dcontent7" name="dcontent7" value="">
-										<input type="hidden" id="dcontent8" name="dcontent8" value="">
-										<input type="hidden" id="dcontent9" name="dcontent9" value="">
-										<input type="hidden" id="dcontent10" name="dcontent10" value="">
+										<input type="hidden" id="ddocument_no" name="document_no" value="81">
+										<!-- <input type="hidden" id="dcontent2" name="dcontent2" value=""> -->
+										<!-- <input type="hidden" id="dcontent3" name="dcontent3" value=""> -->
+										<!-- <input type="hidden" id="dcontent4" name="dcontent4" value=""> -->
+										<!-- <input type="hidden" id="dcontent5" name="dcontent5" value=""> -->
+										<!-- <input type="hidden" id="dcontent6" name="dcontent6" value=""> -->
+										<!-- <input type="hidden" id="dcontent7" name="dcontent7" value=""> -->
+										<!-- <input type="hidden" id="dcontent8" name="dcontent8" value=""> -->
+										<!-- <input type="hidden" id="dcontent9" name="dcontent9" value=""> -->
+										<!-- <input type="hidden" id="dcontent10" name="dcontent10" value=""> -->
 									</div>
 								</div>
 								
@@ -105,15 +100,93 @@
 								</div>
 								
 								<div class="form-group">
-									<label class="col-md-3 control-label" for="example-textarea-input">내용</label>
-									<div class="col-md-9">
-										<textarea id="dcontent" name="content" rows="7" class="form-control" placeholder="1. 귀사의 무궁한 발전을 기원합니다."></textarea>
+									<label class="col-md-3 control-label" for="example-text-input">채용 목적</label>
+									<div class="col-md-6">
+										<input type="text" id="dcontent2"  name="dcontent2" class="form-control" >
 									</div>
 								</div>
+								
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="example-text-input">채용 인원 수</label>
+									<div class="col-md-6">
+										<input type="text" id="dcontent3"  name="dcontent3" class="form-control" >
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="example-textarea-input">담당 업무</label>
+									<div class="col-md-9">
+										<textarea id="dcontent" name="content" rows="7" class="form-control" ></textarea>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="example-select">고용 형태</label>
+									<div class="col-md-6">
+										<select id="dcontent4" name="dcontent4" class="form-control" size="1">
+											<option value="정규직">정규직</option>
+											<option value="계약직">계약직</option>
+											<option value="계약직">계약직</option>
+											<option value="임시직">임시직</option>
+											<option value="인턴">인턴</option>
+											<option value="병역특례">병역특례</option>
+											<option value="교육생">교육생</option>
+										</select>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="example-text-input">근무 지역</label>
+									<div class="col-md-6">
+										<input type="text" id="dcontent5"  name="dcontent5" class="form-control" >
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="example-datepicker">모집 시작일</label>
+									<div class="col-md-5">
+										<input type="text" id="dcontent6" name="dcontent6" class="form-control">
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="example-datepicker">모집 마감일</label>
+									<div class="col-md-5">
+										<input type="text" id="dcontent7" name="dcontent7" class="form-control">
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="example-textarea-input">모집 요강</label>
+									<div class="col-md-9">
+										<textarea id="dcontent8" name="content8" rows="7" class="form-control" ></textarea>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="example-text-input">급여 조건</label>
+									<div class="col-md-6">
+										<input type="text" id="dcontent9"  name="dcontent9" class="form-control" >
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-md-3 control-label" for="example-select">학력 조건</label>
+									<div class="col-md-6">
+										<select id="dcontent10" name="dcontent10" class="form-control" size="1">
+											<option value="학력 무관">학력 무관</option>
+											<option value="고등학교 졸업">고등학교 졸업</option>
+											<option value="전문대학교 졸업">전문대학교 졸업</option>
+											<option value="대학교 졸업">대학교 졸업</option>
+											<option value="대학원 졸업">대학원 졸업</option>
+										</select>
+									</div>
+								</div>
+								
 								<div class="form-group form-actions">
 									<div class="col-md-9 col-md-offset-3">
-										<button id = "documentSav" type="button" class="btn btn-effect-ripple btn-primary">저장</button>
-										<button type="reset" class="btn btn-effect-ripple btn-danger">리셋</button>
+										<button id = "documentSav" type="button" class="btn btn-effect-ripple btn-primary">완료</button>
+										<button type="reset" class="btn btn-effect-ripple btn-danger">취소</button>
 									</div>
 								</div>
 							</form>
@@ -192,7 +265,29 @@ $(document).ready(function(e){
 	
 	
 	
+	  $('input[name="dcontent6"]').daterangepicker({
+		    singleDatePicker: true,
+		    showDropdowns: true
+		  }, function(start, end, label) {
+			  
+		  });
+		  
+		  
+		  $('input[name="dcontent6"]').on('apply.daterangepicker', function(ev, picker) {
+		      $(this).val(picker.startDate.format('YY/MM/DD'));
+		  });	
 
+		  $('input[name="dcontent7"]').daterangepicker({
+			    singleDatePicker: true,
+			    showDropdowns: true
+			  }, function(start, end, label) {
+				  
+			  });
+			  
+			  
+			  $('input[name="dcontent7"]').on('apply.daterangepicker', function(ev, picker) {
+			      $(this).val(picker.startDate.format('YY/MM/DD'));
+			  });
 
 	
 	
@@ -205,42 +300,6 @@ $(document).ready(function(e){
 	
 });
 </script>
-<script>
 
-
-
-
-
-
-
-
-
-
-
-// 참조자 검색결과 리스트
-function bSearchList(data){
-	
-	var output = '';
-		
-	$.each(data, function(index, list){	
-		output += "<tr>";
-		output += "<td class='text-center' style='width: 100px;'>";
-		output += "<img src='img/placeholders/avatars/avatar13.jpg' alt='User Image' class='img-circle'>";
-		output += "</td><td>";
-		output += "<a href='javascript:void(0)'>"+ list.name + "</a><br>";
-		output += "</td>";
-		output += "<td class='text-center' style='width: 80px;'>";
-		output += "<button type='button' id='moveB' value='"+list.employee_no+"'  class='btn btn-effect-ripple btn-xs btn-primary' data-toggle='tooltip' title='참조자로 추가하기'><i class='fa fa-plus'></i></button>";
-		output += "<a href='javascript:void(0)' class='btn btn-effect-ripple btn-xs btn-danger' data-toggle='tooltip' title='Follow'><i class='fa fa-share'></i></a>";
-		output += "</td>";
-		output += "</tr>";
-		
-	$("#bSearchList").fadeIn();
-	$("#bSearchList").html(output);
-	});
-
-}
-
-</script>
 </body>
 </html>

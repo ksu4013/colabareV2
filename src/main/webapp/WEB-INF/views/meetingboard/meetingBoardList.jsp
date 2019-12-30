@@ -14,16 +14,6 @@
 			</button><br><br>
             <!-- Table Styles Content -->
             <div class="table-responsive">
-                <!--
-                Available Table Classes:
-                    'table'             - basic table
-                    'table-bordered'    - table with full borders
-                    'table-borderless'  - table with no borders
-                    'table-striped'     - striped table
-                    'table-condensed'   - table with smaller top and bottom cell padding
-                    'table-hover'       - rows highlighted on mouse hover
-                    'table-vcenter'     - middle align content vertically
-                -->
                 <table id="general-table" class="table table-striped table-bordered table-vcenter table-hover">
                     <thead>
                         <tr>

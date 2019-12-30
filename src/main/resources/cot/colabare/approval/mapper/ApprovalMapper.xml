@@ -4,15 +4,59 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="cot.colabare.approval.mapper.ApprovalMapper">
+
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item='type' collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							title like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'C'.toString()">
+							content like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'W'.toString()">
+							name like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
 	
 	<insert id="insertApproval" >
 		insert into approval
-		values (approval_seq.nextval, #{employee_no}, #{department_id}, 22, #{title}, #{content}, sysdate, null, 'n', null, 'y', #{content2},null,null,null,null,null,null,null,null)
+		values (approval_seq.nextval, #{employee_no}, #{department_id}, #{document_no}, #{title}, #{content}, sysdate, null, 'n', null, 'y', #{content2},#{content3},#{content4},#{content5},#{content6},#{content7},#{content8},#{content9},#{content10})
 	</insert> 
 	
+	<select id="lastNum" resultType="cot.colabare.approval.domain.ApprovalDto">
+		select approval_no from (select * from approval order by approval_no desc) where rownum = 1
+	</select>
 	
-	
-
+		      
+	<select id="sentList" resultType="cot.colabare.approval.domain.ApprovalDto">
+		<![CDATA[
+	select 
+		  b.approval_no, b.employee_no, b.department_id, b.document_no, b.title,  b.write_date, b.name, b.dtitle
+		  from 
+		      (
+		      select /*+INDEX_DESC(approval a.approval_pk) */
+		       rownum rn, a.approval_no, a.employee_no, a.department_id, a.document_no, a.title,  a.write_date, e.name, d.dtitle
+		     from approval a, employee e, document d 
+		     where a.employee_no = e.employee_no and a.document_no = d.document_no  
+				and  a.employee_no = #{employee_no} and 
+				
+				 ]]>
+			 <include refid="criteria"></include> 
+		      
+		  <![CDATA[    
+		      rownum <= #{pageNum} * #{amount}
+		     
+		      ) b
+		       where b.rn > (#{pageNum} -1) * #{amount}
+		  ]]>
+	</select>
 	
 	
 	
