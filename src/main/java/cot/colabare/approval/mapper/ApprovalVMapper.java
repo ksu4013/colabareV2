@@ -20,5 +20,8 @@ public interface ApprovalVMapper {
 	
 	// 참조자 글번호
 	public ApprovalViewerDto approvalNumVSelect(Long apprviewer);
+	
+	// 회람자 목록
+	public List<ApprovalViewerDto> viewList (Long employee_no);
 
 }

@@ -28,15 +28,7 @@
 				
 				</ul>
 			</div>
-				<div class="block-section">
-					<h4 class="inner-sidebar-header">
-						<a href="javascript:void(0)" class="btn btn-effect-ripple btn-xs btn-default pull-right"><i class="fa fa-cog"></i></a>
-					Offline
-					</h4>
-					<ul class="nav-users nav-users-offline">
-						
-					</ul>
-				</div>
+				
 			</div>
 		</div>
 	

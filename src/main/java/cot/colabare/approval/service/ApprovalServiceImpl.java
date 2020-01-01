@@ -138,16 +138,56 @@ public class ApprovalServiceImpl implements ApprovalService {
 	}
 
 	@Override
-	public List<ApprovalDto> sentList(Long employee_no, ApprovalCriteria cri) {
+	public List<ApprovalDto> sentList(Long employee_no) {
 		
-		return mapper.sentList(employee_no, cri);
+		return mapper.sentList(employee_no);
 	}
 
 	@Override
-	public int getTotalCount(ApprovalCriteria cri) {
-		return mapper.getTotalCount(cri);
+	public List<ApproverDto> receiveList(Long employee_no) {
+		return vermapper.receiveList(employee_no);
 	}
 
+	@Override
+	public ApprovalDto detailReceive( Long approval_no) {
+		return mapper.detailReceive(approval_no);
+	}
+
+	@Override
+	public int rejectApver(ApproverDto apverDto) {
+		return vermapper.rejectApver(apverDto);
+	}
+
+	@Override
+	public List<ApprovalDto> rejectList(Long employee_no) {
+		return mapper.rejectList(employee_no);
+	}
+
+	@Override
+	public List<ApprovalViewerDto> viewList(Long employee_no) {
+		return Vmapper.viewList(employee_no);
+	}
+
+	@Override
+	public int passApver(ApproverDto apverDto) {
+		return vermapper.passApver(apverDto);
+	}
+
+	@Override
+	public List<ApprovalDto> doneList(Long employee_no) {
+		return mapper.doneList(employee_no);
+	}
+
+	@Override
+	public String realDoneApver(Long approval_no) {
+		return vermapper.realDoneApver(approval_no);
+	}
+
+	/*@Override
+	public int getTotalCount(int employee_no, ApprovalCriteria cri) {
+		return mapper.getTotalCount(employee_no, cri);
+	}
+*/
 
 
 }

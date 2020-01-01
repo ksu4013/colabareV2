@@ -23,9 +23,23 @@
 		select approval_no from approver where no = #{no}
 	</select>
 	
+	<select id="receiveList" resultType="cot.colabare.approval.domain.ApproverDto">
+		select v.approval_no, v.employee_no, v.approval_active, v.approval_level, v.approval_date, a.document_no, a.title, a.write_date, d.dtitle, e.name
+				from approver v, approval a, document d, employee e
+					where v.approval_no = a.approval_no and a.document_no = d.document_no and a.employee_no = e.employee_no and v.approval_active = 'a'  and v.employee_no = #{employee_no}
+	</select>
 	
+	<update id="rejectApver">
+		update approver set approval_active = 'n' where employee_no = #{employee_no} and approval_no = #{approval_no}
+	</update>
 	
-
+	<update id="passApver">
+		update approver set approval_active = 'y' where employee_no = #{employee_no} and approval_no = #{approval_no}
+	</update>
+	
+	<select id="realDoneApver" resultType="cot.colabare.approval.domain.ApproverDto">
+		select approval_active, approval_no, employee_no from (select * from approver where approval_no = #{approval_no} order by no desc)  where rownum =1
+	</select>
 	
 	
 	

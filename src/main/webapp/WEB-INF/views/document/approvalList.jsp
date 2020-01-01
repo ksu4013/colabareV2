@@ -33,10 +33,11 @@
         <!-- Forum Tabs Title -->
         <div class="block-title">
             <ul class="nav nav-tabs" data-toggle="tabs">
-                <li class="active"><a href="#approval1">기안문서</a></li>
-                <li><a href="#forum-topics">Topics</a></li>
-                <li><a href="#forum-discussion">Discussion</a></li>
-                <li><a href="#forum-more">더있어</a></li>
+                <li><a id="approval1" href="#approvalL1">기안문서</a></li>
+                <li><a id ="approval2" href="#approvalL2">수신문서</a></li>
+                <li><a id ="approval3" href="#approvalL3">반려문서</a></li>
+                <li><a id ="approval4" href="#approvalL4">회람문서</a></li>
+                <li><a id ="approval5" href="#approvalL5">결재 완료 문서</a></li>
             </ul>
         </div>
         <!-- END Forum Tabs -->
@@ -44,180 +45,290 @@
         <!-- Tab Content -->
         <div class="tab-content">
             <!-- Forum -->
-            <div class="tab-pane active" id="#approval1">
+            <div class="tab-pane active" id="#approvalL1">
                 <!-- Intro Category -->
                 <table class="table table-striped table-vcenter">
                     <thead>
                         <tr>
                             <th colspan="2">작성한 기안 목록</th>
-                            <th class="text-center hidden-xs hidden-sm" style="width: 100px;">Topics</th>
-                            <th class="text-center hidden-xs hidden-sm" style="width: 100px;">Posts</th>
-                            <th class="hidden-xs hidden-sm" style="width: 200px;">작성 날짜</th>
+                            <th class="text-center hidden-xs hidden-sm" style="width: 100px;">작성자</th>
+                            <th class="hidden-xs hidden-sm" style="width: 200px;">기안 날짜</th>
                         </tr>
                     </thead>
-                    <tbody>
-                    	<c:forEach var = "approval" items="${list }">
-                        <tr>
-                            <td class="text-center" style="width: 75px;"><i class="gi gi-globe fa-2x text-muted text-muted"></i></td>
-                            <td>
-                                <h4>
-                                    <a href="javascript:void(0)" class="text-dark"><strong>${approval.title }</strong></a>
-                                </h4>
-                                <div class="text-muted">${approval.dtitle }</div>
-                            </td>
-                            <td class="text-center hidden-xs hidden-sm"><a href="javascript:void(0)"><strong>205</strong></a></td>
-                            <td class="text-center hidden-xs hidden-sm"><a href="javascript:void(0)"><strong>1265</strong></a></td>
-                            <td class="hidden-xs hidden-sm">${approval.write_date }</td>
-                            <!-- <td class="hidden-xs hidden-sm">by <a href="page_ready_profile.html">Sandra Gilbert</a><br><small>February 30, 2015</small></td> -->
-                        </tr>
-                        </c:forEach>
+                    <tbody id="sentDoc">
+                    	
                     </tbody>
                 </table>
                 <!-- END Intro Category -->
-				<div class="text-center">
-                    <ul class="pagination">
-                        <li class="disabled"><a href="javascript:void(0)">Prev</a></li>
-                        <li class="active"><a href="javascript:void(0)">1</a></li>
-                        <li><a href="javascript:void(0)">2</a></li>
-                        <li><a href="javascript:void(0)">3</a></li>
-                        <li><a href="javascript:void(0)">...</a></li>
-                        <li><a href="javascript:void(0)">10</a></li>
-                        <li><a href="javascript:void(0)">Next</a></li>
-                    </ul>
-                </div>
+				
             </div>
-            <!-- END Forum -->
+            <!-- END 기안문서 -->
 
-            <!-- Topics -->
-            <div class="tab-pane" id="forum-topics">
+
+            <!-- 수신문서 -->
+            <div class="tab-pane" id="approvalL2">
                 <table class="table table-striped table-vcenter">
                     <thead>
                         <tr>
-                            <th colspan="2">Getting Started</th>
-                            <th class="text-center hidden-xs hidden-sm" style="width: 100px;">Replies</th>
-                            <th class="text-center hidden-xs hidden-sm" style="width: 100px;">Views</th>
-                            <th class="hidden-xs hidden-sm" style="width: 200px;">Last Post</th>
+                            <th colspan="2">결재 대기 목록</th>
+                            <th class="text-center hidden-xs hidden-sm" style="width: 100px;">작성자</th>
+                            <th class="hidden-xs hidden-sm" style="width: 200px;">기안 날짜</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td class="text-center" style="width: 75px;"><i class="gi gi-pin_flag fa-2x text-danger"></i></td>
-                            <td>
-                                <h4>
-                                    <a href="javascript:void(0)" class="text-dark"><strong>Welcome to our Getting Started category</strong></a>
-                                </h4>
-                                <div class="text-muted"><a href="page_ready_profile.html">Hannah Bates</a> on <em>January 1, 2015</em></div>
-                            </td>
-                            <td class="text-center hidden-xs hidden-sm"><a href="javascript:void(0)"><strong>456</strong></a></td>
-                            <td class="text-center hidden-xs hidden-sm"><a href="javascript:void(0)"><strong>6598</strong></a></td>
-                            <td class="hidden-xs hidden-sm">by <a href="page_ready_profile.html">Maria Young</a><br><small>June 25, 2015</small></td>
-                        </tr>
-                        <tr>
-                            <td class="text-center"><i class="gi gi-pin_flag fa-2x text-danger"></i></td>
-                            <td>
-                                <h4>
-                                    <a href="javascript:void(0)" class="text-dark"><strong>A big upgrade is coming to our app</strong></a>
-                                </h4>
-                                <div class="text-muted"><a href="page_ready_profile.html">Anna Matthews</a> on <em>February 2, 2015</em></div>
-                            </td>
-                            <td class="text-center hidden-xs hidden-sm"><a href="javascript:void(0)"><strong>277</strong></a></td>
-                            <td class="text-center hidden-xs hidden-sm"><a href="javascript:void(0)"><strong>1254</strong></a></td>
-                            <td class="hidden-xs hidden-sm">by <a href="page_ready_profile.html">Jacob Matthews</a><br><small>June 28, 2015</small></td>
-                        </tr>
-                        <tr>
-                            <td class="text-center"><i class="gi gi-pin_flag fa-2x text-danger"></i></td>
-                            <td>
-                                <h4>
-                                    <a href="javascript:void(0)" class="text-dark"><strong>Tips &amp; tricks for staying motivated</strong></a>
-                                </h4>
-                                <div class="text-muted"><a href="page_ready_profile.html">Jeremy Davis</a> on <em>February 5, 2015</em></div>
-                            </td>
-                            <td class="text-center hidden-xs hidden-sm"><a href="javascript:void(0)"><strong>248</strong></a></td>
-                            <td class="text-center hidden-xs hidden-sm"><a href="javascript:void(0)"><strong>7548</strong></a></td>
-                            <td class="hidden-xs hidden-sm">by <a href="page_ready_profile.html">Catherine Carr</a><br><small>June 30, 2015</small></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <h4>
-                                    <a href="javascript:void(0)" class="text-dark"><strong>2015, all the new features!</strong></a>
-                                </h4>
-                                <div class="text-muted"><a href="page_ready_profile.html">Anthony Carroll</a> on <em>January 3, 2015</em></div>
-                            </td>
-                            <td class="text-center hidden-xs hidden-sm"><a href="javascript:void(0)"><strong>247</strong></a></td>
-                            <td class="text-center hidden-xs hidden-sm"><a href="javascript:void(0)"><strong>6325</strong></a></td>
-                            <td class="hidden-xs hidden-sm">by <a href="page_ready_profile.html">Mary Fields</a><br><small>July 10, 2015</small></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <h4>
-                                    <a href="javascript:void(0)" class="text-dark"><strong>Your app saved me tons of time</strong></a>
-                                </h4>
-                                <div class="text-muted"><a href="page_ready_profile.html">Albert Barnes</a> on <em>February 10, 2015</em>text</div>
-                            </td>
-                            <td class="text-center hidden-xs hidden-sm"><a href="javascript:void(0)"><strong>247</strong></a></td>
-                            <td class="text-center hidden-xs hidden-sm"><a href="javascript:void(0)"><strong>2589</strong></a></td>
-                            <td class="hidden-xs hidden-sm">by <a href="page_ready_profile.html">Roy Moreno</a><br><small>March 13, 2015</small></td>
-                        </tr>
+                    <tbody id="receiveDoc">
+                        
                         
                         
                     </tbody>
                 </table>
-                <div class="text-center">
-                    <ul class="pagination">
-                        <li class="disabled"><a href="javascript:void(0)">Prev</a></li>
-                        <li class="active"><a href="javascript:void(0)">1</a></li>
-                        <li><a href="javascript:void(0)">2</a></li>
-                        <li><a href="javascript:void(0)">3</a></li>
-                        <li><a href="javascript:void(0)">...</a></li>
-                        <li><a href="javascript:void(0)">999</a></li>
-                        <li><a href="javascript:void(0)">Next</a></li>
-                    </ul>
-                </div>
+                
             </div>
             <!-- END Topics -->
 
+
+
+
+
+
             <!-- Discussion -->
-            <div class="tab-pane" id="forum-discussion">
-              
-                <div class="text-center">
-                    <ul class="pagination">
-                        <li class="disabled"><a href="javascript:void(0)">Prev</a></li>
-                        <li class="active"><a href="javascript:void(0)">1</a></li>
-                        <li><a href="javascript:void(0)">2</a></li>
-                        <li><a href="javascript:void(0)">3</a></li>
-                        <li><a href="javascript:void(0)">...</a></li>
-                        <li><a href="javascript:void(0)">10</a></li>
-                        <li><a href="javascript:void(0)">Next</a></li>
-                    </ul>
-                </div>
+            <div class="tab-pane" id="approvalL3">
+              <table class="table table-striped table-vcenter">
+                    <thead>
+                        <tr>
+                            <th colspan="2">반려 문서 목록</th>
+                            <th class="text-center hidden-xs hidden-sm" style="width: 100px;">작성자</th>
+                            <th class="hidden-xs hidden-sm" style="width: 200px;">기안 날짜</th>
+                        </tr>
+                    </thead>
+                    <tbody id="rejectDoc">
+                      
+                        
+                        
+                    </tbody>
+                </table>
+               
             </div>
             <!-- END Discussion -->
-            <div class="tab-pane" id="forum-more">
-                하하
-                <div class="text-center">
-                    <ul class="pagination">
-                        <li class="disabled"><a href="javascript:void(0)">Prev</a></li>
-                        <li class="active"><a href="javascript:void(0)">1</a></li>
-                        <li><a href="javascript:void(0)">2</a></li>
-                        <li><a href="javascript:void(0)">3</a></li>
-                        <li><a href="javascript:void(0)">...</a></li>
-                        <li><a href="javascript:void(0)">10</a></li>
-                        <li><a href="javascript:void(0)">Next</a></li>
-                    </ul>
-                </div>
+            <div class="tab-pane" id="approvalL4">
+            	<table class="table table-striped table-vcenter">
+                    <thead>
+                        <tr>
+                            <th colspan="2">회람 목록</th>
+                            <th class="text-center hidden-xs hidden-sm" style="width: 100px;">작성자</th>
+                            <th class="hidden-xs hidden-sm" style="width: 200px;">기안 날짜</th>
+                        </tr>
+                    </thead>
+                    <tbody id="viewDoc">
+                      
+                        
+                    </tbody>
+                </table>
+                
             </div>
+            
+            <div class="tab-pane" id="approvalL5">
+            	<table class="table table-striped table-vcenter">
+                    <thead>
+                        <tr>
+                            <th colspan="2">결재 완료 목록</th>
+                            <th class="text-center hidden-xs hidden-sm" style="width: 100px;">작성자</th>
+                            <th class="hidden-xs hidden-sm" style="width: 200px;">기안 날짜</th>
+                        </tr>
+                    </thead>
+                    <tbody id="doneDoc">
+                      
+                        
+                    </tbody>
+                </table>
+                
+            </div>
+            
+            
+            
+            
         </div>
         <!-- END Tab Content -->
     </div>
     <!-- END Forum Block -->
 </div>
 <!-- END Page Content -->
+<script type="text/javascript" src="../resources/js/approvalList.js"></script>
 <script>
 $(document).ready(function(e){
+	var employee_no = '<c:out value="${employee.employee_no}"/>';
 	
 	
+	APService.sentList(employee_no, function(list){
+		
+		var str = '';
+		
+		for(var i = 0 , len = list.length || 0 ; i < len; i++){
+			str += '<tr>';
+			str += '    <td class="text-center" style="width: 75px;"><i class="gi gi-pen fa-2x text-muted"></i></td>';
+			str += '    <td>';
+			str += '       <h4>';
+			str += '            <a href="/document/detailDocV'+list[i].document_no+'?approval_no='+list[i].approval_no+'" class="text-dark"><strong>'+ list[i].title +'</strong></a>';
+			str += '        </h4>';
+			str += '         <div class="text-muted">'+ list[i].dtitle +'</div>';
+			str += '     </td>';
+			str += '     <td class="text-center hidden-xs hidden-sm"><a href="javascript:void(0)"><strong>'+list[i].name+'</strong></a></td>';
+			str += '     <td class="hidden-xs hidden-sm">' + list[i].write_date + '</td>';
+			str += '</tr>';
+		}
+		
+		$("#sentDoc").html(str);
+	});
 	
+	$("#approval1").on('click', function(){ 
+		
+		APService.sentList(employee_no, function(list){
+		
+			var str = '';
+			
+			for(var i = 0 , len = list.length || 0 ; i < len; i++){
+				str += '<tr>';
+				str += '    <td class="text-center" style="width: 75px;"><i class="gi gi-pen fa-2x text-muted"></i></i></td>';
+				str += '    <td>';
+				str += '       <h4>';
+				str += '            <a href="/document/detailDocV'+list[i].document_no+'?approval_no='+list[i].approval_no+'" class="text-dark"><strong>'+ list[i].title +'</strong></a>';
+				str += '        </h4>';
+				str += '         <div class="text-muted">'+ list[i].dtitle +'</div>';
+				str += '     </td>';
+				str += '     <td class="text-center hidden-xs hidden-sm"><a href="javascript:void(0)"><strong>'+list[i].name+'</strong></a></td>';
+				str += '     <td class="hidden-xs hidden-sm">' + list[i].write_date + '</td>';
+				str += '</tr>';
+			}
+			
+			$("#sentDoc").html(str);
+		});
+	});
+	
+	
+	$("#approval2").on('click', function(){
+		
+		APService.reciveList(employee_no, function(list){
+			var str = '';
+			
+			for(var i = 0 , len = list.length || 0 ; i < len; i++){		
+				
+				str += '<tr>';
+				str += '    <td class="text-center" style="width: 75px;"><i class="fa fa-paper-plane fa-2x text-danger"></i></td>';
+				str += '    <td>';
+				str += '        <h4>';
+				str += '            <a href="/document/detailDoc'+list[i].document_no+'?approval_no='+list[i].approval_no+'" class="text-dark"><strong>'+ list[i].title +'</strong></a>';
+				str += '        </h4>';
+				str += '        <div class="text-muted">'+ list[i].dtitle+'</div>';
+				str += '    </td>';
+				str += '    <td class="text-center hidden-xs hidden-sm"><a href="javascript:void(0)"><strong>'+list[i].name+'</strong></a></td>';
+				str += '    <td class="hidden-xs hidden-sm">'+ list[i].write_date+'</td>';
+				str += '</tr>';
+				
+			}
+				$("#receiveDoc").html(str);
+		});
+			
+	});
+	
+	
+	$("#approval3").on('click', function(){ 
+		
+		APService.rejectList(employee_no, function(list){
+		
+			var str = '';
+			
+			for(var i = 0 , len = list.length || 0 ; i < len; i++){
+				str += '<tr>';
+				str += '    <td class="text-center" style="width: 75px;"><i class="fa fa-ban fa-2x text-danger"></i></td>';
+				str += '    <td>';
+				str += '       <h4>';
+				str += '            <a href="/document/detailDocV'+list[i].document_no+'?approval_no='+list[i].approval_no+'" class="text-dark"><strong>'+ list[i].title +'</strong></a>';
+				str += '        </h4>';
+				str += '         <div class="text-muted">'+ list[i].dtitle +'</div>';
+				str += '     </td>';
+				str += '     <td class="text-center hidden-xs hidden-sm"><a href="javascript:void(0)"><strong>'+list[i].name+'</strong></a></td>';
+				str += '     <td class="hidden-xs hidden-sm">' + list[i].write_date + '</td>';
+				str += '</tr>';
+			}
+			
+			$("#rejectDoc").html(str);
+		});
+	});
+	
+	$("#approval4").on('click', function(){ 
+		
+		APService.viewList(employee_no, function(list){
+		
+			var str = '';
+			
+			for(var i = 0 , len = list.length || 0 ; i < len; i++){
+				str += '<tr>';
+				str += '    <td class="text-center" style="width: 75px;"><i class="fa fa-eye fa-2x text-muted text-muted"></i></td>';
+				str += '    <td>';
+				str += '       <h4>';
+				str += '            <a href="/document/detailDocV'+list[i].document_no+'?approval_no='+list[i].approval_no+'" class="text-dark"><strong>'+ list[i].title +'</strong></a>';
+				str += '        </h4>';
+				str += '         <div class="text-muted">'+ list[i].dtitle +'</div>';
+				str += '     </td>';
+				str += '     <td class="text-center hidden-xs hidden-sm"><a href="javascript:void(0)"><strong>'+list[i].name+'</strong></a></td>';
+				str += '     <td class="hidden-xs hidden-sm">' + list[i].write_date + '</td>';
+				str += '</tr>';
+			}
+			
+			$("#viewDoc").html(str);
+		});
+	});
+	
+	$("#approval5").on('click', function(){ 
+		
+		APService.doneList(employee_no, function(list){
+		
+			var str = '';
+			
+			for(var i = 0 , len = list.length || 0 ; i < len; i++){
+				str += '<tr>';
+				str += '    <td class="text-center" style="width: 75px;"><i class="fa fa-thumbs-o-up fa-2x text-danger"></i></td>';
+				str += '    <td>';
+				str += '       <h4>';
+				str += '            <a href="/document/detailDocV'+list[i].document_no+'?approval_no='+list[i].approval_no+'" class="text-dark"><strong>'+ list[i].title +'</strong></a>';
+				str += '        </h4>';
+				str += '         <div class="text-muted">'+ list[i].dtitle +'</div>';
+				str += '     </td>';
+				str += '     <td class="text-center hidden-xs hidden-sm"><a href="javascript:void(0)"><strong>'+list[i].name+'</strong></a></td>';
+				str += '     <td class="hidden-xs hidden-sm">' + list[i].write_date + '</td>';
+				str += '</tr>';
+			}
+			
+			$("#doneDoc").html(str);
+		});
+		
+		
+		/* $.ajax({
 
+			url : '/approval/realDoneApver',
+			type : 'post',
+			data : {"approval_no" : approval_no},
+			dataType : 'json',
+			success : function(result, status, xhr){
+				if(callback){
+					callback(result);
+				}
+			},
+			error : function(xhr, status, er){
+				if(error){
+					error(er);
+				}
+			}
+			
+		});
+		 */
+		
+		
+		
+		
+		
+		
+		
+	});
 
 	
 	
@@ -229,11 +340,6 @@ $(document).ready(function(e){
 
 	
 });
-
-
-
-
-
 </script>
 </body>
 </html>

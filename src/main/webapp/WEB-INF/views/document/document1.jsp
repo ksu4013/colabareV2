@@ -13,8 +13,8 @@
 		<div id="page-content-sidebar">
 			<div class="form-group form-actions">
 				<div class="col-md-9 col-md-offset-3">
-					<button id = "finalDoc" type="button" class="btn btn-effect-ripple btn-primary">기안</button>
-					<button type="reset" class="btn btn-effect-ripple btn-danger">리셋</button>
+					<button id = "finalDoc" type="button" class="btn btn-effect-ripple btn-primary" onclick="location.href='/document/approvalList?employee_no=${employee.employee_no }'">기안</button>
+					<!-- <button type="reset" class="btn btn-effect-ripple btn-danger">리셋</button> -->
 				</div>
 			</div>
 			<a href="javascript:void(0)" class="btn btn-block btn-effect-ripple btn-primary visible-xs" data-toggle="collapse" data-target="#people-nav">People</a>
@@ -35,15 +35,6 @@
 				
 				</ul>
 			</div>
-				<div class="block-section">
-					<h4 class="inner-sidebar-header">
-						<a href="javascript:void(0)" class="btn btn-effect-ripple btn-xs btn-default pull-right"><i class="fa fa-cog"></i></a>
-					Offline
-					</h4>
-					<ul class="nav-users nav-users-offline">
-						
-					</ul>
-				</div>
 			</div>
 		</div>
 	
@@ -190,7 +181,11 @@
 <script>
 $(document).ready(function(e){
 	
-	
+	/* $("#finalDoc").on("click",function(){
+		
+		
+		
+	}); */
 	
 
 

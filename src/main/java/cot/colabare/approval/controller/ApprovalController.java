@@ -6,10 +6,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import cot.colabare.approval.domain.AEmployeeDto;
@@ -44,6 +46,25 @@ public class ApprovalController {
 		return insertCount == 1 ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
+	@PostMapping(value="/receiveList")
+	public ResponseEntity<List<ApproverDto>> receiveList(Long employee_no){
+		
+		return new ResponseEntity<List<ApproverDto>>(service.receiveList(employee_no), HttpStatus.OK);
+	}
+	
+	@PostMapping(value="/sentList")
+	public ResponseEntity<List<ApprovalDto>> sentList(Long employee_no){
+		
+		return new ResponseEntity<List<ApprovalDto>>(service.sentList(employee_no), HttpStatus.OK);
+	}
+	
+	@PostMapping(value="/rejectList")
+	public ResponseEntity<List<ApprovalDto>> rejectList(Long employee_no){
+		
+		return new ResponseEntity<List<ApprovalDto>>(service.rejectList(employee_no), HttpStatus.OK);
+	}
+	
+	
 	@PostMapping(value="/search" , produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<List<AEmployeeDto>> approvalM(String query){
 		
@@ -52,6 +73,12 @@ public class ApprovalController {
 		System.out.println("리스트야 " + list);
 		
 		return new ResponseEntity<List<AEmployeeDto>>(service.approvalM(query),  HttpStatus.OK);
+	}
+	
+	@PostMapping(value="/viewList")
+	public ResponseEntity<List<ApprovalViewerDto>> viewList(Long employee_no){
+		
+		return new ResponseEntity<List<ApprovalViewerDto>>(service.viewList(employee_no), HttpStatus.OK);
 	}
 	
 	@PostMapping(value="/{employee_no}", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
@@ -140,6 +167,35 @@ public class ApprovalController {
 		return service.approvalVRemove(apprviewer) == 1? new ResponseEntity<String>("success", HttpStatus.OK) : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
+	@RequestMapping(method={RequestMethod.PUT, RequestMethod.PATCH }, value= "/reject/{employee_no}/{approval_no}", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> rejectApver(@RequestBody ApproverDto apverDto, @PathVariable("employee_no") Long employee_no, @PathVariable("approval_no") Long approval_no){
+		
+		apverDto.setEmployee_no(employee_no);
+		apverDto.setApproval_no(approval_no);
+		
+		return service.rejectApver(apverDto) == 1 ? new ResponseEntity<String>("success", HttpStatus.OK) : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	@RequestMapping(method={RequestMethod.PUT, RequestMethod.PATCH }, value= "/pass/{employee_no}/{approval_no}", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> passApver(@RequestBody ApproverDto apverDto, @PathVariable("employee_no") Long employee_no, @PathVariable("approval_no") Long approval_no){
+		
+		apverDto.setEmployee_no(employee_no);
+		apverDto.setApproval_no(approval_no);
+		
+		return service.passApver(apverDto) == 1 ? new ResponseEntity<String>("success", HttpStatus.OK) : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	@PostMapping(value="/doneList" , produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public ResponseEntity<List<ApprovalDto>> doneList(Long employee_no){
+
+		return new ResponseEntity<List<ApprovalDto>>(service.doneList(employee_no), HttpStatus.OK);
+	}
+	
+	@PostMapping(value="/realDoneApver", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public String realDoneApver(Long approval_no){
+		
+		return service.realDoneApver(approval_no);
+	}
 	
 	
 	

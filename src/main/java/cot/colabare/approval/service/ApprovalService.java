@@ -47,13 +47,30 @@ public interface ApprovalService {
 	public Long approvalNumVSelect(Long apprviewer);
 	
 	// 보낸 기안문서 목록
-	public List<ApprovalDto> sentList(Long employee_no ,ApprovalCriteria cri);
+	public List<ApprovalDto> sentList(Long employee_no);
 	
-	public int getTotalCount(ApprovalCriteria cri);
+	//public int getTotalCount(int employee_no , ApprovalCriteria cri);
 	
+	// 받은 결재 목록
+	public List<ApproverDto> receiveList(Long employee_no);
 	
+	// 받은 결재 상세보기
+	public ApprovalDto detailReceive(Long approval_no);
 	
+	// 반려 
+	public int rejectApver(ApproverDto apverDto);
 	
+	// 반려 된 문서 리스트
+	public List<ApprovalDto> rejectList(Long employee_no);
+	
+	public List<ApprovalViewerDto> viewList (Long employee_no);
+	
+	// 결재
+	public int passApver(ApproverDto apverDto);
+	
+	public List<ApprovalDto> doneList(Long employee_no);
+	
+	public String realDoneApver(Long approval_no);
 	
 	
 	
