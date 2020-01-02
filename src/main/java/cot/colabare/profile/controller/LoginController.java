@@ -1,5 +1,9 @@
 package cot.colabare.profile.controller;
 
+
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -11,11 +15,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.RequestParam;
+=======
+>>>>>>> colabareV2/Ang
 
+import cot.colabare.approval.domain.ApproverDto;
+import cot.colabare.approval.service.ApprovalService;
 import cot.colabare.master.domain.EmplDepPosDto;
 import cot.colabare.master.domain.SecurityAuthDto;
 import cot.colabare.master.service.MasterService;
+import cot.colabare.meetingboard.domain.MeettingBoardCriteria;
+import cot.colabare.meetingboard.service.MeetingBoardService;
 import cot.colabare.profile.domain.EmployeeDto;
 import cot.colabare.profile.domain.ProfileAttachDto;
 import cot.colabare.profile.domain.ProfileDto;
@@ -33,8 +44,17 @@ public class LoginController {
 	private LoginService service;
 	private MasterService m_service;
 	private ProfileService p_service;
+<<<<<<< HEAD
 	private TodoService todoservice;
 
+=======
+	private ApprovalService apservice;
+	private TodoService todoservice;
+	private MeetingBoardService mbservice;
+	
+	
+	
+>>>>>>> colabareV2/Ang
 	@GetMapping("/chklogin")
 	public String chkLogin(HttpServletRequest request) {
 		log.info("/chklogin");
@@ -66,11 +86,16 @@ public class LoginController {
 	}
 
 	@GetMapping("/main")
+<<<<<<< HEAD
 	public void goMain(HttpServletRequest request) {
 
 		HttpSession session = request.getSession();
 		EmployeeDto employee = (EmployeeDto) session.getAttribute("employee");
 		int employee_no = employee.getEmployee_no();
+=======
+	public void goMain(HttpServletRequest request,Model model, MeettingBoardCriteria cri){
+
+>>>>>>> colabareV2/Ang
 
 		ProfileDto profile = p_service.profileDetailService(employee_no);
 		System.out.println(profile.getEmployee_img());
@@ -92,8 +117,24 @@ public class LoginController {
 			request.setAttribute("profilepic", null);
 		}
 		request.setAttribute("profile", profile);
+<<<<<<< HEAD
 
 		log.info("/main.....");
+=======
+		
+
+		//전자결재 리스트
+		model.addAttribute("approval", apservice.receiveList(employee_no));
+		System.out.println("메인페이이지");
+		System.out.println(apservice.receiveList(employee_no));
+		
+		 //todo type 리스트
+        model.addAttribute("typelist", todoservice.getTypeList());
+        
+        // 회의록 리스트
+        model.addAttribute("list", mbservice.meetingBoardList(cri));
+        
+>>>>>>> colabareV2/Ang
 	}
 
 	@GetMapping("/logout")

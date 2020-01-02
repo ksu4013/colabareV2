@@ -37,7 +37,9 @@
                                         <!-- Add event functionality (initialized in js/pages/compCalendar.js) -->
                                         <form>
                                             <div class="input-group">
-                                                <input type="text" id="add-event" name="add-event" class="form-control" placeholder="스케줄 입력">
+
+                                                <input type="text" id="add-event" name="add-event" class="form-control" placeholder="스케줄을 입력하세요.">
+
                                                 <div class="input-group-btn">
                                                     <button type="submit" id="add-event-btn" class="btn btn-effect-ripple btn-primary">일정 추가</button>
                                                 </div>

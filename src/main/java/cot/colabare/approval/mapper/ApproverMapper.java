@@ -21,7 +21,7 @@ public interface ApproverMapper {
 	public ApproverDto approvalNumSelect(Long no);
 	
 	// 내가 받은 결재 목록 
-	public List<ApproverDto> receiveList(Long employee_no);
+	public List<ApproverDto> receiveList(int employee_no);
 	
 	// 반려 
 	public int rejectApver(ApproverDto apverDto);

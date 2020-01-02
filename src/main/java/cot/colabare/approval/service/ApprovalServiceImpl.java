@@ -144,7 +144,7 @@ public class ApprovalServiceImpl implements ApprovalService {
 	}
 
 	@Override
-	public List<ApproverDto> receiveList(Long employee_no) {
+	public List<ApproverDto> receiveList(int employee_no) {
 		return vermapper.receiveList(employee_no);
 	}
 

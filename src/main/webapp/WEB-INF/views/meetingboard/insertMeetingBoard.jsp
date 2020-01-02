@@ -69,11 +69,7 @@
 			
 			
 		</div>
-		
-	</div>
-	
-	
-	<div class="form-group">
+		<div class="form-group">
 				<label class="col-md-3 control-label" for="example-file-multiple-input">파일첨부</label>
 				<div class="col-md-9 uploadDiv">
 					<input type="file" name="uploadFile" multiple>
@@ -84,6 +80,10 @@
 		          </ul>
 		        </div>
 			</div>
+	</div>
+	
+	
+	
 	
 	
 <script>
