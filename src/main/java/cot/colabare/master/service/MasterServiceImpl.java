@@ -142,6 +142,11 @@ public class MasterServiceImpl implements MasterService {
 		}
 	}
 
+	@Override
+	public List<EmplDepPosDto> allEmployeeListService() {
+		return mapper.getEmployee();
+	}
+
 	
 
 }

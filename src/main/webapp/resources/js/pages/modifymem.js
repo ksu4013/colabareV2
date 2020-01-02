@@ -2,7 +2,30 @@ $(document).ready(function(){
 	
 	 
 	 getreqList();
+	 var actionForm = $("#actionForm");
 
+		$(".paginate_button a").on("click", function(e) {
+
+			e.preventDefault();
+
+			console.log('click');
+
+			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+			actionForm.submit();
+		});
+		$("#savefile").on("click", function(e) {
+			
+			$.ajax({
+				url : "/master/excel",
+				type : 'get',
+				success : function(){
+					alert("저장되었습니다.");
+				},
+				error: function(){
+					alert("저장에 실패하였습니다.");
+				}
+			});
+		});
 	    
 	    //요구목록 ajax
 	    function getreqList(){

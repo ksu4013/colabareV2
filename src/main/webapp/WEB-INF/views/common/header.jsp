@@ -171,7 +171,7 @@
                     <!-- Sidebar Brand -->
                     <div id="sidebar-brand" class="themed-background">
                         <a href="/login/main.do" class="sidebar-title">
-                            <i class="fa fa-cube"></i> <span class="sidebar-nav-mini-hide">App<strong>UI</strong></span>
+                           <img src="/resources/img/colabare_white.png" width=30px height=25px> <span class="sidebar-nav-mini-hide"><strong>COLABARE</strong></span>
                         </a>
                     </div>
                     <!-- END Sidebar Brand -->
@@ -264,7 +264,7 @@
                                             <a href="#" class="sidebar-nav-submenu"><i class="fa fa-chevron-left sidebar-nav-indicator"></i>메신저</a>
                                             <ul>
                                                 <li>
-                                                    <a href="page_ready_blank.html">채팅</a>
+                                                    <a href="https://practice-fa542.web.app/">채팅</a>
                                                 </li>
                                                 <li>
                                                     <a href="/video/videochat">화상전화</a>

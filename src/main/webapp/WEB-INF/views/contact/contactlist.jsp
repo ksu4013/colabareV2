@@ -6,7 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<Style>
+.cont {
+ background-color:#D4F4FA;
+ border:1px;
+ border-color:#D9E5FF;
+}
+</Style>
 <%@ include file="../common/header.jsp"%>
 <script type="text/javascript" src="/resources/js/pages/modifymem.js"></script>
 </head>
@@ -19,7 +25,7 @@
 			<div class="block full"></div>
 			<ul class="nav nav-tabs" data-toggle="tabs">
 				<li class="active"><a href="#tickets-list">Employee List</a></li>
-				<li><a href="#tickets-single">Modify Request</a></li>
+				
 			</ul>
 		</div>
 		<!-- END Tickets Title -->
@@ -40,14 +46,14 @@
 							<div class="col-sm-6 hidden-xs">
 								<div class="header-section">
 									<ul class="breadcrumb breadcrumb-top">
-										<li>Extra Pages</li>
-										<li><a href="">Contacts</a></li>
+										<li>Social</li>
+										<li>Contacts</li>
 									</ul>
 								</div>
 							</div>
 						</div>
 						<div class="text-center border-top push-inner-top-bottom">
-							<div id=employeepage class="text-center">
+							<div id="employeepage" class="text-center">
 								<ul class="pagination">
 									<c:if test="${pageMaker.prev}">
 										<li class="paginate_button previous"><a
@@ -67,31 +73,7 @@
 									</c:if>
 								</ul>
 							</div>
-							<div>
-								<form id='actionForm' action="/contact/contactlist" method='get'>
-									<div class="col-md-3">
-										<select name="department_info" id="department_info"
-											class="form-control">
-											<c:forEach var="department" items="${departments }">
-												<c:if test="${department.department_id eq department_id }">
-													<option value="${department.department_id }">${department.department_name }</option>
-												</c:if>
-											</c:forEach>
-											<option value=""
-												<c:out value="${pageMaker.cri.keyword == null?'selected':''}"/>>전체보기</option>
-											<c:forEach var="department" items="${departments }">
-												<option value="${department.department_id }"
-													<c:out value="${pageMaker.cri.keyword == department.department_id?'selected':''}"/>>${department.department_name }</option>
-
-											</c:forEach>
-										</select>
-									</div>
-									<input type='hidden' id='pageNum' name='pageNum'
-										value='${pageMaker.cri.pageNum }'> <input type='text'
-										id='keyword' name='keyword' value='${pageMaker.cri.keyword }'>
-									<button>Search</button>
-								</form>
-							</div>
+							
 						</div>
 						<!-- END Contacts Header -->
 
@@ -102,8 +84,8 @@
 								<div class="col-sm-6 col-md-4 col-lg-3">
 									<a onclick="showModal('${em.employee_no}')"
 										data-target="#modal-add-contact" class="widget"
-										data-toggle="modal">
-										<div class="widget-content text-right clearfix">
+										data-toggle="modal" >
+										<div class="cont widget-content text-right clearfix">
 											<c:if test="${em.profile_pic ==null}">
 												<img
 													src="/resources/img/placeholders/avatars/avatar13@2x.jpg"
@@ -125,97 +107,38 @@
 									</a>
 								</div>
 							</c:forEach>
-
+							
 						</div>
-						<!-- END Contacts Content -->
-						<%-- <div class="block full">
-						<div class="block-title">
-							<h2>사원 목록</h2>
-						</div>
+						<div class="text-center border-top push-inner-top-bottom">
+							<div class="text-center">
+								<form id='actionForm' action="/contact/contactlist" method='get' class="form-inline">
+									<div class="form-group">
+										<select name="department_info" id="department_info"
+											class="form-control">
+											<c:forEach var="department" items="${departments }">
+												<c:if test="${department.department_id eq department_id }">
+													<option value="${department.department_id }">${department.department_name }</option>
+												</c:if>
+											</c:forEach>
+											<option value=""
+												<c:out value="${pageMaker.cri.keyword == null?'selected':''}"/>>전체보기</option>
+											<c:forEach var="department" items="${departments }">
+												<option value="${department.department_id }"
+													<c:out value="${pageMaker.cri.keyword == department.department_id?'selected':''}"/>>${department.department_name }</option>
 
-						<div class="table-responsive">
-							<table id="example-datatable"
-								class="table table-striped table-bordered table-vcenter">
-								<thead>
-									<tr>
-										<th class="text-center" style="width: 180px;">사원번호</th>
-										<th class="text-center" style="width: 120px;">이름</th>
-										<th class="text-center" style="width: 120px;">부서</th>
-										<th class="text-center" style="width: 120px;">직급</th>
-										<th class="text-center">E-Mail</th>
-										<th class="text-center" style="width: 120px;">관리자</th>
-										<th class="text-center" style="width: 75px;"><i
-											class="fa fa-flash"></i></th>
-									</tr>
-								</thead>
-								<tbody id="employeelist">
-									<c:forEach var="em" items="${employeelist }">
-										<tr id="${em.employee_no}">
-											<td class="text-center">${em.employee_no }</td>
-											<td class="text-center">${em.name }</td>
-											<td><span class="label label-danger">${em.department_name }</span></td>
-											<td><span class="label label-danger">${em.position_name }</span></td>
-											<td class="text-center">${em.e_mail }</td>
-											<td class="text-center">${em.master }</td>
-											<td><a
-												href="/master/modifymemform.do?employee_no=${em.employee_no }"
-												data-toggle="tooltip" title="Edit User"
-												class="btn btn-effect-ripple btn-xs btn-success"><i
-													class="fa fa-pencil"></i></a> <a
-												href="/master/deletemem.do?employee_no='${em.employee_no }"
-												data-toggle="tooltip" title="Delete User"
-												class="btn btn-effect-ripple btn-xs btn-danger"><i
-													class="fa fa-times"></i></a></td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-						</div>
-
-
-						<div id=employeepage class="text-center">
-							<ul class="pagination">
-								<c:if test="${pageMaker.prev}">
-									<li class="paginate_button previous"><a
-										href="${pageMaker.startPage -1}">Previous</a></li>
-								</c:if>
-
-								<c:forEach var="num" begin="${pageMaker.startPage}"
-									end="${pageMaker.endPage}">
-									<li class="paginate_button  ${pageMaker.cri.pageNum == num ? "active":""} ">
-										<a href="${num}">${num}</a>
-									</li>
-								</c:forEach>
-
-								<c:if test="${pageMaker.next}">
-									<li class="paginate_button next"><a
-										href="${pageMaker.endPage +1 }">Next</a></li>
-								</c:if>
-							</ul>
-						</div>
-						<div>
-							<form id='actionForm' action="/master/listmember" method='get'>
-								<select name="department_info" id="department_info"
-									class="form-control">
-									<c:forEach var="department" items="${departments }">
-										<c:if test="${department.department_id eq department_id }">
-											<option value="${department.department_id }">${department.department_name }</option>
-										</c:if>
-									</c:forEach>
-									<option value=""
-										<c:out value="${pageMaker.cri.keyword == null?'selected':''}"/>>전체보기</option>
-									<c:forEach var="department" items="${departments }">
-										<option value="${department.department_id }"
-											<c:out value="${pageMaker.cri.keyword == department.department_id?'selected':''}"/>>${department.department_name }</option>
-
-									</c:forEach>
-								</select> <input type='hidden' id='pageNum' name='pageNum'
-									value='${pageMaker.cri.pageNum }'> <input type='text'
-									id='keyword' name='keyword' value='${pageMaker.cri.keyword }'>
-								<button>Search</button>
-							</form>
-						</div> --%>
+											</c:forEach>
+										</select>
+									</div>
+									<div class="form-group">
+									<input type='hidden' id='pageNum' name='pageNum'
+										value='${pageMaker.cri.pageNum }'> <input type='text'
+										id='keyword' name='keyword' value='${pageMaker.cri.keyword }'>
+									<button>Search</button></div>
+								</form>
+							</div>
 					</div>
+					</div>
+					
 				</div>
 			</div>
 			<!-- END Tickets List -->
@@ -223,15 +146,9 @@
 			<!-- Ticket View -->
 			<div class="tab-pane" id="tickets-single">
 				<div class="alert alert-success animation-fadeInQuick">
-					<strong>수정 요청 목록</strong>
+					<strong>즐겨찾기 목록</strong>
 				</div>
-				<a href="javascript:void(0)"
-					class="btn btn-xs btn-default pull-right"><i
-					class="fa fa-check"></i> Flag as Closed</a> <a
-					href="javascript:void(0)" class="btn btn-xs btn-danger"><i
-					class="fa fa-flag"></i> Flag as Urgent</a> <a href="javascript:void(0)"
-					class="btn btn-xs btn-warning"><i class="fa fa-flag"></i> Flag
-					as Invalid</a>
+				
 				<hr>
 				<ul class="media-list media-feed push" id="requestlist">
 					<!-- Ticket -->
@@ -307,7 +224,7 @@
 	        html+='<h3 class="widget-heading"><i class="gi gi-heart text-danger push"></i> <br><small><strong>'+em.department_name +'</strong> </small></h3></div>';
 	        html+='<div class="col-xs-6 push-inner-top-bottom"><h3 class="widget-heading"><i class="gi gi-group themed-color-social push"></i> <br><small><strong>'+em.position_name+'</strong></small></h3>';
 	        html+='</div></div></div><div class="widget-content border-bottom"><h4>인사말</h4> <p>'+em.employee_greeting+'</p></div>';    
-	        html+='<div class="widget-content"><h4>Social</h4><div class="btn-group"> <a href="/mail/mailform?to='+em.e_mail+'" class="btn btn-default" data-toggle="tooltip" title="E-mail"><i class="fa fa-message fa-fw"></i></a>';
+	        html+='<div class="widget-content"><h4>Social</h4><div class="btn-group"> <a href="/mail/mailform?to='+em.e_mail+'" class="btn btn-default" data-toggle="tooltip" title="E-mail"><i class="fa fa-envelope"></i></a>';
 	        html+='</div></div></div>';
 	        
 			

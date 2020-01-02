@@ -27,9 +27,8 @@
                                 <div class="col-sm-6 hidden-xs">
                                     <div class="header-section">
                                         <ul class="breadcrumb breadcrumb-top">
-                                            <li>User Interface</li>
-                                            <li>Forms</li>
-                                            <li><a href="">Validation</a></li>
+                                            <li>Profile</li>
+                                            <li>Profile Modify</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -44,7 +43,7 @@
                                 <div class="block">
                                     <!-- Form Validation Title -->
                                     <div class="block-title">
-                                        <h2>Example Form</h2>
+                                        <h2>Profile Modify Form</h2>
                                     </div>
                                     <!-- END Form Validation Title -->
 
@@ -60,7 +59,7 @@
 
                                         <div class="form-group form-actions">
                                             <div class="col-md-8 col-md-offset-3">
-                                               <input type="button" value="인사말 수정" id="greetingbtn">
+                                               <input type="button" value="인사말 수정" id="greetingbtn" class="btn btn-primary">
                                                 <!-- <button type="reset" class="btn btn-effect-ripple btn-danger">Reset</button> -->
                                             </div>
                                         </div>
@@ -75,7 +74,7 @@
                                         </div>
                                         <div class="form-group form-actions">
                                             <div class="col-md-8 col-md-offset-3">
-                                               <input type="button" value="비밀번호 변경" id="passbtn">
+                                               <input type="button" value="비밀번호 변경" id="passbtn" class="btn btn-primary">
                                                 <!-- <button type="reset" class="btn btn-effect-ripple btn-danger">Reset</button> -->
                                             </div>
                                         </div>
@@ -91,7 +90,7 @@
 
                                         <div class="form-group form-actions">
                                             <div class="col-md-8 col-md-offset-3">
-                                               <input type="button" value="보내기" id="modifybtn">
+                                               <input type="button" value="보내기" id="modifybtn" class="btn btn-primary">
                                                 <!-- <button type="reset" class="btn btn-effect-ripple btn-danger">Reset</button> -->
                                             </div>
                                         </div>

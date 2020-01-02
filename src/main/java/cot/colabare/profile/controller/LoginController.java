@@ -79,15 +79,40 @@ public class LoginController {
 	
 	@GetMapping("/main")
 	public void goMain(HttpServletRequest request,Model model){
-		log.info("/main.....");
-		//전자결재 리스트
+
+
 		HttpSession session=request.getSession();
-		Long employee_no = Integer.parseInt((String)session.getAttribute("employee_no"));
+		EmployeeDto employee=(EmployeeDto)session.getAttribute("employee");
+		int employee_no=employee.getEmployee_no();
+		
+		ProfileDto profile=p_service.profileDetailService(employee_no);
+		System.out.println(profile.getEmployee_img());
+		request.setAttribute("profilepic", null);
+		if(profile==null){
+			p_service.insertProfileService(employee_no);
+			profile=p_service.profileDetailService(employee_no);
+		}
+		if(profile.getEmployee_greeting()==null) {
+			profile.setEmployee_greeting("안녕하세요! "+employee.getName()+"입니다.");
+		}
+		
+		if(profile.getEmployee_img()!=null){
+			ProfileAttachDto profilepic=p_service.selectProfilePicService(profile.getEmployee_img());
+			String fileCallPath =  profilepic.getP_uploadPath()+ "/s_"+profilepic.getP_uuid() +"_"+profilepic.getP_fileName();
+			request.setAttribute("profilepic", fileCallPath);
+		}else{
+			request.setAttribute("profilepic", null);
+		}
+		request.setAttribute("profile", profile);
+		
+
+		//전자결재 리스트
+		//Long employee_no = Integer.parseInt((String)session.getAttribute("employee_no"));
 		
 		
 		
 		List<ApproverDto> aplist = new ArrayList<ApproverDto>();
-		aplist = apservice.receiveList(employee_no);
+		//aplist = apservice.receiveList(employee_no);
 		model.addAttribute("approval", aplist);
 
 		
