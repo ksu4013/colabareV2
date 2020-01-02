@@ -113,26 +113,24 @@
 				<div class="widget-content widget-content-full"></div>
 			</div>
 
-			<!-- 참조자  -->
-			<div class="widget">
-				<div
-					class="widget-content widget-content-mini border-bottom themed-background-dark text-light-op">
-					<span class="pull-right text-muted">5 People</span> 유진이의 To Do
-				</div>
+			
+         <!-- 참조자  -->
+         <div class="widget">
+            <div
+               class="widget-content widget-content-mini border-bottom themed-background-dark text-light-op">
+               <span class="pull-right text-muted">5 People</span> 유진이의 To Do
+            </div>
 
-				<div class="widget-content widget-content-full">
-					<h1>하</h1>
-					<h1>하</h1>
-					<h1>하</h1>
-					<h1>하</h1>
-					<h1>하</h1>
-					<h1>하</h1>
-				</div>
-			</div>
+            <div class="widget-content widget-content-full">
+               <c:forEach var="todotype" items="${typelist }">
+               <h1><i class="fa fa-book fa-fw icon-push"></i> <strong><a href="todolist?todo_type_no=${todotype.todo_type_no }">${todotype.todo_type_title }</strong></h1>
+               </c:forEach>
+            </div>
+         </div>
 
 
-		</div>
-	</div>
+      </div>
+   </div>
 </div>
 
 

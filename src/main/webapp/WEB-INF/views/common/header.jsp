@@ -209,7 +209,7 @@
                                                     <a href="/todo/typelist">To-do Type</a>
                                                 </li>
                                                 <li>
-                                                    <a href="/todo/typelist">Calendar</a>
+                                                    <a href="/calendar/calendarform2">Calendar</a>
                                                 </li>
                                             </ul>
                                         </li>
