@@ -237,7 +237,8 @@
                                             <ul>
                                                 <li>
 
-                                                     <a href="/document/documentList">결재목록</a>
+                                                     <a href="/document/documentList">문서목록</a>
+                                                     <a href="/document/approvalList?employee_no=${employee.employee_no }">결재목록</a>
 
                                                 </li>
                                             </ul>

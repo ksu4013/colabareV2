@@ -33,8 +33,9 @@
                             <td>
                             	<strong><a class='move' href='<c:out value="${meetingBoard.board_no}"/>'>
                             				<c:out value="${meetingBoard.title }" /><b> [  <c:out value="${meetingBoard.replyCnt}" />  ]</b>
-                            </a>
-                            <%-- <a href="detail.do?board_no=${meetingBoard.board_no }">${meetingBoard.title }</a> --%></strong></td>
+                            			</a>
+                            	</strong>
+                            </td>
                             
                             
                             <td>${meetingBoard.name }</td>

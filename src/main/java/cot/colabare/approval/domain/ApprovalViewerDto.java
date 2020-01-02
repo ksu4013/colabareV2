@@ -11,4 +11,11 @@ public class ApprovalViewerDto {
 	
 	private String name;
 	private String department_name;
+	
+	private String dtitle; 
+	private String write_date;
+	private   Long document_no;
+	private String title;
+	
+	
 }

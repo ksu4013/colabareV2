@@ -25,13 +25,10 @@ public class DocumentListController {
 	
 	// 내가보낸 결재문서 목록
 	@GetMapping("/approvalList")
-	public void sentList(ApprovalCriteria cri, Model model, @RequestParam(value="employee_no") Long employee_no){
+	public void sentList( Model model, @RequestParam(value="employee_no") Long employee_no){
 		
-		model.addAttribute("list", service.sentList(employee_no, cri));
+		model.addAttribute("list", service.sentList(employee_no));
 		
-		int total = service.getTotalCount(cri);
-		
-		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}
 	
 	// 문서 목록 페이지 이동
@@ -41,6 +38,80 @@ public class DocumentListController {
 		System.out.println("문서목록으로 이동");
 		
 	}
+	
+	@GetMapping("/detailReceive")
+	public void detailReceive(@RequestParam("approval_no") Long approval_no, Model model){
+		
+		model.addAttribute("detailReceive", service.detailReceive(approval_no));
+	}
+	
+	@GetMapping("/detailDoc22")
+	public void detailDoc22(@RequestParam("approval_no") Long approval_no, Model model){
+		
+		model.addAttribute("detailReceive", service.detailReceive(approval_no));
+	}
+	@GetMapping("/detailDocV22")
+	public void detailDocV22(@RequestParam("approval_no") Long approval_no, Model model){
+		
+		model.addAttribute("detailReceive", service.detailReceive(approval_no));
+	}
+	@GetMapping("/detailDocV41")
+	public void detailDocV41(@RequestParam("approval_no") Long approval_no, Model model){
+		
+		model.addAttribute("detailReceive", service.detailReceive(approval_no));
+	}
+	@GetMapping("/detailDoc41")
+	public void detailDoc41(@RequestParam("approval_no") Long approval_no, Model model){
+		
+		model.addAttribute("detailReceive", service.detailReceive(approval_no));
+	}
+	@GetMapping("/detailDoc42")
+	public void detailDoc42(@RequestParam("approval_no") Long approval_no, Model model){
+		
+		model.addAttribute("detailReceive", service.detailReceive(approval_no));
+	}
+	@GetMapping("/detailDoc61")
+	public void detailDo61(@RequestParam("approval_no") Long approval_no, Model model){
+		
+		model.addAttribute("detailReceive", service.detailReceive(approval_no));
+	}
+	@GetMapping("/detailDocV61")
+	public void detailDocV61(@RequestParam("approval_no") Long approval_no, Model model){
+		
+		model.addAttribute("detailReceive", service.detailReceive(approval_no));
+	}
+	
+	@GetMapping("/detailDoc62")
+	public void detailDoc62(@RequestParam("approval_no") Long approval_no, Model model){
+		
+		model.addAttribute("detailReceive", service.detailReceive(approval_no));
+	}
+	@GetMapping("/detailDoc63")
+	public void detailDoc63(@RequestParam("approval_no") Long approval_no, Model model){
+		
+		model.addAttribute("detailReceive", service.detailReceive(approval_no));
+	}
+	@GetMapping("/detailDoc64")
+	public void detailDoc64(@RequestParam("approval_no") Long approval_no, Model model){
+		
+		model.addAttribute("detailReceive", service.detailReceive(approval_no));
+	}
+	@GetMapping("/detailDoc65")
+	public void detailDoc65(@RequestParam("approval_no") Long approval_no, Model model){
+		
+		model.addAttribute("detailReceive", service.detailReceive(approval_no));
+	}
+	@GetMapping("/detailDoc66")
+	public void detailDoc66(@RequestParam("approval_no") Long approval_no, Model model){
+		
+		model.addAttribute("detailReceive", service.detailReceive(approval_no));
+	}
+	@GetMapping("/detailDoc81")
+	public void detailDoc81(@RequestParam("approval_no") Long approval_no, Model model){
+		
+		model.addAttribute("detailReceive", service.detailReceive(approval_no));
+	}
+	
 	@GetMapping("example1")
 	public void example1(){
 		

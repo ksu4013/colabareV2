@@ -5,25 +5,7 @@
   
 <mapper namespace="cot.colabare.approval.mapper.ApprovalMapper">
 
-	<sql id="criteria">
-		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
-			<foreach item='type' collection="typeArr">
-				<trim prefix="OR">
-					<choose>
-						<when test="type == 'T'.toString()">
-							title like '%'||#{keyword}||'%'
-						</when>
-						<when test="type == 'C'.toString()">
-							content like '%'||#{keyword}||'%'
-						</when>
-						<when test="type == 'W'.toString()">
-							name like '%'||#{keyword}||'%'
-						</when>
-					</choose>
-				</trim>
-			</foreach>
-		</trim>
-	</sql>
+	
 	
 	<insert id="insertApproval" >
 		insert into approval
@@ -36,36 +18,50 @@
 	
 		      
 	<select id="sentList" resultType="cot.colabare.approval.domain.ApprovalDto">
-		<![CDATA[
-	select 
-		  b.approval_no, b.employee_no, b.department_id, b.document_no, b.title,  b.write_date, b.name, b.dtitle
-		  from 
-		      (
-		      select /*+INDEX_DESC(approval a.approval_pk) */
-		       rownum rn, a.approval_no, a.employee_no, a.department_id, a.document_no, a.title,  a.write_date, e.name, d.dtitle
-		     from approval a, employee e, document d 
-		     where a.employee_no = e.employee_no and a.document_no = d.document_no  
-				and  a.employee_no = #{employee_no} and 
-				
-				 ]]>
-			 <include refid="criteria"></include> 
-		      
-		  <![CDATA[    
-		      rownum <= #{pageNum} * #{amount}
-		     
-		      ) b
-		       where b.rn > (#{pageNum} -1) * #{amount}
-		  ]]>
+		select a.approval_no, a.employee_no, a.department_id, a.document_no, a.title,  a.write_date, e.name, d.dtitle    
+			from approval a, employee e, document d 
+				where a.employee_no = e.employee_no and a.document_no = d.document_no  
+						and  a.employee_no = #{employee_no}
+		
 	</select>
 	
-	 <select id="getTotalCount" resultType="int">
-		  select count(*) from approval where 
+	<select id="detailReceive" resultType="cot.colabare.approval.domain.ApprovalDto">
+	select a.approval_no, a.employee_no, a.department_id, a.document_no, a.title, a.content, a.write_date, a.content2, a.content3, a.content4, 
+          a.content5, a.content6, a.content7, a.content8, a.content9, a.content10, d.department_name, e.name
+		from approval a, department d, employee e
+		where  a.department_id = d.department_id and a.employee_no = e.employee_no
+            and a.approval_no = #{approval_no}
+	</select>
+	
+	<select id="rejectList" resultType="cot.colabare.approval.domain.ApprovalDto">
+		select a.approval_no, a.employee_no, a.document_no, a.title, a.write_date, d.dtitle, r.approval_active, e.name
+			from approval a, document d, approver r, employee e
+			where a.approval_no = r.approval_no and a.document_no = d.document_no and a.employee_no = e.employee_no and r.approval_active = 'n' and a.employee_no = #{employee_no}
+	</select>
+	
+	<select id="doneList" resultType="cot.colabare.approval.domain.ApprovalDto">
+		select a.approval_no, a.employee_no, a.document_no, a.title, a.write_date, d.dtitle, e.name
+			from approval a, document d, approver p, employee e
+			where a.document_no = d.document_no and p.approval_no = a.approval_no and a.employee_no = e.employee_no
+					and p.approval_active = 'y' and p.employee_no = #{employee_no}
+	</select>
+	
+	<!-- <select id="detailReceive" resultType="cot.colabare.approval.domain.ApprovalDto">
+	select a.approval_no, a.employee_no, a.department_id, a.document_no, a.title, a.content, a.write_date, a.content2, a.content3, a.content4, a.content5, a.content6, 
+			a.content7, a.content8, a.content9, a.content10, d.department_name, r.employee_no, r.approval_active, r.approval_level, r.approval_date, r.approvercnt, e.name
+		from approval a, approver r, department d, employee e
+		where a.approval_no = r.approval_no and a.department_id = d.department_id and a.employee_no = e.employee_no
+            	  and a.approval_no = #{approval_no} and r.employee_no = #{employee_no}
+	</select> -->
+	
+	<!--  <select id="getTotalCount" resultType="int">
+		  select count(*) from approval a, employee e where  a.employee_no = e.employee_no and
 		  
 		    <include refid="criteria"></include> 
 		    
-		  approval_no > 0  and active = 'y'
+		  a.approval_no > 0  and a.active = 'y'and a.employee_no = #{employee_no}
 	  
-	  </select>
+	  </select> -->
 	
 	
 	

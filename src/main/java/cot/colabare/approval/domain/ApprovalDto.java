@@ -29,4 +29,8 @@ public class ApprovalDto {
 	private String name;				// 사원명
 	private String department_name;		// 부서명
 	private String dtitle;				// 문서 제목
+	private   char approval_active;
+	private String approval_date;
+	private    int approvercnt;
+	
 }

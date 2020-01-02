@@ -29,20 +29,16 @@
             
            <!-- Table Styles Block -->
         <div class="block">
-			<button id='regBtn' type="button" class="btn btn-effect-ripple btn-primary" style="overflow: hidden; position: right;">
+			<!-- <button id='regBtn' type="button" class="btn btn-effect-ripple btn-primary" style="overflow: hidden; position: right;">
 					<span class="btn-ripple animate" style="height: 75px; width: 75px; top: -29.5px; left: -14.5px;"></span>글쓰기
-			</button><br><br>
+			</button> --><br><br>
             <!-- Table Styles Content -->
             <div class="table-responsive">
-               <a href="/document/approvalList?employee_no=${employee.employee_no }">결재목록 가기</a><br>
-               <a href="/document/example1">기본폼</a>
                 <table id="general-table" class="table table-striped table-bordered table-vcenter table-hover">
 					<thead>
 						<tr>
 							<th style="width: 80px;" class="text-center"><label class="csscheckbox csscheckbox-primary"><input type="checkbox"><span></span></label></th>
-							<th>Name</th>
-							<th>Email</th>
-							<th style="width: 320px;">Progress</th>
+							<th>문서 이름</th>
 							<th style="width: 120px;" class="text-center"><i class="fa fa-flash"></i></th>
 						</tr>
 					</thead>
@@ -50,12 +46,6 @@
 						<tr>
 							<td class="text-center"><label class="csscheckbox csscheckbox-primary"><input type="checkbox"><span></span></label></td>
 							<td><strong><a href="/document/document1">일반 기안서</a></strong></td>
-							<td>gabriel.morris@example.com</td>
-							<td>
-							<div class="progress progress-mini active remove-margin">
-							<div class="progress-bar progress-bar-striped progress-bar-danger" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%"></div>
-							</div>
-							</td>
 							<td class="text-center">
 							<a href="javascript:void(0)" data-toggle="tooltip" title="Edit User" class="btn btn-effect-ripple btn-sm btn-success"><i class="fa fa-pencil"></i></a>
 							<a href="javascript:void(0)" data-toggle="tooltip" title="Delete User" class="btn btn-effect-ripple btn-sm btn-danger"><i class="fa fa-times"></i></a>
@@ -64,12 +54,6 @@
 						<tr>
 							<td class="text-center"><label class="csscheckbox csscheckbox-primary"><input type="checkbox"><span></span></label></td>
 							<td><strong><a href="/document/document2">명함신청서</strong></td>
-							<td>ellis.thompson@example.com</td>
-							<td>
-							<div class="progress progress-mini active remove-margin">
-							<div class="progress-bar progress-bar-striped progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%"></div>
-							</div>
-							</td>
 							<td class="text-center">
 							<a href="javascript:void(0)" data-toggle="tooltip" title="Edit User" class="btn btn-effect-ripple btn-sm btn-success"><i class="fa fa-pencil"></i></a>
 							<a href="javascript:void(0)" data-toggle="tooltip" title="Delete User" class="btn btn-effect-ripple btn-sm btn-danger"><i class="fa fa-times"></i></a>
@@ -78,12 +62,6 @@
 						<tr>
 							<td class="text-center"><label class="csscheckbox csscheckbox-primary"><input type="checkbox"><span></span></label></td>
 							<td><strong><a href="/document/document3">퇴직신청서</strong></td>
-							<td>reece.bell@example.com</td>
-							<td>
-							<div class="progress progress-mini active remove-margin">
-							<div class="progress-bar progress-bar-striped progress-bar-success" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 95%"></div>
-							</div>
-							</td>
 							<td class="text-center">
 							<a href="javascript:void(0)" data-toggle="tooltip" title="Edit User" class="btn btn-effect-ripple btn-sm btn-success"><i class="fa fa-pencil"></i></a>
 							<a href="javascript:void(0)" data-toggle="tooltip" title="Delete User" class="btn btn-effect-ripple btn-sm btn-danger"><i class="fa fa-times"></i></a>
@@ -92,12 +70,6 @@
 						<tr>
 							<td class="text-center"><label class="csscheckbox csscheckbox-primary"><input type="checkbox"><span></span></label></td>
 							<td><strong><a href="/document/document4">품질보고서</strong></td>
-							<td>user4@example.com</td>
-							<td>
-							<div class="progress progress-mini active remove-margin">
-							<div class="progress-bar progress-bar-striped progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%"></div>
-							</div>
-							</td>
 							<td class="text-center">
 							<a href="javascript:void(0)" data-toggle="tooltip" title="Edit User" class="btn btn-effect-ripple btn-sm btn-success"><i class="fa fa-pencil"></i></a>
 							<a href="javascript:void(0)" data-toggle="tooltip" title="Delete User" class="btn btn-effect-ripple btn-sm btn-danger"><i class="fa fa-times"></i></a>
@@ -106,12 +78,6 @@
 						<tr>
 							<td class="text-center"><label class="csscheckbox csscheckbox-primary"><input type="checkbox"><span></span></label></td>
 							<td><strong><a href="/document/document5">교통비지출신청서</strong></td>
-							<td>alfie.harrison@example.com</td>
-							<td>
-							<div class="progress progress-mini active remove-margin">
-							<div class="progress-bar progress-bar-striped progress-bar-danger" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%"></div>
-							</div>
-							</td>
 							<td class="text-center">
 							<a href="javascript:void(0)" data-toggle="tooltip" title="Edit User" class="btn btn-effect-ripple btn-sm btn-success"><i class="fa fa-pencil"></i></a>
 							<a href="javascript:void(0)" data-toggle="tooltip" title="Delete User" class="btn btn-effect-ripple btn-sm btn-danger"><i class="fa fa-times"></i></a>
@@ -120,12 +86,6 @@
 						<tr>
 							<td class="text-center"><label class="csscheckbox csscheckbox-primary"><input type="checkbox"><span></span></label></td>
 							<td><strong><a href="/document/document6">경조비지급신청서</strong></td>
-							<td>finley.hunt@example.com</td>
-							<td>
-							<div class="progress progress-mini active remove-margin">
-							<div class="progress-bar progress-bar-striped progress-bar-warning" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" style="width: 55%"></div>
-							</div>
-							</td>
 							<td class="text-center">
 							<a href="javascript:void(0)" data-toggle="tooltip" title="Edit User" class="btn btn-effect-ripple btn-sm btn-success"><i class="fa fa-pencil"></i></a>
 							<a href="javascript:void(0)" data-toggle="tooltip" title="Delete User" class="btn btn-effect-ripple btn-sm btn-danger"><i class="fa fa-times"></i></a>
@@ -134,12 +94,6 @@
 						<tr>
 							<td class="text-center"><label class="csscheckbox csscheckbox-primary"><input type="checkbox"><span></span></label></td>
 							<td><strong><a href="/document/document7">사직신청서</strong></td>
-							<td>oliver.watson@example.com</td>
-							<td>
-							<div class="progress progress-mini active remove-margin">
-							<div class="progress-bar progress-bar-striped progress-bar-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%"></div>
-							</div>
-							</td>
 							<td class="text-center">
 							<a href="javascript:void(0)" data-toggle="tooltip" title="Edit User" class="btn btn-effect-ripple btn-sm btn-success"><i class="fa fa-pencil"></i></a>
 							<a href="javascript:void(0)" data-toggle="tooltip" title="Delete User" class="btn btn-effect-ripple btn-sm btn-danger"><i class="fa fa-times"></i></a>
@@ -148,12 +102,6 @@
 						<tr>
 							<td class="text-center"><label class="csscheckbox csscheckbox-primary"><input type="checkbox"><span></span></label></td>
 							<td><strong><a href="/document/document8">결근사유서</strong></td>
-							<td>maddison.reid@example.com</td>
-							<td>
-							<div class="progress progress-mini active remove-margin">
-							<div class="progress-bar progress-bar-striped progress-bar-success" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
-							</div>
-							</td>
 							<td class="text-center">
 							<a href="javascript:void(0)" data-toggle="tooltip" title="Edit User" class="btn btn-effect-ripple btn-sm btn-success"><i class="fa fa-pencil"></i></a>
 							<a href="javascript:void(0)" data-toggle="tooltip" title="Delete User" class="btn btn-effect-ripple btn-sm btn-danger"><i class="fa fa-times"></i></a>
@@ -162,12 +110,6 @@
 						<tr>
 							<td class="text-center"><label class="csscheckbox csscheckbox-primary"><input type="checkbox"><span></span></label></td>
 							<td><strong><a href="/document/document9">프로젝트 업무보고</strong></td>
-							<td>katie.ward@example.com</td>
-							<td>
-							<div class="progress progress-mini active remove-margin">
-							<div class="progress-bar progress-bar-striped progress-bar-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
-							</div>
-							</td>
 							<td class="text-center">
 								<a href="javascript:void(0)" data-toggle="tooltip" title="Edit User" class="btn btn-effect-ripple btn-sm btn-success"><i class="fa fa-pencil"></i></a>
 								<a href="javascript:void(0)" data-toggle="tooltip" title="Delete User" class="btn btn-effect-ripple btn-sm btn-danger"><i class="fa fa-times"></i></a>
@@ -176,12 +118,6 @@
 						<tr>
 							<td class="text-center"><label class="csscheckbox csscheckbox-primary"><input type="checkbox"><span></span></label></td>
 							<td><strong><a href="/document/document10">채용계획서</strong></td>
-							<td>aidan.powell@example.com</td>
-							<td>
-							<div class="progress progress-mini active remove-margin">
-							<div class="progress-bar progress-bar-striped progress-bar-warning" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%"></div>
-							</div>
-							</td>
 							<td class="text-center">
 							<a href="javascript:void(0)" data-toggle="tooltip" title="Edit User" class="btn btn-effect-ripple btn-sm btn-success"><i class="fa fa-pencil"></i></a>
 							<a href="javascript:void(0)" data-toggle="tooltip" title="Delete User" class="btn btn-effect-ripple btn-sm btn-danger"><i class="fa fa-times"></i></a>

@@ -155,7 +155,7 @@
                          <div class="form-group">
                          	<div class="col-xs-6">
                                 <input type="hidden" name = "board_no"    value ="${meetingBoard.board_no }">
-								<input type="hidden" name = "employee_no" value ="${meetingBoard.employee_no }" >
+								<input type="hidden" name = "employee_no" value ="${employee.employee_no }" >
                          	</div>
                          </div>
                          
@@ -325,7 +325,6 @@
 		        	str += "         <p>" + list[i].content + "</p>";
 		        	str += '		 <button type="button" class="btn btn-rounded btn-primary" id = "updateFormReply" value = "' + list[i].reply_no + '">수정</button>';
 		        	str += '		 <button type="button" class="btn btn-rounded btn-info"    id = "deleteReply"     value = "' + list[i].reply_no + '">삭제</button>';
-		        	str += '		 <button type="button" class="btn btn-rounded btn-default" id = "commentReply"    value = "' + list[i].reply_no + '">대댓</button>';
 		        	str += "     </div>";
 		        	str += "</li>";
 		        	
@@ -398,7 +397,7 @@
 	        showList(pageNum);
 	      }); 
 	    
-	    var employee_no = '<c:out value="${meetingBoard.employee_no}"/>';
+	    var employee_no = '<c:out value="${employee.employee_no}"/>';
 	    
 	    
 	    // 댓글 삽입

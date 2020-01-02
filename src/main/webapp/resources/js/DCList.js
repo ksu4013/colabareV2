@@ -171,7 +171,55 @@ var DCService = (function(){
 		});
 	}
 
+	// 반려
+	function reject(rejectD, callback, error){
+		
+		$.ajax({
+			   type : 'put',
+				url : '/approval/reject/' + rejectD.employee_no + '/' + rejectD.approval_no,
+			   data : JSON.stringify(rejectD),
+		contentType : "application/json; charset=utf-8",
+			success : function(result, status, xhr){
+							if(callback){
+								callback(result);
+							}
+						},
+			  error : function(xhr, status, er){
+							if(error){
+								error(er);
+							}
+						}
+	});
+		
+	}
 	
+	
+	// 결재 버튼
+	function pass(passD, callback, error){
+		
+		$.ajax({
+			   type : 'put',
+				url : '/approval/pass/' + passD.employee_no + '/' + passD.approval_no,
+			   data : JSON.stringify(passD),
+		contentType : "application/json; charset=utf-8",
+			success : function(result, status, xhr){
+							if(callback){
+								callback(result);
+							}
+						},
+			  error : function(xhr, status, er){
+							if(error){
+								error(er);
+							}
+						}
+		
+		
+	});
+		
+		
+		
+		
+	}
 
 	
 	
@@ -192,13 +240,15 @@ var DCService = (function(){
 	
 	
 	
-	return{         addDoc : addDoc,
-		       addApprover : addApprover,
-		      approverList : approverList,
-		    approverRemove : approverRemove,
-		    addApproval : addApproval,
-		    approvalVList : approvalVList,
-		    approvalVRemove : approvalVRemove
+	return{          addDoc : addDoc,
+		        addApprover : addApprover,
+		       approverList : approverList,
+		     approverRemove : approverRemove,
+		        addApproval : addApproval,
+		      approvalVList : approvalVList,
+		    approvalVRemove : approvalVRemove,
+		             reject : reject,
+		               pass : pass
 		    
 	};
 	

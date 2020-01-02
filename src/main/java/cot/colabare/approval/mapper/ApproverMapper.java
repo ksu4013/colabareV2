@@ -19,4 +19,16 @@ public interface ApproverMapper {
 	
 	// 해당 결재자 문서번호
 	public ApproverDto approvalNumSelect(Long no);
+	
+	// 내가 받은 결재 목록 
+	public List<ApproverDto> receiveList(Long employee_no);
+	
+	// 반려 
+	public int rejectApver(ApproverDto apverDto);
+	
+	// 결재 
+	public int passApver(ApproverDto apverDto);
+
+	// 최종 결재 완료
+	public String realDoneApver(Long approval_no);
 }

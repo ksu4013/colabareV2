@@ -15,5 +15,9 @@ public class ApproverDto {
 	
 	private String name;
 	private String department_name;
+	private   Long document_no;
+	private String title;
+	private String write_date;
+	private String dtitle;
 
 }
