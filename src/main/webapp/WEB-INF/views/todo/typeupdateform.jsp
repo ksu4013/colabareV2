@@ -13,7 +13,7 @@
 		<form action="modifyType" method="post" id="formType">
 			<input type="hidden" name="todo_type_no" value="${type.todo_type_no }">
 		제목:<input type="text" name="todo_type_title" value="${type.todo_type_title }"><br>
-		내용:<input type="text" name="todo_type_contents" value="${type.todo_type_contents }"><br>
+		내용:<input type="hidden" name="todo_type_contents" value="${type.todo_type_contents }"><br>
 	
 		<br>	
 		<button type="button" value="수정" id="updateBtn" >수정</button>
