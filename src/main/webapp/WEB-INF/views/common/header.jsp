@@ -267,7 +267,7 @@
                                                     <a href="https://practice-fa542.web.app/">채팅</a>
                                                 </li>
                                                 <li>
-                                                    <a href="/video/videochat">화상전화</a>
+                                                    <a href="http://localhost:3000/">화상전화</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -329,13 +329,7 @@
                     <!-- END Wrapper for scrolling functionality -->
 
                     <!-- Sidebar Extra Info -->
-                    <div id="sidebar-extra-info" class="sidebar-content sidebar-nav-mini-hide">
-                        <div class="text-center">
-                            <small>Crafted with <i class="fa fa-heart text-danger"></i> by <a href="https://1.envato.market/ydb" target="_blank">pixelcave</a></small><br>
-                            <small><span id="year-copy"></span> &copy; <a href="https://1.envato.market/DXa" target="_blank">AppUI 2.9</a></small>
-                        </div>
-                    </div>
-                    <!-- END Sidebar Extra Info -->
+                    
                 </div>
                 <!-- END Main Sidebar -->
 
@@ -407,12 +401,7 @@
                                         </a>
                                     </li>
                                     
-                                    <li>
-                                        <a href="page_ready_lock_screen.html">
-                                            <i class="gi gi-lock fa-fw pull-right"></i>
-                                            Lock Account
-                                        </a>
-                                    </li>
+                              
                                     <li>
                                             <a href="javascript:logoutform.submit();">
                                             <form action="/login/logout" method="post" name="logoutform">
