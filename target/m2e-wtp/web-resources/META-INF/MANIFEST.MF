@@ -1,9 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: maius
-=======
-Built-By: maeng
->>>>>>> colabareV2/jisoo
 Build-Jdk: 1.8.0_45
 Created-By: Maven Integration for Eclipse
 
