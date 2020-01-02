@@ -170,15 +170,7 @@ $(document).ready(function(e){
 				output += '<span class="label label-success nav-users-indicator">' + (index+1) + '</span>';
 				output += '<span class="nav-users-heading">' + list.name + '</span>';
 				output += '<span class="text-muted">' + list.department_name + '</span>';
-				if(list.approval_active == 'a' && list.employee_no == employee_no){
-					output += "&nbsp;&nbsp;&nbsp;<button type='button' class='btn btn-effect-ripple btn-xs btn-info' data-toggle='tooltip' >결재중</button></a>";
-				}
-				if(list.approval_active == 'y'){
-					output += "&nbsp;&nbsp;&nbsp;<button type='button' class='btn btn-effect-ripple btn-xs btn-info' data-toggle='tooltip' >결재완료</button></a>";	
-				}
-				if(list.approval_active == 'n'){
-					output += "&nbsp;&nbsp;&nbsp;<button type='button' class='btn btn-effect-ripple btn-xs btn-danger' data-toggle='tooltip' >반려</button></a>";
-				}
+				output += "<button type='button' id='aListRemove' value='"+ list.no +"' class='btn btn-effect-ripple btn-xs btn-danger' data-toggle='tooltip' title='삭제하기'><i id='appNo' value='"+ approval_no +"'  class='fa fa-share'></i></button></a>";
 				output += '</li>';
 			
 			$("#aList").html(output);
