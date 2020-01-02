@@ -5,194 +5,177 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/js/vendor/jquery-3.3.1.min.js"></script>
-<!-- <script type="text/javascript" src="/WEB-INF/views/poll/source/poll_listformsource.js"></script>
-<link rel="stylesheet" href="/WEB-INF/views/poll/css/polllistcsss.css" type="text/css"> -->
 </head>
 <body>
 <%@ include file = "../common/header.jsp" %>
 
-<div id="id">
-	<h3>설문조사</h3>
-</div>
-	<div>
-		<div>
-			<div class="side">
-				<a href="pollinsertform">
-				<button name="pollinsertform">설문 등록</button>
-				</a>
-				<br>
-				<a href="polllistform">
-				<button name="ingpoll">진행중인 설문</button>
-				</a>
-				<br>
-				<button name="endpoll">끝난 설문</button>
-				<br>
-			</div>
-		</div>
-	</div>
-	<div id="paper"><br>
-		<c:choose>
-		 	<c:when test="${empty PollList }">
-		 		<br><br><br><br><br><br><br><br><label>등록된 설문이 없습니다.</label><br><br><br><br><br><br><br><br>
-		 	</c:when>
-			 <c:when test="${!empty PollList }"> 
-				<div id="listtab">
-					<c:forEach var="poll" items="${PollList}">
-					<div class="polltab">
-						<div class="polls">
-							<div class="pollsnum">${poll.poll_num}번 설문</div>
-							<a href="polluserinsertform?poll_num=${poll.poll_num}">
-								<div class="listinfo">
-									<div>${poll.poll_title} <br> ${poll.department_name} | ${poll.name} | 
-									<c:choose>
-										<c:when test='${poll.poll_type eq "1".charAt(0) }'>비공개</c:when>
-										<c:when test='${poll.poll_type eq "0".charAt(0) }'>공개</c:when>
-									</c:choose>
-									</div>
-								</div>
-								<div class="tabtail">
-									<div class="s-etime">${poll.poll_stime} ~ ${poll.poll_etime}</div>
-									<div class="other"> 준비중</div>
-								</div>
-							</a>
-						</div>
-					</div>
-					</c:forEach>
-				</div>	 
-				</c:when> 
-			</c:choose>
-		</div>
-	
-	<!-- 페이징 처리 자리 -->
-	<div>
-	</div>
-</body>
-</html>
+<!-- Page content -->
+                    <div id="page-content">
+                        <!-- Table Styles Header -->
+                        <div class="content-header">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="header-section">
+                                        <h1>설문 조사</h1>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 hidden-xs">
+                                    <div class="header-section">
+                                        <ul class="breadcrumb breadcrumb-top">
+                                            <li><a href="/poll/pollinsertform">설문 작성</a></li>
+											<li><a href="/poll/polllistform">작성된 설문</a></li>
+											<li><a href="">지난 설문</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                
+                            <div class="col-lg-6">
+                                <!-- Row Styles Block -->
+                                <div class="block">
+                                    <!-- Row Styles Title -->
+                                    <div class="block-title">
+                                        <h2>설문 자료들</h2>
+                                        <a href="/poll/pollinsertform"><button data-oper="createrupdate" class="insertgo buttonclass btn btn-effect-ripple btn-warning" type="submit">글 쓰기</button></a>
+                                        
+                                    </div>
+                                    <!-- END Row Styles Title -->
 
+                                    <!-- Row Styles Content -->
+                                    <div class="table-responsive">
+                                        <table class="table table-borderless table-vcenter">
+                                            <thead>
+                                                <tr>
+                                                    <th>번호</th>
+                                                    <th>제목</th>
+                                                    <th>작성자</th>
+                                                    <th>정보</th>
+                                                    <th>마감시간</th>
+                                                    <th>참여여부</th>
+                                                </tr>
+                                           </thead>
+                                            	
+                                           <c:choose>
+		 										<c:when test="${empty PollList }">
+		 											<tbody><th><label>등록된 설문이 없습니다.</label></th></tbody>
+		 										</c:when>
+			 									<c:when test="${!empty PollList }"> 
+					 								<c:forEach var="poll" items="${PollList}">
+                                           				<tbody>
+                                           				<!-- success warning info danger-->
+                                                		<tr class="active">
+                                                    		<td><strong>${poll.poll_num}번 설문</strong></td>
+                                                    		<td><a href="polluserinsertform?poll_num=${poll.poll_num}">${poll.poll_title}</a></td>
+		                                                   	<td>${poll.name}</td>
+		                                                    <td>
+        	                                            		<c:choose>
+																	<c:when test='${poll.poll_type eq "1".charAt(0) }'>비공개</c:when>
+																	<c:when test='${poll.poll_type eq "0".charAt(0) }'>공개</c:when>
+																</c:choose>
+															</td>
+															<td>${poll.poll_etime}</td>
+															<td>미참여</td>
+															<%-- <td>
+																<c:choose>
+																	<c:when test="${employee.employee_no }">
+																		
+																	</c:when>
+																	<c:when test="">
+																	
+																	</c:when>
+																</c:choose>
+															</td> --%>
+                                                   			
+                                               			</tr>
+                                            			</tbody>
+													</c:forEach>
+													<tr>
+														<th></th>
+														<th></th>
+														<th></th>
+														<th></th>
+														
+														<th>
+                                                    	 <div class="pageline pull-right">
+					                                        <ul class="pagination pagination-sm">
+					                                        	<c:if test="${pageMaker.prev }">
+																	<li class="paginate_button previous fa fa-chevron-left">
+																		<a href="${pageMaker.startPage -1 }"></a>
+																	</li>														
+																</c:if>
+					                                            <c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
+																	<li class="paginate_button ${pageMaker.cri.pageNum == num ? 'active':'' }">
+																		<a href="${num }">${num }</a>
+																	</li>															
+																</c:forEach>
+					                                            <c:if test="${pageMaker.next }">
+					                                            	<li class="paginate_button next">
+					                                            		<a href="${pageMaker.endPage +1 }"><i class="paginate_button next fa fa-chevron-right"></i></a>
+					                                            	</li>
+					                                            </c:if>
+					                                        </ul>
+					                                    </div>
+					                                    </th>
+                                                    </tr>
+                                                    <form id="actionForm" action="/poll/polllistform" method="get">
+                                                    	<input type="hidden" id="pagenum" name="pageNum" value="${pageMaker.cri.pageNum }">
+                                                    	<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
+                                                    </form>	
+												</c:when> 
+											</c:choose>
+											
+                                        </table>
+                                    </div>
+                                    <!-- END Row Styles Content -->
+                                </div>
+                                <!-- END Row Styles Block -->
+                            </div>
+                        </div>
+                        <!-- END Tables Row -->
+
+            
+            
+<script>
+$(document).ready(function() {
+	/* var result = '<c:out value="${result}"/>';
+	checkModal(result);
+	history.replaceStat({},null,null);
+	function checkModal(result){
+		if (result === '' || history.state) {
+			return;
+		}
+		if (parseInt(result)>0) {
+			$(".modal-body").html(
+				"게시글"+parseInt(result)+"번이 등록되었습니다.");
+		}
+		$("#myModel").modal("show");
+	}
+	$("#regBtn").on('click',function(){
+		self.location = "/poll/pollinsertform";
+	}); */
+	var actionForm = $("#actionForm");
+	$(".paginate_button a").on("click",function(e){
+		e.preventDefault();
+ 		console.log('click');
+		actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+		$('#pagenum').val($(this).attr("href"));
+		actionForm.submit();
+	});
+});
+
+
+</script>
+                        
+                        
 <style>
-
-label {
-	margin-left: 200px;
-	color: aqua;
+.insertgo {
+	float: right;
+	height: 30px;
+	margin: 5px 5px 5px 5px;
 }
-
-#id {
-	color: white;
-	width: 615px;
-	height: 100px;
-	margin: 50px 0 0 0;
-	/* margin-left: 10px; */
-	padding-top: 20px;
-	padding-left: 30px;
-	border-width: 1px;
-	/* border-style: solid; */
-	border-color: black;
-	border-bottom-style: none;
+.pageline {
+	float: right;
 }
-
-.side {
-	float: left;
-	padding-top: 30px;
-	padding-left: 20px;
-	padding-right: 20px;
-	padding-bottom : 600px;
-	margin-bottom: 20px;
-/* 	border-width: 1px;
-	border-style: solid;
-	border-color: black; */
-	/* background-color: navy; */
-	
-}
-.side *{
-	margin-top: 10px;
-	margin-bottom: 10px;
-}
-
-h4 {
-	padding-left: 30px;
-	padding-top: 20px;
-	padding-bottom: 20px;
-	border-bottom-width: 1px;
-	border-bottom-style: solid;
-	border-bottom-color: black;
-}
-/* 
-#paper {
-	width: 500px;
-	margin-left: 145px;
-	border-width: 1px;
-	border-style: solid;
-	border-color: black;
-} */
-
-#paper {
-	width: 900px;
-	margin-left: 145px;
-	border-width: 1px;
-	border-style: solid;
-	border-color: white;
-}
-
-#listtab {
-	padding: 0px 20px 0px 20px;
-}
-
-.polltab {
-	width: 100%;
-}
-
-.polls {
-	/* display: inline-block; */
-	width: 100%;
-	height: 60px;
-/* 	margin-top
-	margin-right
-	margin-bottom
-	margin-left */
-	margin: 10px 0px 30px 0px;
-	padding: 10px 10px 10px 10px;
-	border-width: 1px;
-	border-style: solid;
-	border-color: black;
-}
-.pollsnum {
-	color: lime;
-	float: left;
-	height: 50px;
-	padding-top: 10px;
-	text-align: center;
-	margin-right: 40px;
-	
-}
-
-.listinfo {
-	width: 300px;
-	float: left;
-	display: inline-block;
-}
-
-.tabtail {
-	display: inline-block;
-	margin: 10px 10px 0px 20px;
-}
-
-.tabtail *{
-	display: inline-block;
-	margin: 0px 0px 0px 20px;
-}
-
-.s-etime {
-	margin: 0px 20px 0px 0px;
-}
-
-
-
-
-
-
-
-
-
 
 </style>

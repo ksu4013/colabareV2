@@ -5,6 +5,7 @@ import java.util.List;
 import cot.colabare.poll.domain.PollAnswer;
 import cot.colabare.poll.domain.PollAnswerUserVO;
 import cot.colabare.poll.domain.PollAnswerVO;
+import cot.colabare.poll.domain.PollCriteria;
 import cot.colabare.poll.domain.PollDTO;
 import cot.colabare.poll.domain.PollItemDTO;
 import cot.colabare.poll.domain.PollJoiner;
@@ -13,7 +14,6 @@ import cot.colabare.poll.domain.PollQuestionDTO;
 import cot.colabare.poll.domain.PollVO;
 
 public interface PollMapper {
-//?��?��?��
 	public void insertPoll(PollDTO polldto);
 	public void insertPollKey(PollDTO polldto);
 	public void insertQuestion(PollQuestionDTO questiondto);
@@ -23,7 +23,8 @@ public interface PollMapper {
 	public void insertJoinerKey(PollJoiner joiner);
 	public void insertAnswer(PollAnswer answer);
 	
-	public List<PollListVO> listPoll();
+//	public List<PollListVO> listPoll();
+	public List<PollListVO> listPaging(PollCriteria cri);
 	
 	public PollVO detailPoll(int pnum);
 	public List<PollQuestionDTO> detailQuestion(int pnum);
@@ -31,14 +32,14 @@ public interface PollMapper {
 	public List<PollAnswerVO> detailAnswer(PollAnswerUserVO pauv);
 //	public PollJoiner detailPollJoiner(int anum);
 	
-//	public PollDTO updatePoll(PollDTO poll);
-//	public PollQuestion updateQuestion(PollQuestion question);
-//	public PollItem updateItem(PollItem item);
+	public void updatePoll(PollDTO poll);
+	public void updateQuestion(PollQuestionDTO question);
+	public void updateItem(PollItemDTO item);
 	public void updateAnswer(PollAnswer answer);
 //	public PollJoiner updateJoiner(PollJoiner joiner);
 	
 	
-//	public PollDTO deletePoll(PollDTO poll);
+	public int deletePoll(int pnum);
 //	public PollQuestion deleteQuestion(PollQuestion question);
 //	public PollItem deleteItem(PollItem item);
 	

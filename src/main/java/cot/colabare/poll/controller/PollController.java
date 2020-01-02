@@ -20,10 +20,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import cot.colabare.poll.domain.PollAnswer;
 import cot.colabare.poll.domain.PollAnswerUserVO;
 import cot.colabare.poll.domain.PollAnswerVO;
+import cot.colabare.poll.domain.PollCriteria;
 import cot.colabare.poll.domain.PollDTO;
 import cot.colabare.poll.domain.PollItemDTO;
 import cot.colabare.poll.domain.PollJoiner;
+import cot.colabare.poll.domain.PollPageDTO;
 import cot.colabare.poll.domain.PollQuestionDTO;
+import cot.colabare.poll.domain.PollVO;
 import cot.colabare.poll.domain.PollGetVO;
 import cot.colabare.poll.domain.questionAnditemList;
 import cot.colabare.poll.service.PollService;
@@ -52,11 +55,8 @@ public class PollController {
 		for (int i = 0; i < pqNum.length; i++) {
 			
 			String pnqn = request.getParameter("poll_num_question_num"+i);
-			log.info("pnqnstring: "+pnqn.toString());
 			String pqt = request.getParameter("poll_question_text"+i);
-			log.info("pqtstring: "+pqt.toString());
 			String pm =  request.getParameter("poll_multiple"+i);
-			log.info("pmstring: "+pm.toString());
 			char[] ch = pm.toCharArray();
 			
 			PollQuestionDTO question = new PollQuestionDTO();
@@ -64,14 +64,11 @@ public class PollController {
 			question.setPoll_question_text(pqt);
 			question.setPoll_multiple(ch[0]);
 			question.setPoll_num_question_num(Integer.parseInt(pnqn));
-			log.info("질문 스트링  :  "+question.toString());
 			service.insertQuestionService(question);
-			log.info("돌아온 q값"+question.getPoll_question_num());
 			
 			String[] Itext = request.getParameterValues("poll_item_text"+i);
 			//삭제 예정
 //			String[] Qnin = request.getParameterValues("question_num_item_num"+i);
-			log.info("itext 길이: "+Itext.length);
 			//삭제 예정
 //			log.info("Qnin 길이: "+Qnin.length);
 			
@@ -89,26 +86,24 @@ public class PollController {
 	}
 
 	
+//	@GetMapping("/polllistform")
+//	public void polllistform(Model model){
+//		model.addAttribute("PollList", service.listPollService());
+//	}
 	@GetMapping("/polllistform")
-	public void polllistform(Model model){
-		log.error("리스트컨트롤러 in");
-		model.addAttribute("PollList", service.listPollService());
-		log.info("리스트 컨트롤러 out.");
+	public void polllistform(PollCriteria cri, Model model){
+		log.info("list: "+cri);
+		model.addAttribute("PollList", service.listPollService(cri));
+		model.addAttribute("pageMaker",new PollPageDTO(cri, 22));
 	}
 	
-	@PostMapping("/detailform")
-	public void polluserinputform(Model model){
-		
-	}
-	
-	@PostMapping("/updateform")
-	public void pollmodefy(){
-		
-	}
 	
 	
 
-	@GetMapping("/polluserinsertform")
+	
+	
+
+	@GetMapping({"/polluserinsertform","/pollupdateform"})
 	public void polluserinsertform(@RequestParam("poll_num") int poll_num, HttpSession session, Model model ){
 		PollGetVO PUIF = new PollGetVO();
 		List<questionAnditemList> qailist = new ArrayList<>();
@@ -117,7 +112,7 @@ public class PollController {
 		List<PollAnswerVO> answerset = new ArrayList<>();
 		PollAnswerUserVO pauv = new PollAnswerUserVO();
 		int end = 0;
-		
+		 
 		String[] eno = session.getAttribute("meminfo").toString().split("=");
 		for (int j = 0; j < eno.length; j++) {
 			if (eno[j].contains("employee_no")) {
@@ -130,7 +125,12 @@ public class PollController {
 		
 		pauv.setPoll_num(poll_num);
 		pauv.setEmployee_no(end);
-		PUIF.setPollVO(service.detailPollService(poll_num));
+		
+		PollVO poll = service.detailPollService(poll_num);
+		String etime = poll.getPoll_etime();
+		poll.setPoll_etime(etime.replace("T", " "));
+		
+		PUIF.setPollVO(poll);
 		List<PollQuestionDTO> plist =  service.detailQuestionService(poll_num);
 		PUIF.setQilist(qailist);
 		
@@ -167,19 +167,13 @@ public class PollController {
 		int joinnum = Integer.parseInt(request.getParameter("employee_no"));
 		joiner.setEmployee_no(joinnum);
 		joiner.setPoll_num(Integer.parseInt(pnum));
-		log.info("☆☆☆joiner☆☆☆");
 		service.insertJoinerService(joiner);
 		
 		int num = request.getParameterValues("question_size").length;
 		for (int i = 0; i < num ; i++) {
-			log.info(i);
-			log.info(num);
 			String[] pInum = request.getParameterValues("poll_item_num_"+i);
-			log.info("pInum: "+pInum.length);
 			String[] pQnum = request.getParameterValues("poll_question_num_"+i);
-			log.info("pQnum: "+pQnum.length);
 			String[] pSnum = request.getParameterValues("poll_select_num_"+i);
-			log.info("pSnum: "+pSnum.length);
 			
 			for (int j = 0; j < pInum.length; j++) {
 				PollAnswer answer = new PollAnswer(); 
@@ -189,13 +183,54 @@ public class PollController {
 				answer.setPoll_joiner_num(joiner.getPoll_joiner_num());
 				//배열용
 //				anslist.add(answer);
-				log.info(j+"번 "+answer.toString());
 				service.insertAnswerService(answer);
 			}
 		}
 		
 		return "redirect:/poll/polllistform";
 	}
+	
+	@PostMapping("/pollupdate")
+	public String pollupdate(PollDTO poll, HttpServletRequest request, RedirectAttributes rttr){
+//		poll.setPoll_etime(poll.getPoll_etime().replace("T", " "));
+		service.updatePoll(poll); 
+		
+		int qcount = request.getParameter("poll_num_question_num").length();
+		for (int i = 0; i < qcount; i++) {
+			PollQuestionDTO question = new PollQuestionDTO();
+			
+			int qnum = Integer.parseInt(request.getParameter("poll_question_num"+i));
+			String multi = request.getParameter("poll_multiple"+i);
+			char[] charMul = multi.toCharArray();
+			String qtext = request.getParameter("poll_question_text"+i);
+			int pnqn = Integer.parseInt(request.getParameter("poll_num_question_num"+i));
+			
+			question.setPoll_question_num(qnum);
+			question.setPoll_num(poll.getPoll_num());
+			question.setPoll_multiple(charMul[0]);
+			question.setPoll_question_text(qtext);
+			question.setPoll_num_question_num(pnqn);
+			
+			service.updateQuestion(question);
+			
+			int inum = request.getParameter("poll_item_num"+i).length();
+			String[] itemnum = request.getParameterValues("poll_item_num"+i);
+			String[] itext = request.getParameterValues("poll_item_text"+i);
+			for (int j = 0; j < inum; j++) {
+				PollItemDTO item = new PollItemDTO();
+				item.setPoll_item_num(Integer.parseInt(itemnum[j]));
+				item.setPoll_question_num(qnum);
+				item.setPoll_item_text(itext[j]);
+				service.updateItem(item);
+			}
+		}
+		
+		
+		String re = "redirect:/poll/polluserinsertform?poll_num="+request.getParameter("poll_num");
+		return re;
+	}
+	
+	
 	
 	@PostMapping("/polluserupdate")
 	public String polluserupdate(HttpServletRequest request, RedirectAttributes rttr){
@@ -228,6 +263,17 @@ public class PollController {
 		}
 		String re = "redirect:/poll/polluserinsertform?poll_num="+request.getParameter("poll_num");
 		return re;
+	}
+	
+	@PostMapping("/polldelete")
+	public String polldelete(@RequestParam("poll_num") int pnum, RedirectAttributes rttr){
+		log.info("메지시");
+		log.info(pnum);
+		log.info(rttr);
+		if (service.deletePollService(pnum)) {
+			rttr.addFlashAttribute("result", "success");
+		}
+		return "redirect:/poll/polllistform";
 	}
 	
 	

@@ -5,6 +5,7 @@ import java.util.List;
 import cot.colabare.poll.domain.PollAnswer;
 import cot.colabare.poll.domain.PollAnswerUserVO;
 import cot.colabare.poll.domain.PollAnswerVO;
+import cot.colabare.poll.domain.PollCriteria;
 import cot.colabare.poll.domain.PollDTO;
 import cot.colabare.poll.domain.PollItemDTO;
 import cot.colabare.poll.domain.PollJoiner;
@@ -20,15 +21,18 @@ public interface PollService {
 	public void insertAnswerService(PollAnswer answer);
 	public void insertJoinerService(PollJoiner joiner);
 	
-	public List<PollListVO> listPollService();
+	//public List<PollListVO> listPollService();
+	public List<PollListVO> listPollService(PollCriteria cri);
 	
 	public PollVO detailPollService(int pnum);
 	public List<PollQuestionDTO> detailQuestionService(int pnum);
 	public List<PollItemDTO> detailItemService(int qnum);
 	public List<PollAnswerVO> detailAnswerService(PollAnswerUserVO pauv);
 	
-//	public PollDTO updatePoll(PollDTO poll);
-//	public PollQuestion updateQuestion(PollQuestion question);
-//	public PollItem updateItem(PollItem item);
+	public void updatePoll(PollDTO poll);
+	public void updateQuestion(PollQuestionDTO question);
+	public void updateItem(PollItemDTO item);
 	public void updateAnswerService(PollAnswer answer);
+	
+	public boolean deletePollService(int i);
 }
