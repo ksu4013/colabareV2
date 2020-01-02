@@ -10,6 +10,12 @@
 <!--  -->
 	<div id="page-content" class="inner-sidebar-right">
 		<div id="page-content-sidebar">
+		<div class="form-group form-actions">
+				<div class="col-md-9 col-md-offset-3">
+					<button id = "finalDoc" type="button" class="btn btn-effect-ripple btn-primary" onclick="location.href='/document/approvalList?employee_no=${employee.employee_no }'">기안</button>
+					<!-- <button type="reset" class="btn btn-effect-ripple btn-danger">리셋</button> -->
+				</div>
+			</div>
 			<a href="javascript:void(0)" class="btn btn-block btn-effect-ripple btn-primary visible-xs" data-toggle="collapse" data-target="#people-nav">People</a>
 			<div id="people-nav" class="collapse navbar-collapse remove-padding">
 				<div class="block-section">
