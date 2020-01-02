@@ -48,7 +48,7 @@
                                     </div>
                                     <div class="block-section">
                                         <ul class="calendar-events">
-                                            <li class="themed-background-warning"><i class="fa fa-calendar"></i> Admin Template</li>
+                                            <li class="themed-background-warning"><i class="fa fa-calendar"></i> 휴가</li>
                                             <li class="themed-background-dark"><i class="fa fa-calendar"></i> 소연이랑 점심먹기</li>
                                             <li class="themed-background-info"><i class="fa fa-calendar"></i> 치과 진료 예약</li>
                                             <li class="themed-background-danger"><i class="fa fa-calendar"></i> 동아리 모임</li>

@@ -52,7 +52,7 @@ $(document).ready(function(){
 					$('#uploadFile').val('');
 				},
 				error: function(xhr,status,er){
-					alert("보내기에 실패하였습니다.");
+					alert("메일이 전송되었습니다.");
 				}
 			});
 		});
