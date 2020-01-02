@@ -27,8 +27,8 @@
                                 <div class="col-sm-6 hidden-xs">
                                     <div class="header-section">
                                         <ul class="breadcrumb breadcrumb-top">
-                                            <li>Profile</li>
-                                            <li>Profile Modify</li>
+                                            <li>프로필</li>
+                                            <li>프로필 수정</li>
                                         </ul>
                                     </div>
                                 </div>

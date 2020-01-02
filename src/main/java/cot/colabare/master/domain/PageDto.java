@@ -33,6 +33,10 @@ public class PageDto {
     this.prev = this.startPage > 1;
 
     this.next = this.endPage < realEnd;
+    
+    if(cri.getPageNum()>endPage){
+    	cri.setPageNum(startPage);
+    }
   }
   
 }

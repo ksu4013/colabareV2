@@ -88,7 +88,8 @@ public class MasterController {
 		user.setEmployee_no(Integer.parseInt(request.getParameter("employee_no")));
 
 		userauth.setUserid(request.getParameter("userid"));
-		if (request.getParameter("master").equals('y')) {
+		System.out.println(request.getParameter("master"));
+		if (request.getParameter("master").equals("y")) {
 			userauth.setAuth("ROLE_ADMIN");
 		} else {
 			userauth.setAuth("ROLE_MEMBER");
@@ -145,10 +146,10 @@ public class MasterController {
 			cri.setKeyword("");
 		}
 		System.out.println(cri.getPageNum() + " " + cri.getKeyword());
-		request.setAttribute("employeelist", service.employeeList(cri));
 		int count = service.totalCount(cri);
 		System.out.println(service.employeeList(cri) + "   " + count);
 		request.setAttribute("pageMaker", new PageDto(cri, count));
+		request.setAttribute("employeelist", service.employeeList(cri));
 		System.out.println(new PageDto(cri, count));
 		request.setAttribute("department_id", request.getParameter("department_info"));
 
