@@ -88,7 +88,8 @@ public class MasterController {
 		user.setEmployee_no(Integer.parseInt(request.getParameter("employee_no")));
 
 		userauth.setUserid(request.getParameter("userid"));
-		if (request.getParameter("master").equals('y')) {
+		System.out.println(request.getParameter("master"));
+		if (request.getParameter("master").equals("y")) {
 			userauth.setAuth("ROLE_ADMIN");
 		} else {
 			userauth.setAuth("ROLE_MEMBER");
