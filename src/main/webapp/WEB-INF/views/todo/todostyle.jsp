@@ -12,7 +12,7 @@
 
 <div id="page-content" class="row">
 	<!-- Inner Sidebar -->
-	<div id="page-content-sidebar">
+	<div class="block">
 		<!-- Collapsible Options -->
 		<a href="javascript:void(0)"
 			class="btn btn-block btn-default visible-xs" data-toggle="collapse"
@@ -25,80 +25,25 @@
 			</h4>
 			<div class="block-section">
 
+			<div class="block">
 				<ul class="nav nav-pills nav-stacked">
-					<!--  <li class="active">
-                            <a href="javascript:void(0)">
-                                <span class="badge pull-right">16</span>
-                                <i class="fa fa-briefcase fa-fw icon-push"></i> <strong>Projects</strong>
-                            </a>
-                        </li> -->
-					<li><c:forEach var="todotype" items="${typelist }">
-							<a href="javascript:void(0)"> <span class="badge pull-right"><a href="deleteType?todo_type_no=${todotype.todo_type_no }">x</a></span>
-								<i class="fa fa-book fa-fw icon-push"></i> <strong><a href="todolist?todo_type_no=${todotype.todo_type_no }">${todotype.todo_type_title }</strong>
+				
+				
+					<li>
+						<c:forEach var="todotype" items="${typelist }">
+							<div class="col-sm-3"><a href="typeupdateform?todo_type_no=${todotype.todo_type_no }" data-toggle="tooltip" class="btn btn-effect-ripple btn-sm btn-success col-sm-3" style=overflow: hidden; position: relative; data-original-title="Edit Type"><i class="fa fa-pencil"></i></a></div>
+							<a href="javascript:void(0)"> <span class="badge pull-right"><a href="deleteType?todo_type_no=${todotype.todo_type_no }"data-original-title="Delete Type">x</a></span>
+							<i class="fa fa-book fa-fw icon-push"></i> <strong><a href="todolist?todo_type_no=${todotype.todo_type_no }">${todotype.todo_type_title }</strong>
 							</a>
-						</c:forEach></li>
-					<!-- <li>
-                            <a href="javascript:void(0)">
-                                <span class="badge pull-right">19</span>
-                                <i class="fa fa-user fa-fw icon-push"></i> <strong>Personal</strong>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">
-                                <span class="badge pull-right">15</span>
-                                <i class="fa fa-share-alt fa-fw icon-push"></i> <strong>Social</strong>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">
-                                <span class="badge pull-right">25</span>
-                                <i class="fa fa-video-camera fa-fw icon-push"></i> <strong>Movies</strong>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">
-                                <span class="badge pull-right">23</span>
-                                <i class="fa fa-book fa-fw icon-push"></i> <strong>Books</strong>
-                            </a>
-                        </li> -->
+						</c:forEach>
+					</li>
+				
 				</ul>
+				</div>
 			</div>
 			<!-- END Lists -->
 
-			<!-- Account -->
-			<h4 class="inner-sidebar-header">
-				<a href="javascript:void(0)"
-					class="btn btn-xs btn-default pull-right"><i class="fa fa-cog"></i></a>
-				Account
-			</h4>
-			<div class="text-center">
-				<div class="pie-chart block-section" data-percent="60"
-					data-line-width="2" data-bar-color="#deb25c"
-					data-track-color="#ffffff">
-					<img src="img/placeholders/avatars/avatar14.jpg" alt="avatar"
-						class="pie-avatar img-circle">
-				</div>
-			</div>
-			<table class="table table-striped table-vcenter">
-				<tbody>
-					<tr>
-						<td class="text-right"><strong>Storage</strong></td>
-						<td><strong>60</strong> of <strong>100</strong> MB</td>
-					</tr>
-					<tr>
-						<td class="text-right"><strong>Plan Valid</strong></td>
-						<td><strong>6</strong> months left</td>
-					</tr>
-					<tr>
-						<td class="text-right" style="width: 50%;"><strong>Active
-								Plan</strong></td>
-						<td>Tiny <a href="page_ready_pricing_tables.html"
-							data-toggle="tooltip" title="Upgrade to Pro"><i
-								class="fa fa-chevron-up"></i></a></td>
-					</tr>
-				</tbody>
-			</table>
-			<!-- END Account -->
+		
 		</div>
 		<!-- END Collapsible Options -->
 	</div>
