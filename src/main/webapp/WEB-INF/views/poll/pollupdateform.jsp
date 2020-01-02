@@ -42,13 +42,15 @@
 					<div class="block">
 						<!-- Form Validation Title -->
 						<div class="block-title">
-							<h2>설문 생성</h2>
+							<h2>설문 수정</h2>
 						</div>
 						<!-- END Form Validation Title -->
 
 						<!-- Form Validation Form  폼-->
-						<form id="form-validation" action="/poll/pollinsertform" method="post" class="form-horizontal form-bordered">
+						<form id="form-validation" action="/poll/polllistform" method="post" class="form-horizontal form-bordered">
+						
 							<input type="hidden" name="poll_writer" value="${employee.employee_no }">
+							<input type="hidden" name="poll_num" value="${poll.pollVO.poll_num }">
 							<!-- <div class="form-group">
 								<label class="col-md-3 control-label" for="val-skill">Best
 									Skill <span class="text-danger">*</span>
@@ -70,7 +72,33 @@
 							<div class="form-group">
 								<label class="col-md-3 control-label">이름</label>
 								<div class="col-md-9">
-									<div class="radio">
+								<c:choose>
+										<c:when test='${poll.pollVO.poll_type eq "1".charAt(0)}'>
+											<div class="radio">
+												<label for="example-radio1"> <input type="radio" class="radio1" id="example-radio1" name="poll_type" value="1"checked="checked">
+													공개
+												</label>
+											</div>
+											<div class="radio">
+												<label for="example-radio2"> <input type="radio" class="radio1" id="example-radio2" name="poll_type" value="0" >
+													비공개
+												</label>
+											</div>
+										</c:when>
+									<c:when test='${poll.pollVO.poll_type eq "0".charAt(0)}'>
+										<div class="radio">
+											<label for="example-radio1"> <input type="radio" class="radio1" id="example-radio1" name="poll_type" value="1">
+												공개
+											</label>
+										</div>
+										<div class="radio">
+											<label for="example-radio2"> <input type="radio" class="radio1" id="example-radio2" name="poll_type" value="0" checked="checked">
+												비공개
+											</label>
+										</div>
+									</c:when>
+									</c:choose>
+									<!-- <div class="radio">
 										<label for="example-radio1"> <input type="radio" class="radio1" id="example-radio1" name="poll_type" value="1">
 											공개
 										</label>
@@ -79,7 +107,7 @@
 										<label for="example-radio2"> <input type="radio" class="radio1" id="example-radio2" name="poll_type" value="0" checked="checked">
 											비공개
 										</label>
-									</div>
+									</div> -->
 								</div>
 							</div>
 
@@ -87,76 +115,93 @@
 								<label class="col-md-3 control-label" for="val-username">설문 제목 <span class="text-danger">*</span>
 								</label>
 								<div class="col-md-6">
-									<input type="text" id="val-username" name="poll_title" class="form-control" placeholder="제목입력..">
+									<input type="text" id="val-username" name="poll_title" class="form-control" placeholder="제목입력.." value="${poll.pollVO.poll_title }">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-md-3 control-label" for="val-email">설문 설명 <span class="text-danger">*</span>
 								</label>
 								<div class="col-md-6">
-									<input type="text" id="val-email" name="poll_contents" class="form-control" placeholder="설명..">
+									<input type="text" id="val-email" name="poll_contents" class="form-control" placeholder="설명.." value="${poll.pollVO.poll_contents }">
 								</div>
 							</div>
-							<div class="form-group">
+							<%-- <div class="form-group">
 								<label class="col-md-3 control-label" for="example-datepicker">마감시간</label>
 								<div class="col-md-5">
-									<input type="datetime-local" id="example-datepicker3" class="form-control " name="poll_etime" placeholder="yyyy-MM-dd tt:mm">
+									<input type="datetime-local" id="example-datepicker3" class="form-control " 
+									name="poll_etime" placeholder="yyyy-MM-dd tt:mm" value="${poll.pollVO.poll_etime }">
+									<input type="text" value="${poll.pollVO.poll_etime }">
+									<input type="hidden" name="poll_stime" value="${poll.pollVO.poll_stime }">
 								</div>
-							</div>
+							</div> --%>
 
 							<div id="questiontab">
+								<c:forEach var="qilist" items="${poll.qilist }" varStatus="qnum">
+								
 								<div id="q1" class="question ">
-								<input type="hidden" class="pollnumquesrionnum" name="poll_num_question_num" value="0"> 
-								<input type="hidden" id="pnqn1" class="pollnumquesrionnum" name="poll_num_question_num0" value="1">
-									<label class="col-md-3 control-label" for="val-suggestions"> 1.질문 <span class="text-danger">*</span>
+								
+								<input type="hidden" name="poll_question_num${qilist.question.poll_num_question_num -1}" value="${qilist.question.poll_question_num }"> 
+								<input type="hidden" name="poll_num_question_num${qilist.question.poll_num_question_num -1}" value="${qilist.question.poll_num_question_num }"> 
+								<input type="hidden" id="pnqn1" class="pollnumquesrionnum" name="poll_num_question_num" value="1">
+									<label class="col-md-3 control-label" for="val-suggestions"> ${qilist.question.poll_num_question_num }.질문 <span class="text-danger">*</span>
 									</label>
 									<div class="col-md-9">
-										<textarea id="questionText1" name="poll_question_text0" rows="7" class="form-control questiontext"
-										placeholder="1.질문.."></textarea>
+										<textarea id="questionText1" name="poll_question_text${qilist.question.poll_num_question_num -1}" rows="7" class="form-control questiontext"
+										placeholder="1.질문..">${qilist.question.poll_question_text }</textarea>
 										<br>
-										
-										<div class="item_list item_list1">
-											<div class="itemtab itemtab1">
-												<label class="col-md-3 control-label" for="val-website">1.항목<span class="text-danger">*</span></label>
-												<div class="col-md-6">
-													<input type="text" id="item1-1" name="poll_item_text0" class="form-control item" placeholder="항목1">
-												</div>
-											</div><br><br><br>
-											<div class="itemtab itemtab2">
-												<label class="col-md-3 control-label" for="val-website">2.항목 <span class="text-danger">*</span></label>
-												<div class="col-md-6">
-													<input type="text" id="item1-2" name="poll_item_text0" class="form-control item" placeholder="항목2">
-												</div>
+										<c:forEach var="items" items="${qilist.item }" varStatus="inum">
+											<input type="hidden" name="poll_item_num${qilist.question.poll_num_question_num -1}" value="${items.poll_item_num }">
+											<div class="item_list item_list1">
+												<div class="itemtab itemtab1">
+													<label class="col-md-3 control-label" for="val-website">1.항목<span class="text-danger">*</span></label>
+													<div class="col-md-6">
+														<input type="text" id="item1-1" name="poll_item_text${qilist.question.poll_num_question_num -1}" class="form-control item" 
+														placeholder="항목1" value="${items.poll_item_text }">
+													</div>
+												</div><br><br><br>
 											</div>
-										</div>
+										</c:forEach>
 									</div>
-									<button type="button" id="addibutton1" class="additembutton btn btn-effect-ripple btn-info ">
-										항목추가
-									</button>
+									
 									<div class="form-group">
 										<label class="col-md-3 control-label">선택 옵션</label>
 										<div class="col-md-9">
+										
+										<c:choose>
+											<c:when test='${qilist.question.poll_multiple eq "1".charAt(0)}'>
+												<div class="radio">
+													<label for="example-radio1"> <input type="radio" class="questionmultiple" id="qmulti1-1" name="poll_multiple${qilist.question.poll_num_question_num -1}" value="1" checked="checked">
+														단일 선택
+													</label>
+												</div>
+												<div class="radio">
+													<label for="example-radio2"> <input type="radio" class="questionmultiple" id="qmulti1-2" name="poll_multiple${qilist.question.poll_num_question_num -1}" value="2">
+														다중 선택
+													</label>
+												</div>
+											</c:when>
+										<c:when test='${qilist.question.poll_multiple eq "2".charAt(0)}'>
 											<div class="radio">
-												<label for="example-radio1"> <input type="radio" class="questionmultiple" id="qmulti1-1" name="poll_multiple0" value="1" checked="checked">
-													단일 선택
-												</label>
-											</div>
-											<div class="radio">
-												<label for="example-radio2"> <input type="radio" class="questionmultiple" id="qmulti1-2" name="poll_multiple0" value="2">
-													다중 선택
-												</label>
-											</div>
+													<label for="example-radio1"> <input type="radio" class="questionmultiple" id="qmulti1-1" name="poll_multiple${qilist.question.poll_num_question_num -1}" value="1" >
+														단일 선택
+													</label>
+												</div>
+												<div class="radio">
+													<label for="example-radio2"> <input type="radio" class="questionmultiple" id="qmulti1-2" name="poll_multiple${qilist.question.poll_num_question_num -1}" value="2" checked="checked">
+														다중 선택
+													</label>
+												</div>
+										</c:when>
+										</c:choose>
 										</div>
 									</div>
 								</div>
+							</c:forEach>	
 							</div>
-							
-
 							<div class="form-group form-actions">
 								<div class="col-md-8 col-md-offset-3">
-								<button type="button" id="addqubutton" class="btn btn-effect-ripple btn-primary">질문 추가</button>
 									<!-- <button type="submit" class="btn btn-effect-ripple btn-primary">설문 생성</button> -->
-									<button type="submit" class="btn btn-effect-ripple btn-danger">설문생성</button>
+									<button type="submit" class="btn btn-effect-ripple btn-danger">설문수정</button>
 								</div>
 							</div>
 						</form>
@@ -176,7 +221,7 @@
 
 
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 
 
 	$(document).ready(function() {
@@ -253,7 +298,7 @@
 
 
 
-
+ -->
 
 
 
@@ -282,12 +327,12 @@
 	margin-left: 80px;
 }
 .additembutton {
-	margin-left: 215px;
+	margin-left: 100px;
 	margin-bottom: 10px;
 	margin-top: 10px;
 }
 #addqubutton {
-	margin-left: 40px;
-	margin-right: 50px;
+	margin-left: 50px;
 }
+
 </style>

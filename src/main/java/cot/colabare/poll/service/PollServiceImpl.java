@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import cot.colabare.poll.domain.PollAnswer;
 import cot.colabare.poll.domain.PollAnswerUserVO;
 import cot.colabare.poll.domain.PollAnswerVO;
+import cot.colabare.poll.domain.PollCriteria;
 import cot.colabare.poll.domain.PollDTO;
 import cot.colabare.poll.domain.PollItemDTO;
 import cot.colabare.poll.domain.PollJoiner;
@@ -42,10 +43,14 @@ public class PollServiceImpl implements PollService {
 		mapper.insertItem(item);
 	}
 
+//	@Override
+//	public List<PollListVO> listPollService() {
+//		List<PollListVO> list = mapper.listPoll();
+//		return list;
+//	}
 	@Override
-	public List<PollListVO> listPollService() {
-		List<PollListVO> list = mapper.listPoll();
-		return list;
+	public List<PollListVO> listPollService(PollCriteria cri) {
+		return mapper.listPaging(cri);
 	}
 
 	@Override
@@ -82,6 +87,28 @@ public class PollServiceImpl implements PollService {
 	public void updateAnswerService(PollAnswer answer) {
 		mapper.updateAnswer(answer);
 	}
+
+	@Override
+	public boolean deletePollService(int i) {
+		return mapper.deletePoll(i) == 1;
+	}
+
+	@Override
+	public void updatePoll(PollDTO poll) {
+		mapper.updatePoll(poll);
+	}
+
+	@Override
+	public void updateQuestion(PollQuestionDTO question) {
+		mapper.updateQuestion(question);
+	}
+
+	@Override
+	public void updateItem(PollItemDTO item) {
+		mapper.updateItem(item);
+	}
+
+	
 
 
 

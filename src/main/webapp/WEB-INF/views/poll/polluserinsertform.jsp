@@ -2,137 +2,181 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-<script type="text/javascript" src="/resources/js/vendor/jquery-3.3.1.min.js"></script>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
-<!-- 
-<link rel="stylesheet" href="./css/polluserinsertcss.css" type="text/css" >
-<script type="text/javascript" src="./source/poll_uisource.js"></script>
- -->
 </head>
 <body>
 <%@ include file = "../common/header.jsp" %>
-<div id="id">
-	<h3>설문조사</h3>
-</div>
-	<div>
-		<div>
-			<div class="side">
-				<a href="/poll/pollinsertform">
-					<button name="pollinsertform">설문 등록</button>
-				</a> <br> 
-				<a href="/poll/polllistform">
-					<button name="ingpoll">진행중인 설문</button>
-				</a> <br>
-				<button name="endpoll">끝난 설문</button>
-				<br>
-			</div>
-		</div>
-	</div>
-	<div>
-		<div id="paper">	
-			<div class="pollform">
-				<div class="pollinfo">
-					<h4>${poll.pollVO.poll_num }번 설문 입니다.</h4>
-					<label>부서: ${poll.pollVO.department_name }</label><br>
-					<div>내용: ${poll.pollVO.poll_contents }</div>
-				</div>
-				<c:choose>
-					<c:when test="${employee.employee_no eq poll.answer[0].employee_no }">
-						<form action="polluserupdate" name="form" method="post">
-					</c:when>
-					<c:when test="${employee.employee_no ne poll.answer[0].employee_no }">
-						<form action="polluserinsertform" name="form" method="post">
-					</c:when>
-				</c:choose>
-				<input type="hidden" name="poll_num" value="${poll.pollVO.poll_num }">
-				<input type="hidden" name="employee_no" value="${employee.employee_no }">
-				<input type="hidden" name="poll_joiner_num" value="${poll.answer[0].poll_joiner_num }">
-				 
-				<c:forEach var="answer" items="${poll.answer }" varStatus="ansnum">
-					<input type="hidden" name="poll_answer_num" value="${answer.poll_answer_num}">
-					<input type="hidden" id="getanswerI_${ansnum.count }" class="getanswerC" value="${answer.poll_select_num }">
-				</c:forEach>
-				<c:forEach var="qilist" items="${poll.qilist }" varStatus="qnum">
-			 		<div class="questionTab">
-						<div id="q_text_${qnum.count }"	>
-							<br>${qilist.question.poll_question_text }
-						</div>
-						<div id="q_multiple_${qnum.count }" class="multiple">
-							<input type="hidden" id="qm_${qilist.question.poll_num_question_num }" value="${qilist.question.poll_multiple}">
-							
-							<div id="q_multiple_${qnum.count }" class="multiple">다중선택 : <label>
-								<c:choose>
-									<c:when test='${qilist.question.poll_multiple eq "1".charAt(0)}'>불허</c:when>
-									<c:when test='${qilist.question.poll_multiple eq "2".charAt(0)}'>허용</c:when>
-								</c:choose>
-							</label>
-							</div>
-						</div>
-						<!-- 단일 다중 판단 -->
-						<div class="itemList" id="Ilist_${qnum.count }">
-							<c:forEach var="items" items="${qilist.item }" varStatus="inum">
-								
-								<input type="hidden" id="itemNum_${qilist.question.poll_num_question_num}_${inum.count}" 
-									name="poll_item_num_${qilist.question.poll_num_question_num -1}" class="itemidc_${qilist.question.poll_num_question_num}" 
-									value="${items.poll_item_num }">
-								<div class="itemButton itemButton_${qilist.question.poll_num_question_num} button_${items.poll_item_num}" 
-									id="itemLS_${qilist.question.poll_num_question_num}_${inum.count}" >${items.poll_item_text }</div>
-								<br>
-							</c:forEach>
-								
-							<c:forEach var="itemnum" items="${qilist.item }" varStatus="selectnum">
-							
-							<input type="hidden" class="userselectI_${qilist.question.poll_num_question_num}" 
-							id="userinput_${qnum.count }_${selectnum.count}" name="poll_select_num_${qilist.question.poll_num_question_num -1}" value="0"><br>
-							<input type="hidden" class="userselectQ" id="userinputQnum_${qnum.count }" 
-							name="poll_question_num_${qilist.question.poll_num_question_num -1}" value="${qilist.question.poll_question_num }"><br>
-							</c:forEach>
-							<br>
-							<div class="qtag_${qilist.question.poll_num_question_num }">
-							<%-- <c:choose>
-							<c:when test='${qilist.question.poll_multiple eq "1".charAt(0)}'> --%>
-							
-							<%-- </c:when>
-							<c:when test='${qilist.question.poll_multiple eq "2".charAt(0)}'> --%>
-							<%-- qID값 전달값[questionNum]<input type="text" class="userselectQ" id="Qnum_${qnum.count }" name="" value="${qilist.question.poll_question_num }">
-							</c:when>
-							</c:choose> --%>
-							</div>
-						</div>
-					</div>
-					<input type="hidden" name="question_size" value="0">
-				</c:forEach>
-				<div class="subutton">
-					<input class="submitButton" type="submit" 
-					<c:choose>
-					<c:when test="${employee.employee_no eq poll.answer[0].employee_no }">
-						value="설문 수정"
-					</c:when>
-					<c:when test="${employee.employee_no ne poll.answer[0].employee_no }">
-						value="설문 제출"
-					</c:when>
-					
-				</c:choose>
-					>
-				</div>
-				<c:if test="${employee.employee_no eq  poll.pollVO.poll_writer}">
-					<div id="formdeletebutton">
-						설문 삭제
-					</div>
-					<div id="formupdatebutton">
-						작성자 수정 버튼
-					</div>
-				</c:if>
-				
-				</form>
-				<br>
-			</div>
-		</div>
-		<br><br>
-	</div>
+ <!-- Page content -->
+                    <div id="page-content">
+                        <!-- Buttons - Dropdowns Header -->
+                        <div class="content-header">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="header-section">
+                                        <h1>설문조사</h1>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 hidden-xs">
+                                    <div class="header-section">
+                                        <ul class="breadcrumb breadcrumb-top">
+                                            <li><a href="/poll/pollinsertform">설문 작성</a></li>
+											<li><a href="/poll/polllistform">작성된 설문</a></li>
+											<li><a href="/poll/polllistform">지난 설문</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END Buttons - Dropdowns Header -->
+
+                        <!-- Buttons Row -->
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <!-- Button Styles Block -->
+                                <div class="block">
+                                    <!-- Button Styles Title -->
+                                    <div class="block-title">
+                                        <!-- <div class="block-options pull-right">
+                                            <a href="javascript:void(0)" class="btn btn-effect-ripple btn-default" data-toggle="tooltip" title="Info"><i class="fa fa-info-circle"></i></a>
+                                            <a href="javascript:void(0)" class="btn btn-effect-ripple btn-success" data-toggle="tooltip" title="Success"><i class="fa fa-check"></i></a>
+                                            <a href="javascript:void(0)" class="btn btn-effect-ripple btn-info" data-toggle="tooltip" title="Share on Facebook"><i class="fa fa-facebook"></i></a>
+                                            <a href="javascript:void(0)" class="btn btn-effect-ripple btn-warning" data-toggle="tooltip" title="Warning"><i class="fa fa-exclamation-circle"></i></a>
+                                            <a href="javascript:void(0)" class="btn btn-effect-ripple btn-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash-o"></i></a>
+                                            <div class="btn-group">
+                                                <a href="javascript:void(0)" class="btn btn-effect-ripple btn-primary dropdown-toggle enable-tooltip" data-toggle="dropdown" title="Extras"><i class="fa fa-chevron-down"></i></a>
+                                                <ul class="dropdown-menu dropdown-menu-right">
+                                                    <li>
+                                                        <a href="javascript:void(0)">
+                                                            <i class="gi gi-cloud-download pull-right"></i>
+                                                            Download
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:void(0)">
+                                                            <i class="gi gi-video_hd pull-right"></i>
+                                                            HD Videos
+                                                        </a>
+                                                    </li>
+                                                    <li class="divider"></li>
+                                                    <li>
+                                                        <a href="javascript:void(0)">
+                                                            <i class="gi gi-wifi fa-fw pull-right"></i>
+                                                            Wifi
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div> -->
+                                        <h2>${poll.pollVO.poll_num }번. &nbsp; ${poll.pollVO.poll_title}</h2>
+                                    </div>
+                                    <!-- END Button Styles Title -->
+
+                                    <!-- Button Styles Content -->
+                                    <div class="block-section">
+                                        <h4 class="sub-header">${poll.pollVO.poll_contents }</h4>
+                                        	<%-- <c:choose>
+												<c:when test="${employee.employee_no eq poll.answer[0].employee_no }"> --%>
+													<form role="form" action="/poll" name="form" method="post">
+												<%-- </c:when>
+												<c:when test="${employee.employee_no ne poll.answer[0].employee_no }">
+													<form action="polluserinsertform" name="form" method="post">
+												</c:when>
+											</c:choose> --%>
+										
+										<input type="hidden" name="poll_num" value="${poll.pollVO.poll_num }">
+										<input type="hidden" name="employee_no" value="${employee.employee_no }">
+										<input type="hidden" name="poll_joiner_num" value="${poll.answer[0].poll_joiner_num }">
+										
+										<c:forEach var="answer" items="${poll.answer }" varStatus="ansnum">
+											<input type="hidden" name="poll_answer_num" value="${answer.poll_answer_num}">
+											<input type="hidden" id="getanswerI_${ansnum.count }" class="getanswerC" value="${answer.poll_select_num }">
+										</c:forEach>
+										<c:forEach var="qilist" items="${poll.qilist }" varStatus="qnum">
+			 								<div class="questionTab">
+												<div id="q_text_${qnum.count }"	>
+													<br><strong>${qilist.question.poll_question_text }</strong>
+												</div>
+												<div id="q_multiple_${qnum.count }" class="multiple">
+													<input type="hidden" id="qm_${qilist.question.poll_num_question_num }" value="${qilist.question.poll_multiple}">
+													
+													<div id="q_multiple_${qnum.count }" class="multiple">다중선택 : <label>
+														<c:choose>
+															<c:when test='${qilist.question.poll_multiple eq "1".charAt(0)}'>불허</c:when>
+															<c:when test='${qilist.question.poll_multiple eq "2".charAt(0)}'>허용</c:when>
+														</c:choose>
+													</label>
+													</div>
+													<br>
+												</div>
+												<!-- 단일 다중 판단 -->
+												<div class="itemList" id="Ilist_${qnum.count }">
+													<c:forEach var="items" items="${qilist.item }" varStatus="inum">
+														
+														<input type="hidden" id="itemNum_${qilist.question.poll_num_question_num}_${inum.count}" 
+															name="poll_item_num_${qilist.question.poll_num_question_num -1}" class="itemidc_${qilist.question.poll_num_question_num}" 
+															value="${items.poll_item_num }">
+															
+														<%-- <button type="button" class="itemButton itemButton_${qilist.question.poll_num_question_num} button_${items.poll_item_num} btn" 
+														id="itemLS_${qilist.question.poll_num_question_num}_${inum.count}">${items.poll_item_text }</button> --%>
+														<div class="itemButton itemButton_${qilist.question.poll_num_question_num} button_${items.poll_item_num} btn" 
+															id="itemLS_${qilist.question.poll_num_question_num}_${inum.count}" >${items.poll_item_text }</div>
+														<br>
+													</c:forEach>
+													
+													<c:forEach var="itemnum" items="${qilist.item }" varStatus="selectnum">
+													
+													<input type="hidden" class="userselectI_${qilist.question.poll_num_question_num}" 
+													id="userinput_${qnum.count }_${selectnum.count}" name="poll_select_num_${qilist.question.poll_num_question_num -1}" value="0"><br>
+													<input type="hidden" class="userselectQ" id="userinputQnum_${qnum.count }" 
+													name="poll_question_num_${qilist.question.poll_num_question_num -1}" value="${qilist.question.poll_question_num }"><br>
+													</c:forEach>
+													<br>
+													<div class="qtag_${qilist.question.poll_num_question_num }">
+													<%-- <c:choose>
+													<c:when test='${qilist.question.poll_multiple eq "1".charAt(0)}'> --%>
+													
+													<%-- </c:when>
+													<c:when test='${qilist.question.poll_multiple eq "2".charAt(0)}'> --%>
+													<%-- qID값 전달값[questionNum]<input type="text" class="userselectQ" id="Qnum_${qnum.count }" name="" value="${qilist.question.poll_question_num }">
+													</c:when>
+													</c:choose> --%>
+													</div>
+												</div>
+											</div>
+											<input type="hidden" name="question_size" value="0">
+										</c:forEach>
+										<div class="tail active">
+											<div class="subutton">
+												<c:choose>
+												<c:when test="${employee.employee_no eq poll.answer[0].employee_no }">
+													<button data-oper="update" class="buttonclass submitButton btn btn-effect-ripple btn-success" type="submit">설문 수정</button>
+												</c:when>
+												<c:when test="${employee.employee_no ne poll.answer[0].employee_no }">
+													<button data-oper="userinput" class="buttonclass submitButton btn btn-effect-ripple btn-success" type="submit">설문 제출</button>
+												</c:when>
+											</c:choose>
+												<button data-oper="list" class="buttonclass submitButton btn btn-effect-ripple btn-success" type="submit">목 록</button>
+											</div>
+											<c:if test="${employee.employee_no eq  poll.pollVO.poll_writer}">
+												<div id="formdeletebutton">
+													<button data-oper="remove" class="buttonclass btn btn-effect-ripple btn-danger" type="submit">설문 삭제</button>
+												</div>
+												<div id="formupdatebutton">
+													<a href="pollupdateform?poll_num=${poll.pollVO.poll_num}"><button data-oper="createrupdate" class="buttonclass btn btn-effect-ripple btn-warning" type="button">작성자 설문 수정</button></a>
+												</div>  
+											</c:if>
+										</div>
+										</form>
+                                    </div>
+                                    <!-- END Button Styles Content -->
+								</div>
+                                <!-- END Button Styles Block -->
+                            </div>
+                    	</div>
+                    </div>
+                    <!-- END Page Content -->
 </body>
 </html>
 
@@ -140,7 +184,7 @@
 <script>
 
 $(document).ready(function(){
-	
+	var formObj = $("form");
  	
 	$(function() {
 		$('.itemButton').hover(function() {
@@ -149,6 +193,39 @@ $(document).ready(function(){
 			$(this).removeClass('hover');
 		});
 	});
+	
+	$(function(){
+		$('.buttonclass').on('click',function(){
+			var operation = $(this).data('oper');
+			/* alert('클릭'+ operation); */
+			/* e.preventDefault(); */
+			if (operation == 'remove') {
+				/* alert("삭제"); */
+				formObj.attr("action", "/poll/polldelete");
+			}else if (operation == 'list') {
+				/* 책 내용실패 */
+				/* self.location="polllistform"; */
+				/* return */
+				formObj.attr("action", "/poll/polllistform");
+				formObj.attr("method", "get");
+			}else if (operation == 'update') {
+				formObj.attr("action", "/poll/polluserupdate");
+			}else if (operation == "userinput") {
+				formObj.attr("action", "/poll/polluserinsertform");
+			}
+			/* else if (operation == "createrupdate") {
+				formObj.attr("action", "/poll/polluserinsertform2");
+				
+			} 
+			*/
+			/* alert(operation); */
+			formObj.submit();
+		});
+	});
+	
+	
+	
+	
 
 	
 //버튼을 클릭하면 하나씩 아래의 input에 입력됨
@@ -175,7 +252,7 @@ $(function(){
 
 		var mulpichoID = "#qm_"+qnum;
 		
-		
+
 		// 단일 선택=1
 		//$(mulpichoID == '1')
 		if ($(mulpichoID).attr('value') == '1') {
@@ -250,159 +327,64 @@ $(function(){
 			$(bcl).trigger("click");
 		}
 	}
+	
+	
+	
+	
 
 });
 
+ 	
+
 });
-
-
-
-
 </script>
 
 
 <style>
-input {
-	color: blue;
-	width: 100px;
+.block {
+	margin-left: 100px;
 }
 
-#id {
-	color: white;
-	width: 615px;
-	height: 100px;
-	margin: 50px 0 0 0;
-	/* margin-left: 10px; */
-	padding-top: 20px;
-	padding-left: 30px;
-	border-width: 1px;
-	/* border-style: solid; */
-	border-color: black;
-	border-bottom-style: none;
-}
 
-.side {
-	float: left;
-	padding-top: 30px;
-	padding-left: 20px;
-	padding-right: 20px;
-	padding-bottom : 600px;
-	margin-bottom: 20px;
-/* 	border-width: 1px;
-	border-style: solid;
-	border-color: black; */
-	/* background-color: navy; */
-	
-}
-.side *{
-	margin-top: 10px;
-	margin-bottom: 10px;
-}
-
-#paper {
-	color: white;
-	width: 500px;
-	margin-left: 145px;
-	border-width: 1px;
-	border-style: solid;
-	border-color: white;
-}
-
-.questionTab {
-	margin: 10px;
-	padding: 10px;
-	border-width: 1px;
-	border-style: solid;
-	border-color: white;
-}
-
-/* 
-.pollform {
-	width: 500px;
-	float: left;
-	background-color: #ffffff;
-}
- */
-.pollform .pollinfo {
-	/* background-color: green; */
-	margin: 10px;
-}
-.pollform .form {
-	background-color: navy;
-	margin: 10px;
-}
-
-.itemList {
-	/* float: left; */
-	/* background-color: #ffffff; */
-	border: 1px; 
-	/* solid #000; */
-	margin: 10px;
-	padding: 10px;
-	font-size: .9em; 
-}
-.itemList h3 {
-	margin: 0;
-}
 .itemList .itemButton {
+	color: #333333;
 	cursor: pointer;
 	width: 80%;
 	float: left;
 	text-align: center;
 	margin: 5px;
 	padding: 5px;
-	background-color: gray;
-	border-top: 3px solid #888;
+	background-color: #EEEEEE;
+/* 	border-top: 3px solid #888;
 	border-left: 3px solid #888;
 	border-bottom: 3px solid #888;
-	border-right: 3px solid #888;
+	border-right: 3px solid #888; */
 }
 
-.hover {
+
+.itemList .hover {
 	/* background-color: navy; */
-	color: lime;
+	color: #5CCDDE;
 }
-
 
 .itemList .itemclick {
-	font-weight: bold;
-	color : aqua;	
-	background-color: #B45F04;
+	color: #FFFFFF;
+	background-color: #5CCDDE;
+}
+
+.tail {
+	background-color: #EEEEEE;
+}
+
+.tail *{
+	display: inline-block;
+	 margin: 10px 10px 10px 10px; 
 }
 
 .subutton {
-	display: inline-block;
-	margin: 20px 20px;
+	/* margin-right: 50px; */
 }
 
-#formupdatebutton {
-	cursor: pointer;
-	float: right;
-	width: 120px;
-	height: 30px;
-	color: black;
-	text-align: center;
-	font-weight: bold;
-	padding-top: 2px;
-	margin: 20px 10px 0px 0px;
-	background-color:white;
-	border: 3px solid aqua;
-	
-}
-
-#formdeletebutton{
-	cursor: pointer;
-	float: right;
-	width: 80px;
-	height: 30px;
-	color: black;
-	text-align: center;
-	font-weight: bold;
-	padding-top: 2px;
-	margin: 20px 10px 0px 0px;
-	background-color:white;
-	border: 3px solid aqua;
-}
 
 
 </style>

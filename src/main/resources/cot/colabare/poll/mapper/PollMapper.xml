@@ -62,22 +62,26 @@
 				#{poll_question_num}, #{poll_select_num})
 		</insert>
 		
-		
-		<select id="listPoll" resultType="cot.colabare.poll.domain.PollListVO">
-		<![CDATA[
-			select 
-				/*+ INDEX_DESC(POLL POLL_PK) INDEX(EMPLOYEE EMPLOYEE_PK)*/
-				p.*,e.name,d.department_name
-    		from
-      			poll p inner join employee e
-				on p.poll_writer = e.employee_no
-				join department d
-				on e.department_id = d.department_id
-			where 
-				poll_num > 0
-			order by 
-				poll_num
-		]]>
+		<select id="listPaging" resultType="cot.colabare.poll.domain.PollListVO">
+			<![CDATA[
+				select 
+					*
+				from
+					(select 
+						/*+ INDEX_DESC(POLL POLL_PK) INDEX(EMPLOYEE EMPLOYEE_PK)*/
+						rownum rn,p.*,e.name,d.department_name
+		    		from
+		      			poll p inner join employee e
+						on p.poll_writer = e.employee_no
+						join department d
+						on e.department_id = d.department_id
+					where 
+						rownum <= #{pageNum} * #{amount}
+					order by 
+						poll_num DESC)
+				where
+					rn > (#{pageNum}-1) * #{amount}
+			]]>
 		</select>
 		
 		<select id="detailPoll" parameterType="int" resultType="cot.colabare.poll.domain.PollVO">
@@ -127,6 +131,41 @@
 				poll_answer_num
 			
 		</select>
+		
+		<update id="updatePoll" parameterType="cot.colabare.poll.domain.PollDTO">
+			update poll
+			set
+				poll_type = ${poll_type},
+				poll_title = ${poll_title},
+				poll_contents = #{poll_contents}
+			where
+				poll_num = ${poll_num}
+		</update>
+		<!-- poll_etime = ${poll_etime} -->
+		
+		<update id="updateQuestion" parameterType="cot.colabare.poll.domain.PollQuestionDTO">
+			update
+				poll_question
+			set
+				poll_num = ${poll_num},
+				poll_question_text = ${poll_question_text},
+				poll_multiple = ${poll_multiple},
+				poll_num_question_num = ${poll_num_question_num}
+			where
+				poll_question_num = ${poll_question_num}  
+		</update>
+		
+		<update id="updateItem" parameterType="cot.colabare.poll.domain.PollItemDTO">
+			update
+				poll_item
+			set
+				poll_question_num = ${poll_question_num},
+				poll_item_text = ${poll_item_text}
+			where
+				poll_item_num = ${poll_item_num}
+		</update>
+		
+		
   		 
   		 <update id="updateAnswer" parameterType="cot.colabare.poll.domain.PollAnswer">
  		<!-- <update id="updateAnswer" parameterType="cot.colabare.poll.domain.PollAnswer"> -->
@@ -142,6 +181,14 @@
  				poll_answer_num = #{poll_answer_num}
  			<!-- </foreach> -->
  		</update> 
+ 		
+ 		<delete id="deletePoll" parameterType="int">
+ 			delete 
+ 			from 
+ 				poll
+ 			where 
+ 				poll_num = #{poll_num} 
+ 		</delete>
 
 		
 		
