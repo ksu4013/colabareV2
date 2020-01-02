@@ -120,18 +120,7 @@
 					class="widget-content widget-content-mini border-bottom themed-background-dark text-light-op">
 					<span class="pull-right text-muted"></span> 회의록 게시판
 				</div>
-<<<<<<< HEAD
-				<h1>하</h1>
-				<h1>하</h1>
-				<h1>하</h1>
-				<h1>하</h1>
-				<div class="widget-content widget-content-full"></div>
-			</div>
 
-			
-         <!-- 참조자  -->
-         <div class="widget">
-=======
 				<div class="widget-content widget-content-full">
 				
 				
@@ -190,23 +179,23 @@
 
 			<!-- 참조자  -->
 			 <div class="widget">
->>>>>>> colabareV2/Ang
+
             <div
                class="widget-content widget-content-mini border-bottom themed-background-dark text-light-op">
                <span class="pull-right text-muted">5 People</span> 유진이의 To Do
             </div>
-
+<%-- 
 <<<<<<< HEAD
             <div class="widget-content widget-content-full">
                <c:forEach var="todotype" items="${typelist }">
                <h1><i class="fa fa-book fa-fw icon-push"></i> <strong><a href="todolist?todo_type_no=${todotype.todo_type_no }">${todotype.todo_type_title }</strong></h1>
                </c:forEach>
-=======
+======= --%>
             <div class="widget-content widget-content-full" >
                <c:forEach var="todotype" items="${typelist }">
                <h3>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-book fa-fw icon-push"></i>&nbsp;&nbsp;&nbsp;&nbsp; <strong><a href="/todo/todolist?todo_type_no=${todotype.todo_type_no }">${todotype.todo_type_title }</strong></a></h3>
                </c:forEach><br>
->>>>>>> colabareV2/Ang
+
             </div>
          </div>
 
