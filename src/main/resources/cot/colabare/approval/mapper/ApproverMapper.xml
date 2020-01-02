@@ -10,9 +10,9 @@
 	</insert>
 	
 	<select id="approverList" resultType="cot.colabare.approval.domain.ApproverDto">
-		select a.no, a.approval_no, a.employee_no, a.approval_active, a.approval_level, a.approval_date, a.approvercnt, e.name, d.department_name
-			from approver a, employee e, department d
-			where a.employee_no = e.employee_no and e.department_id = d.department_id and approval_no = #{approval_no}
+		select a.no, a.approval_no, a.employee_no, a.approval_active, a.approval_level, a.approval_date, a.approvercnt, e.name, d.department_name, p.employee_img
+			from approver a, employee e, department d, employee_profile p
+			where a.employee_no = e.employee_no and e.department_id = d.department_id and e.employee_no = p.employee_no and approval_no = #{approval_no}
 	</select>
 	
 	<delete id="approverRemove">
