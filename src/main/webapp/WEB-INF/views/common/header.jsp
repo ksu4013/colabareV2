@@ -263,7 +263,7 @@
                                             <a href="#" class="sidebar-nav-submenu"><i class="fa fa-chevron-left sidebar-nav-indicator"></i>메신저</a>
                                             <ul>
                                                 <li>
-                                                    <a href="page_ready_blank.html">채팅</a>
+                                                    <a href="https://practice-fa542.firebaseapp.com/">채팅</a>
                                                 </li>
                                                 <li>
                                                     <a href="/video/videochat">화상전화</a>
