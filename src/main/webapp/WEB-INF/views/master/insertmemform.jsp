@@ -6,14 +6,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Insert Member Form</title>
 
 <%@ include file = "../common/header.jsp" %>
 <script type="text/javascript" src="/resources/js/pages/insertmem.js"></script>
 
 </head>
 <body>
-<h5>사원 추가하기</h5>
  <!-- Page content -->
                     <div id="page-content">
                         <!-- Validation Header -->
@@ -21,15 +20,15 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="header-section">
-                                        <h1>Form Validation</h1>
+                                        <h1>사원 추가</h1>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 hidden-xs">
                                     <div class="header-section">
                                         <ul class="breadcrumb breadcrumb-top">
-                                            <li>User Interface</li>
-                                            <li>Forms</li>
-                                            <li><a href="">Validation</a></li>
+                                            
+                                            <li>Master</li>
+                                            <li>Insert Member</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -44,7 +43,7 @@
                                 <div class="block">
                                     <!-- Form Validation Title -->
                                     <div class="block-title">
-                                        <h2>Example Form</h2>
+                                        <h2>Insert Member Form</h2>
                                     </div>
                                     <!-- END Form Validation Title -->
 
@@ -112,7 +111,7 @@
                                         </div>
                                         <div class="form-group form-actions">
                                             <div class="col-md-8 col-md-offset-3">
-                                               <input type="button" value="회원 추가" id="insertmembtn">
+                                               <input type="button" class="pull-right btn btn-primary" value="회원 추가" id="insertmembtn">
                                                 <!-- <button type="reset" class="btn btn-effect-ripple btn-danger">Reset</button> -->
                                             </div>
                                         </div>

@@ -19,15 +19,14 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="header-section">
-                                        <h1>Form Validation</h1>
+                                        <h1>사원 수정</h1>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 hidden-xs">
                                     <div class="header-section">
                                         <ul class="breadcrumb breadcrumb-top">
-                                            <li>User Interface</li>
-                                            <li>Forms</li>
-                                            <li><a href="">Validation</a></li>
+                                            <li>Master</li>
+                                            <li>Modify Member</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -42,14 +41,17 @@
                                 <div class="block">
                                     <!-- Form Validation Title -->
                                     <div class="block-title">
-                                        <h2>사원 수정</h2>
+                                        <h2>Modify Member Form</h2>
                                     </div>
                                     <!-- END Form Validation Title -->
 
                                     <!-- Form Validation Form -->
                                     <form id="modifymemform" method="post" class="form-horizontal form-bordered">
                                         <div class="form-group">
-                                            <label class="col-md-3 control-label" for="val-username"><strong>사원번호:${employee.employee_no }</strong><span class="text-danger">*</span></label>
+                                            <label class="col-md-3 control-label" for="val-username"><strong>사원번호</strong><span class="text-danger">*</span></label>
+                                            <div class="col-md-6">
+                                            <label class="form-control-static control-label"><strong>${employee.employee_no }</strong></label>
+                                            </div>
                                             <input type="hidden" id="employee_id" value="${employee.employee_no }"> 
                                         </div>
                                         <div class="form-group">
@@ -144,7 +146,7 @@
                                         </div>		
                                         <div class="form-group form-actions">
                                             <div class="col-md-8 col-md-offset-3">
-                                               <input type="button" value="회원  수정" id="modifymembtn">
+                                               <input type="button" class="btn btn-primary" value="회원  수정" id="modifymembtn">
                                                 <!-- <button type="reset" class="btn btn-effect-ripple btn-danger">Reset</button> -->
                                             </div>
                                         </div>
@@ -184,81 +186,6 @@
                         <!-- END Form Validation Content -->
                     </div>
                     <!-- END Page Content -->
-
-	<form id="empmodifyform" method="post">
-	<h4>사원번호 : ${employee.employee_no }</h4>
-	<h4>사원이름 : ${employee.name }</h4>
-	<input type="hidden" id="employee_id" value="${employee.employee_no }">
-	이름 : <input type="text" name="name" id="name" value="${employee.name }">
-	부서명 : <select name="department_id" id="department_id">
-	<c:forEach var="department" items="${departments }">
-		<c:if test="${department.department_id eq employee.department_id }">
-			<option value="${department.department_id }" selected disabled hidden>${department.department_name }</option>
-		</c:if>	
-	</c:forEach>
-				 
-	<c:forEach var="department" items="${departments }">
-    	<option value=${department.department_id }>${department.department_name }</option>
-    </c:forEach>
-  	</select><br><br>
-		직급명 : <select name="position_id" id="position_id" >
-	<c:forEach var="position" items="${positions }">
-		<c:if test="${position.position_id eq employee.position_id }">
-			<option value="${position.position_id }" selected disabled hidden>${position.position_name }</option>
-		</c:if>	
-	</c:forEach>
-					<c:forEach var="position" items="${positions }">
-    					<option value=${position.position_id }>${position.position_name }</option>
-    				</c:forEach>
-  				</select> &nbsp; &nbsp; &nbsp; 
-		관리자 여부 :<select name="master" id="master" >
-		<c:if test="${employee.master eq 'n' }">
-			<option value="n" selected disabled hidden>관리자아님</option>
-		</c:if>	
-    				<option value="y"> 관리자 </option>
-    				<option value="n"> 관리자아님 </option>                
-    			</select> <br><br>
-	권한 설정 : 공지사항<c:choose>
-		<c:when test="${security.notice_cud eq 'y'}">
-			<input type="checkbox" id="auth" checked="checked" value="notice" >
-		</c:when>
-		<c:otherwise>
-			<input type="checkbox" id="auth"  value="notice" >
-		</c:otherwise>
-		</c:choose> &nbsp; &nbsp; &nbsp; 
-		회의록
-		<c:choose>
-		<c:when test="${security.meeting_cud eq 'y'}">
-			<input type="checkbox" id="auth" checked="checked" value="meeting" >
-		</c:when>
-		<c:otherwise>
-			<input type="checkbox" id="auth" value="meeting" >
-		</c:otherwise>
-		</c:choose> &nbsp; &nbsp; &nbsp; 
-		자료실
-		<c:choose>
-		<c:when test="${security.reference_cud eq 'y'}">
-			<input type="checkbox" id="auth" checked="checked" value="reference" >
-		</c:when>
-		<c:otherwise>
-			<input type="checkbox" id="auth" value="reference" >
-		</c:otherwise>
-		</c:choose> &nbsp; &nbsp; &nbsp; 
-		프로젝트방 생성
-		<c:choose>
-		<c:when test="${security.project_c eq 'y'}">
-			회의록<input type="checkbox" id="auth" checked="checked" value="project" >
-		</c:when>
-		<c:otherwise>
-			회의록<input type="checkbox" id="auth" value="project" >
-		</c:otherwise>
-		</c:choose>
-		
-	<br><br>
-	<input type="button" value="회원 수정" id="modifymembtn"></form>
-	<br><br><br><br><br>
-	
-	<button onclick="location.href='/colabare/master/listPage.do'">이전으로</button>
 
 </body>
 </html>

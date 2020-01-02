@@ -171,7 +171,7 @@
                     <!-- Sidebar Brand -->
                     <div id="sidebar-brand" class="themed-background">
                         <a href="/login/main.do" class="sidebar-title">
-                            <i class="fa fa-cube"></i> <span class="sidebar-nav-mini-hide">App<strong>UI</strong></span>
+                           <img src="/resources/img/colabare_white.png" width=30px height=25px> <span class="sidebar-nav-mini-hide"><strong>COLABARE</strong></span>
                         </a>
                     </div>
                     <!-- END Sidebar Brand -->

@@ -39,4 +39,7 @@ public interface MasterMapper {
 	UserAuthDto getAdminAuth(String userid);
 	int updateUserAuth(UserAuthDto userauth);
 	int deleteUserAuth(String userid);
+	
+	List<EmplDepPosDto> getEmployee();
+	
 }

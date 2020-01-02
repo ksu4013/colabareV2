@@ -39,5 +39,7 @@ public interface MasterService {
 	public List<EmplDepPosDto> employeeList(Criteria cri);
 	public int totalCount(Criteria cri);
 	
+	public List<EmplDepPosDto> allEmployeeListService();
+	
 
 }
