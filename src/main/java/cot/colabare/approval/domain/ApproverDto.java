@@ -19,5 +19,8 @@ public class ApproverDto {
 	private String title;
 	private String write_date;
 	private String dtitle;
+	
+	private String employee_img;
+	private String profilepic;
 
 }

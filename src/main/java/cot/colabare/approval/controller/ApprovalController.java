@@ -19,6 +19,8 @@ import cot.colabare.approval.domain.ApprovalDto;
 import cot.colabare.approval.domain.ApprovalViewerDto;
 import cot.colabare.approval.domain.ApproverDto;
 import cot.colabare.approval.service.ApprovalService;
+import cot.colabare.profile.domain.ProfileAttachDto;
+import cot.colabare.profile.service.ProfileService;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
@@ -30,6 +32,7 @@ public class ApprovalController {
 	
 	// 서비스 입력
 	private ApprovalService service;
+	private ProfileService pservice;
 	
 	// 전자결재 문서 내 삽입
 	@PostMapping(value ="/insertApproval" , produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
@@ -114,8 +117,21 @@ public class ApprovalController {
 	public ResponseEntity<List<ApproverDto>> approverList(@PathVariable("approval_no") Long approval_no){
 		
 		System.out.println("결재자 목록 리스트 컨트롤러");
+		List<ApproverDto> list = service.approverList(approval_no);
+		
+		for( ApproverDto profile : list){
+			if(profile.getEmployee_img() != null){
+				ProfileAttachDto profilepic= pservice.selectProfilePicService(profile.getEmployee_img());
+				String fileCallPath =  profilepic.getP_uploadPath()+ "/s_"+profilepic.getP_uuid() +"_"+profilepic.getP_fileName();
+				//request.setAttribute("profilepic", fileCallPath);
+				profile.setProfilepic(fileCallPath);
+				
+			}
+			
+		}
+		System.out.println("리스트 : " + list);
 
-		return new ResponseEntity<List<ApproverDto>>(service.approverList(approval_no), HttpStatus.OK);
+		return new ResponseEntity<List<ApproverDto>>(list, HttpStatus.OK);
 	}
 	
 	@DeleteMapping(value="/{no}", produces = { MediaType.TEXT_PLAIN_VALUE })
@@ -148,8 +164,20 @@ public class ApprovalController {
 	public ResponseEntity<List<ApprovalViewerDto>> approvalVList(@PathVariable("approval_no") Long approval_no){
 		
 		System.out.println("참조자 목록 리스트 컨트롤러");
+		List<ApprovalViewerDto> list = service.approvalVList(approval_no);
+		
+		for( ApprovalViewerDto profile : list){
+			if(profile.getEmployee_img() != null){
+				ProfileAttachDto profilepic= pservice.selectProfilePicService(profile.getEmployee_img());
+				String fileCallPath =  profilepic.getP_uploadPath()+ "/s_"+profilepic.getP_uuid() +"_"+profilepic.getP_fileName();
+				//request.setAttribute("profilepic", fileCallPath);
+				profile.setProfilepic(fileCallPath);
+				
+			}
+			
+		}
 
-		return new ResponseEntity<List<ApprovalViewerDto>>(service.approvalVList(approval_no), HttpStatus.OK);
+		return new ResponseEntity<List<ApprovalViewerDto>>(list, HttpStatus.OK);
 	}
 
 	@PostMapping(value="/approvalVNumSelect", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})

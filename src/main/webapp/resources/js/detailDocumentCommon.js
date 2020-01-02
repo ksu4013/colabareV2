@@ -19,7 +19,11 @@
 			$.each(result, function(index, list){	
 				output += '<li>';
 				output += '<a href="javascript:void(0)">';
-				output += '<img src="img/placeholders/avatars/avatar6.jpg" alt="image" class="nav-users-avatar">';
+				if(list.profilepic == null){
+					output += '<img src="/resources/img/placeholders/avatars/avatar13@2x.jpg" alt="image" class="nav-users-avatar">';
+				}else{
+					output += '<img src="/profile/displayprofile?fileName='+list.profilepic+'" alt="image" class="nav-users-avatar">';
+				}
 				output += '<span class="label label-success nav-users-indicator">' + (index+1) + '</span>';
 				output += '<span class="nav-users-heading">' + list.name + '</span>';
 				output += '<span class="text-muted">' + list.department_name + '</span>';
@@ -54,7 +58,11 @@
 			$.each(result, function(index, list){	
 				output += '<li>';
 				output += '<a href="javascript:void(0)">';
-				output += '<img src="img/placeholders/avatars/avatar6.jpg" alt="image" class="nav-users-avatar">';
+				if(list.profilepic == null){
+					output += '<img src="/resources/img/placeholders/avatars/avatar13@2x.jpg" alt="image" class="nav-users-avatar">';
+				}else{
+					output += '<img src="/profile/displayprofile?fileName='+list.profilepic+'" alt="image" class="nav-users-avatar">';
+				}
 				output += '<span class="label label-success nav-users-indicator">' + (index+1) + '</span>';
 				output += '<span class="nav-users-heading">' + list.name + '</span>';
 				output += '<span class="text-muted">' + list.department_name + '</span>';

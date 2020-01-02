@@ -17,5 +17,8 @@ public class ApprovalViewerDto {
 	private   Long document_no;
 	private String title;
 	
+	private String employee_img;
+	private String profilepic;
+	
 	
 }
