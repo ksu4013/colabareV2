@@ -25,8 +25,8 @@
                                 <div class="col-sm-6 hidden-xs">
                                     <div class="header-section">
                                         <ul class="breadcrumb breadcrumb-top">
-                                            <li>Master</li>
-                                            <li>Modify Member</li>
+                                            <li>관리자</li>
+                                            <li>사원 수정</li>
                                         </ul>
                                     </div>
                                 </div>

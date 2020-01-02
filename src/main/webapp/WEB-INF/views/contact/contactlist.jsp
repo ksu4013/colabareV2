@@ -46,8 +46,8 @@
 							<div class="col-sm-6 hidden-xs">
 								<div class="header-section">
 									<ul class="breadcrumb breadcrumb-top">
-										<li>Social</li>
-										<li>Contacts</li>
+										<li>소셜</li>
+										<li>주소록</li>
 									</ul>
 								</div>
 							</div>

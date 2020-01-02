@@ -17,15 +17,14 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="header-section">
-                                        <h1>Mail 보내기</h1>
+                                        <h1>메일 보내기</h1>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 hidden-xs">
                                     <div class="header-section">
                                         <ul class="breadcrumb breadcrumb-top">
-                                            <li>User Interface</li>
-                                            <li>Forms</li>
-                                            <li><a href="">Validation</a></li>
+                                            <li>메일</li>
+                                            <li>메일 보내기</li>
                                         </ul>
                                     </div>
                                 </div>

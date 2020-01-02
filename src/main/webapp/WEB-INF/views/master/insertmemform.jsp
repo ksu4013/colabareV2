@@ -27,8 +27,8 @@
                                     <div class="header-section">
                                         <ul class="breadcrumb breadcrumb-top">
                                             
-                                            <li>Master</li>
-                                            <li>Insert Member</li>
+                                            <li>관리자</li>
+                                            <li>사원 추가</li>
                                         </ul>
                                     </div>
                                 </div>

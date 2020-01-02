@@ -146,10 +146,10 @@ public class MasterController {
 			cri.setKeyword("");
 		}
 		System.out.println(cri.getPageNum() + " " + cri.getKeyword());
-		request.setAttribute("employeelist", service.employeeList(cri));
 		int count = service.totalCount(cri);
 		System.out.println(service.employeeList(cri) + "   " + count);
 		request.setAttribute("pageMaker", new PageDto(cri, count));
+		request.setAttribute("employeelist", service.employeeList(cri));
 		System.out.println(new PageDto(cri, count));
 		request.setAttribute("department_id", request.getParameter("department_info"));
 
