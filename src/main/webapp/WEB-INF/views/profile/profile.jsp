@@ -99,22 +99,26 @@
                                         <p>${profile.employee_greeting }</p>
                                     </div>
                                     <div class="widget-content">
+                                    
                                         <h4>Social</h4>
-                                        <div class="btn-group">
-                                            <a href="/mail/mailform?to=${sessionScope.employee.e_mail }" class="btn btn-default" data-toggle="tooltip" title="E-mail"><i class="fa fa-message fa-fw"></i></a>
-                                            <a href="javascript:void(0)" class="btn btn-default" data-toggle="tooltip" title="Twitter"><i class="fa fa-twitter fa-fw"></i></a>
-                                            <a href="javascript:void(0)" class="btn btn-default" data-toggle="tooltip" title="Google Plus"><i class="fa fa-google-plus fa-fw"></i></a>
-                                            <a href="javascript:void(0)" class="btn btn-default" data-toggle="tooltip" title="Pinterest"><i class="fa fa-pinterest fa-fw"></i></a>
-                                            <a href="javascript:void(0)" class="btn btn-default" data-toggle="tooltip" title="Dribbble"><i class="fa fa-dribbble fa-fw"></i></a>
-                                        	 <form action="/profile/uploadprofilepic" method="post" enctype="multipart/form-data">
-												<input type='file' name='uploadFile'>
-												<button id='uploadBtn' name='uploadBtn'>Submit</button>
+                                         <div class="widget-content push-ineer-top-bottom">
+                                      <div class="pull-left">
+                                            <a href="/mail/mailform?to=${sessionScope.employee.e_mail }" class="btn btn-default" data-toggle="tooltip" title="E-mail"><i class="fa fa-envelope"></i></a>
+                                            </div>
+                                            <div class="pull-right">
+                                        	 <form action="/profile/uploadprofilepic" method="post" enctype="multipart/form-data" class="form-inline">
+                                        	 <div class="form-group">
+												<input type='file' class="btn-block" name='uploadFile' class="btn btn-default">
+												</div><div class="form-group">
+												<button id='uploadBtn' class="btn btn-primary" name='uploadBtn'>수정</button>
+											</div>	
 											</form>
-											<div id="uploadResult"></div>
-                                        	 <a href="/profile/profilemodifyform.do" class="btn btn-default"><button>회원 정보 수정</button></a>
+											</div>
+											<div id="uploadResult" class="pull-right"></div>
+                                        	 <a href="/profile/profilemodifyform.do" class="btn btn-primary">회원 정보 수정</a>
                                         </div>
-                                       
-                                    </div>
+                                      </div> 
+                                    
                                 </div>
                             </div>
                             

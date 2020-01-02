@@ -42,6 +42,17 @@
 		]]>
 	</select>
 	
+	<select id="getEmployee" resultType="cot.colabare.master.domain.EmplDepPosDto">
+		select e.employee_no, e.department_id, e.name, e.e_mail, e.position_id,e.master,d.department_name, p.position_name from 
+    		employee e join position p
+			on e.position_id=p.position_id
+			join department d
+			on e.department_id=d.department_id
+			join user_tbl u
+      		on u.employee_no=e.employee_no
+			where u.enabled='1'
+	</select>
+	
 	<select id="getCountEmployee" resultType="int">
 		<![CDATA[
 		select count(e.employee_no) from employee e

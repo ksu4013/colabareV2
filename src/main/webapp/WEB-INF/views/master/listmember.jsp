@@ -6,7 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<link rel="stylesheet" href="https://uicdn.toast.com/tui-grid/latest/tui-grid.css" />
+<script src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js"></script>
 <%@ include file="../common/header.jsp"%> 
 <script type="text/javascript" src="/resources/js/pages/modifymem.js"></script>
 </head>
@@ -35,10 +36,15 @@
 							<div class="block-title">
 								<h2>사원 목록</h2>
 							</div>
-
-							<div class="table-responsive">
+							<Div>
+							
+							</Div>
+							 <div class="table-responsive">
 								<table id="example-datatable"
 									class="table table-striped table-bordered table-vcenter">
+									<div class="pull-right">
+									<button id="savefile" name="savefile" class="btn btn-effect-ripple btn-danger">저장하기</button>
+									</div>
 									<thead>
 										<tr>
 											<th class="text-center" style="width: 180px;">사원번호</th>
@@ -65,7 +71,7 @@
 													data-toggle="tooltip" title="Edit User"
 													class="btn btn-effect-ripple btn-xs btn-success"><i
 														class="fa fa-pencil"></i></a> <a
-													href="/master/deletemem.do?employee_no='${em.employee_no }"
+													href="/master/deletemem.do?employee_no=${em.employee_no }"
 													data-toggle="tooltip" title="Delete User"
 													class="btn btn-effect-ripple btn-xs btn-danger"><i
 														class="fa fa-times"></i></a></td>
@@ -74,9 +80,7 @@
 									</tbody>
 								</table>
 							</div>
-
-
-							<div id=employeepage class="text-center">
+							<div id="employeepage" class="text-center border-top">
 								<ul class="pagination">
 									<c:if test="${pageMaker.prev}">
 										<li class="paginate_button previous"><a
@@ -96,9 +100,10 @@
 									</c:if>
 								</ul>
 							</div>
-							<div>
-								<form id='actionForm' action="/master/listmember" method='get'>
-								<div class="col-md-3">
+							<div class="text-center border-top push-inner-top-bottom">
+							<div id="formdiv" class="text-center">
+								<form id='actionForm' action="/master/listmember" method='get' class="form-inline">
+								<div class="form-group">
 									<select name="department_info" id="department_info"
 										class="form-control">
 										<c:forEach var="department" items="${departments }">
@@ -113,11 +118,14 @@
 												<c:out value="${pageMaker.cri.keyword == department.department_id?'selected':''}"/>>${department.department_name }</option>
 
 										</c:forEach>
-									</select> </div> <input type='hidden' id='pageNum' name='pageNum'
-										value='${pageMaker.cri.pageNum }'> <input type='text'
+									</select> </div>
+									  <div class="form-group"><input type='text'
 										id='keyword' name='keyword' value='${pageMaker.cri.keyword }'>
-									<button>Search</button>
+									<button class="btn btn-primary">Search</button></div>
+									<input type='hidden' id='pageNum' name='pageNum'
+										value='${pageMaker.cri.pageNum }'>
 								</form>
+							</div>
 							</div>
 						</div>
 					</div>
@@ -129,13 +137,7 @@
 					<div class="alert alert-success animation-fadeInQuick">
 						<strong>수정 요청 목록</strong>
 					</div>
-					<a href="javascript:void(0)"
-						class="btn btn-xs btn-default pull-right"><i
-						class="fa fa-check"></i> Flag as Closed</a> <a
-						href="javascript:void(0)" class="btn btn-xs btn-danger"><i
-						class="fa fa-flag"></i> Flag as Urgent</a> <a
-						href="javascript:void(0)" class="btn btn-xs btn-warning"><i
-						class="fa fa-flag"></i> Flag as Invalid</a>
+					
 					<hr>
 					<ul class="media-list media-feed push" id="requestlist">
 						<!-- Ticket -->
@@ -151,20 +153,6 @@
 
 	<!-- END Page Content -->
 </body>
-<script type="text/javascript">
-	$(document).ready(function() {
-		var actionForm = $("#actionForm");
 
-		$(".paginate_button a").on("click", function(e) {
-
-			e.preventDefault();
-
-			console.log('click');
-
-			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
-			actionForm.submit();
-		});
-	});
-</script>
 
 </html>
