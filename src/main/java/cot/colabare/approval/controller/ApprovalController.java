@@ -47,7 +47,7 @@ public class ApprovalController {
 	}
 	
 	@PostMapping(value="/receiveList")
-	public ResponseEntity<List<ApproverDto>> receiveList(Long employee_no){
+	public ResponseEntity<List<ApproverDto>> receiveList(int employee_no){
 		
 		return new ResponseEntity<List<ApproverDto>>(service.receiveList(employee_no), HttpStatus.OK);
 	}

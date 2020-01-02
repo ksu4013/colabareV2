@@ -141,8 +141,8 @@ $(document).ready(function(e){
 		var passD = {employee_no : employee_no, approval_no : approval_no };
 		
 		DCService.pass(passD, function(result){
-			alert(result);
 			alert("결재 완료");
+			location.href = "/document/approvalList?employee_no="+ ${employee.employee_no};
 		});
 	
 	});

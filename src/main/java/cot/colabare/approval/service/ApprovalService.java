@@ -52,7 +52,7 @@ public interface ApprovalService {
 	//public int getTotalCount(int employee_no , ApprovalCriteria cri);
 	
 	// 받은 결재 목록
-	public List<ApproverDto> receiveList(Long employee_no);
+	public List<ApproverDto> receiveList(int employee_no);
 	
 	// 받은 결재 상세보기
 	public ApprovalDto detailReceive(Long approval_no);

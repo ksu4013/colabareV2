@@ -17,12 +17,26 @@
 			class="btn btn-block btn-effect-ripple btn-primary visible-xs"
 			data-toggle="collapse" data-target="#people-nav">People</a>
 		<div id="people-nav" class="collapse navbar-collapse remove-padding">
-			<div class="block-section">
-				<h4 class="inner-sidebar-header">전자결재 목록</h4>
-
-			</div>
-
-
+			
+			<table class="table table-striped table-vcenter">
+                    <thead>
+                        <tr>
+                            <th colspan="2">결재 대기 목록</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach var = "approval" items="${approval }">
+		                 <tr>
+		                 <td>
+						      <h4>
+						          <a href="/document/detailDoc${approval.document_no}?approval_no=${approval.approval_no}" class="text-dark"><strong> ${approval.title } </strong></a>
+						     </h4>
+						       <div class="text-muted">${approval.dtitle}</div>
+						  </td>
+						  </tr>
+					</c:forEach>
+                    </tbody>
+            </table>
 		</div>
 	</div>
 
@@ -104,38 +118,96 @@
 			<div class="widget">
 				<div
 					class="widget-content widget-content-mini border-bottom themed-background-dark text-light-op">
-					<span class="pull-right text-muted">5 People</span> 공지사항 자리
+					<span class="pull-right text-muted"></span> 회의록 게시판
 				</div>
-				<h1>하</h1>
-				<h1>하</h1>
-				<h1>하</h1>
-				<h1>하</h1>
-				<div class="widget-content widget-content-full"></div>
+				<div class="widget-content widget-content-full">
+				
+				
+				
+				<table id="general-table" class="table table-striped table-bordered table-vcenter table-hover">
+                    <thead>
+                        <tr>
+                            <th style="width: 80px;" class="text-center">글번호</th>
+                            <th>제목</th>
+                            <th>작성자</th>
+                            <th style="width: 120px;">조회수</th>
+                            <th>파일첨부</th>
+                            <th style="width: 120px;" class="text-center">작성일자</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    	<c:forEach var = "meetingBoard" items="${list }">
+                        <tr>
+                            <td class="text-center">${meetingBoard.board_no }</td>
+                            <td>
+                            	<strong><a href="/meetingboard/detailMeetingBoard?board_no=${meetingBoard.board_no  }">
+                            				<c:out value="${meetingBoard.title }" /><b> [  <c:out value="${meetingBoard.replyCnt}" />  ]</b>
+                            			</a>
+                            	</strong>
+                            </td>
+                            
+                            
+                            <td>${meetingBoard.name }</td>
+                            <td>${meetingBoard.read_count }</td>
+                            <td><i class="fa fa-paperclip fa-2x text-muted"></i></td>
+                            <td class="text-center">${meetingBoard.write_date }</td>
+                        </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				</div>
+				
 			</div>
 
 			<!-- 참조자  -->
-			<div class="widget">
-				<div
-					class="widget-content widget-content-mini border-bottom themed-background-dark text-light-op">
-					<span class="pull-right text-muted">5 People</span> 유진이의 To Do
-				</div>
+			 <div class="widget">
+            <div
+               class="widget-content widget-content-mini border-bottom themed-background-dark text-light-op">
+               <span class="pull-right text-muted">5 People</span> 유진이의 To Do
+            </div>
 
-				<div class="widget-content widget-content-full">
-					<h1>하</h1>
-					<h1>하</h1>
-					<h1>하</h1>
-					<h1>하</h1>
-					<h1>하</h1>
-					<h1>하</h1>
-				</div>
-			</div>
+            <div class="widget-content widget-content-full" >
+               <c:forEach var="todotype" items="${typelist }">
+               <h3>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-book fa-fw icon-push"></i>&nbsp;&nbsp;&nbsp;&nbsp; <strong><a href="/todo/todolist?todo_type_no=${todotype.todo_type_no }">${todotype.todo_type_title }</strong></a></h3>
+               </c:forEach><br>
+            </div>
+         </div>
 
 
-		</div>
-	</div>
+      </div>
+   </div>
 </div>
 
+<script>
+$(document).ready(function () {
+$(".move").on("click",
+		function(e) {
+	      location.href = "/meetingboard/detailMeetingBoard?board_no="+ ${employee.employee_no};
+			e.preventDefault();
+			actionForm.append("<input type='hidden' name='board_no' value='"+ $(this).attr("href")+ "'>");
+			actionForm.attr("action", "/meetingboard/detailMeetingBoard");
+			actionForm.submit();
 
+		});
+});
+</script>
 </body>
 
 </html>

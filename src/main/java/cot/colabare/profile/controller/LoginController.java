@@ -1,13 +1,12 @@
 package cot.colabare.profile.controller;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -16,8 +15,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import cot.colabare.approval.domain.ApproverDto;
 import cot.colabare.approval.service.ApprovalService;
@@ -25,13 +22,13 @@ import cot.colabare.master.domain.EmplDepPosDto;
 import cot.colabare.master.domain.SecurityAuthDto;
 import cot.colabare.master.service.MasterService;
 import cot.colabare.meetingboard.domain.MeettingBoardCriteria;
-import cot.colabare.meetingboard.domain.PageDTO;
 import cot.colabare.meetingboard.service.MeetingBoardService;
 import cot.colabare.profile.domain.EmployeeDto;
 import cot.colabare.profile.domain.ProfileAttachDto;
 import cot.colabare.profile.domain.ProfileDto;
 import cot.colabare.profile.service.LoginService;
 import cot.colabare.profile.service.ProfileService;
+import cot.colabare.todolist.service.TodoService;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
@@ -44,6 +41,8 @@ public class LoginController {
 	private MasterService m_service;
 	private ProfileService p_service;
 	private ApprovalService apservice;
+	private TodoService todoservice;
+	private MeetingBoardService mbservice;
 	
 	
 	
@@ -78,7 +77,7 @@ public class LoginController {
 	}
 	
 	@GetMapping("/main")
-	public void goMain(HttpServletRequest request,Model model){
+	public void goMain(HttpServletRequest request,Model model, MeettingBoardCriteria cri){
 
 
 		HttpSession session=request.getSession();
@@ -107,16 +106,16 @@ public class LoginController {
 		
 
 		//전자결재 리스트
-		//Long employee_no = Integer.parseInt((String)session.getAttribute("employee_no"));
+		model.addAttribute("approval", apservice.receiveList(employee_no));
+		System.out.println("메인페이이지");
+		System.out.println(apservice.receiveList(employee_no));
 		
-		
-		
-		List<ApproverDto> aplist = new ArrayList<ApproverDto>();
-		//aplist = apservice.receiveList(employee_no);
-		model.addAttribute("approval", aplist);
-
-		
-		
+		 //todo type 리스트
+        model.addAttribute("typelist", todoservice.getTypeList());
+        
+        // 회의록 리스트
+        model.addAttribute("list", mbservice.meetingBoardList(cri));
+        
 	}
 	
 	@GetMapping("/logout")

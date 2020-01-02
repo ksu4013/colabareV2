@@ -119,7 +119,7 @@
                  <div class="block">
                      <!-- Comments Title -->
                      <div class="block-title">
-                         <h2><i class="fa fa-comments"></i> 댓글 ( ${meetingBoard.replyCnt } )</h2>
+                         <h2><i class="fa fa-comments"></i>댓글목록</h2>
                      </div>
                      <!-- END Comments Title -->
 
@@ -521,8 +521,6 @@
 			var reply_no = $(this).val();
 			var content = $('#editContent').val();
 			
-			alert(reply_no);
-			alert(content);
 			
 			var reply = {reply_no : reply_no, content : content};
 			
