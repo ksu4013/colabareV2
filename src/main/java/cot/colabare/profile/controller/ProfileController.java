@@ -72,8 +72,10 @@ public class ProfileController {
 			ProfileAttachDto profilepic=service.selectProfilePicService(profile.getEmployee_img());
 			String fileCallPath =  profilepic.getP_uploadPath()+ "/s_"+profilepic.getP_uuid() +"_"+profilepic.getP_fileName();
 			request.setAttribute("profilepic", fileCallPath);
+			session.setAttribute("profilepic",fileCallPath);
 		}else{
 			request.setAttribute("profilepic", null);
+			session.setAttribute("profilepic",null);
 		}
 		request.setAttribute("profile", profile);
 	}
