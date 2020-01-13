@@ -103,6 +103,8 @@
 				poll_question 
 			where 
 				poll_num = #{poll_num}
+			order by
+				poll_question_num
 		</select>
 		
 		<select id="detailItem" parameterType="int" resultType="cot.colabare.poll.domain.PollItemDTO">
@@ -112,7 +114,7 @@
 				poll_item i INNER JOIN poll_question q
 				ON i.poll_question_num = q.poll_question_num
 			where 
-				q.poll_question_num = #{poll_num}
+				q.poll_question_num = #{poll_question_num}
 			order by 
 				poll_item_num
 		</select>

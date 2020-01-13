@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,13 +26,14 @@
                                         <ul class="breadcrumb breadcrumb-top">
                                             <li><a href="/poll/pollinsertform">설문 작성</a></li>
 											<li><a href="/poll/polllistform">작성된 설문</a></li>
-											<li><a href="">지난 설문</a></li>
+											<li><a href="" id="gone">지난 설문</a></li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                
+                <jsp:useBean id="today" class="java.util.Date" />
+
                             <div class="col-lg-6">
                                 <!-- Row Styles Block -->
                                 <div class="block">
@@ -55,41 +58,50 @@
                                                     <th>참여여부</th>
                                                 </tr>
                                            </thead>
-                                            	
                                            <c:choose>
 		 										<c:when test="${empty PollList }">
 		 											<tbody><th><label>등록된 설문이 없습니다.</label></th></tbody>
 		 										</c:when>
 			 									<c:when test="${!empty PollList }"> 
+			 										<fmt:formatDate var="now" value="${today}" pattern="yyyyMMddHHmm" />
 					 								<c:forEach var="poll" items="${PollList}">
-                                           				<tbody>
-                                           				<!-- success warning info danger-->
-                                                		<tr class="active">
-                                                    		<td><strong>${poll.poll_num}번 설문</strong></td>
-                                                    		<td><a href="polluserinsertform?poll_num=${poll.poll_num}">${poll.poll_title}</a></td>
-		                                                   	<td>${poll.name}</td>
-		                                                    <td>
-        	                                            		<c:choose>
-																	<c:when test='${poll.poll_type eq "1".charAt(0) }'>비공개</c:when>
-																	<c:when test='${poll.poll_type eq "0".charAt(0) }'>공개</c:when>
-																</c:choose>
-															</td>
-															<td>${poll.poll_etime}</td>
-															<td>미참여</td>
-															<%-- <td>
-																<c:choose>
-																	<c:when test="${employee.employee_no }">
-																		
-																	</c:when>
-																	<c:when test="">
+						 								<fmt:parseDate var="bdate" value="${poll.etime}" pattern="yyyyMMddHHmm" />
+														<fmt:formatDate var="ndate" value="${bdate}" pattern="yyyyMMddHHmm" />
+														<fmt:formatNumber type="number" var="nndate" groupingUsed="false" value="${ndate - now}" />
+						 								<c:choose>
+															<c:when test="${nndate < 0}">
+							 								</c:when>
+							 								<c:when test="${nndate > 0}">
+							 									<tbody>
+	                                           						<!-- success warning info danger-->
+							 										<tr class="active">
+		                                                    		<td><strong>${poll.poll_num}번 설문</strong></td>
+		                                                    		<td><a href="polluserinsertform?poll_num=${poll.poll_num}">${poll.poll_title}</a></td>
+				                                                   	<td>${poll.name}</td>
+				                                                    <td>
+		        	                                            		<c:choose>
+																			<c:when test='${poll.poll_type eq "1".charAt(0) }'>비공개</c:when>
+																			<c:when test='${poll.poll_type eq "0".charAt(0) }'>공개</c:when>
+																		</c:choose>
+																	</td>
+								 									<td>${poll.poll_etime}</td>
 																	
-																	</c:when>
-																</c:choose>
-															</td> --%>
-                                                   			
-                                               			</tr>
-                                            			</tbody>
-													</c:forEach>
+																	<td>미참여</td>
+																	<%-- <td>
+																		<c:choose>
+																			<c:when test="${employee.employee_no }">
+																				
+																			</c:when>
+																			<c:when test="">
+																			
+																			</c:when>
+																		</c:choose>
+																	</td> --%>
+		                                               				</tr>
+                                            					</tbody>
+						 									</c:when>	
+					 									</c:choose>
+					 								</c:forEach>
 													<tr>
 														<th></th>
 														<th></th>
@@ -130,6 +142,8 @@
                                     <!-- END Row Styles Content -->
                                 </div>
                                 <!-- END Row Styles Block -->
+                                
+								
                             </div>
                         </div>
                         <!-- END Tables Row -->
@@ -164,7 +178,12 @@ $(document).ready(function() {
 	});
 });
 
-
+	$(function() {
+		$('#gone').on("click",function(e){
+			e.preventDefault();
+		});
+	});
+	
 </script>
                         
                         

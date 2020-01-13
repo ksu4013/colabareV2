@@ -14,4 +14,5 @@ public class PollListVO {
 	private String poll_etime;
 	private String name;
 	private String department_name;
+	private String etime;
 }

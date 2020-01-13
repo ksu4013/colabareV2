@@ -50,7 +50,13 @@ public class PollServiceImpl implements PollService {
 //	}
 	@Override
 	public List<PollListVO> listPollService(PollCriteria cri) {
-		return mapper.listPaging(cri);
+		List<PollListVO> poll = mapper.listPaging(cri);
+		for (int i = 0; i < poll.size(); i++) {
+			poll.get(i).setEtime(poll.get(i).getPoll_etime().substring(0, (poll.get(i).getPoll_etime().length()-2)).replace(":", "").replace("-", "").replace(" ", ""));
+		}
+		
+		
+		return poll;
 	}
 
 	@Override
